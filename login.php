@@ -1,31 +1,31 @@
 <?php
 
-// session_start();
+session_start();
 $session_user = $session_pass = "";
 
 include("bins/header.php");
-// include("accounts/bins/connections.php");
+include("auth/bins/connections.php");
 include("bins/nav.php");
 
 
 if(isset($_SESSION["username"])){
 
     $session_user = $_SESSION["username"];
-    $check_account_type = mysqli_query($connections, "SELECT * FROM _user_tbl_ WHERE username='$session_user'");
+    $check_account_type = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user'");
     $get_account_type = mysqli_fetch_assoc($check_account_type);
     $account_type = $get_account_type["account_type"];
     
     if($account_type == 1){
     
-        header('Location: private/admin');
+        header('Location: auth/admin');
     
     }elseif($account_type == 2){
     
-        header('Location: private/user');
+        header('Location: auth/users');
 
-    }elseif($account_type == 3){
+    }else{
     
-        header('Location: private/teacher');
+        header('Location: forbidden');
 
     }
 
@@ -77,12 +77,12 @@ if(isset($_POST["login"])){
 
     if($session_user && $session_pass){
 
-      $userCheck = mysqli_query($connections, "SELECT * FROM _user_tbl_ WHERE username='$session_user' ");
-      $userRow = mysqli_num_rows($userCheck);
+      $check_users = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user' ");
+      $row_users = mysqli_num_rows($check_users);
       
-      if($userRow > 0){
+      if($row_users > 0){
       
-          $fetch = mysqli_fetch_assoc($userCheck);
+          $fetch = mysqli_fetch_assoc($check_users);
           $db_pass = $fetch["password"];
           
           $account_type = $fetch["account_type"];
@@ -94,7 +94,7 @@ if(isset($_POST["login"])){
               
                   $_SESSION["username"] = $session_user;
 
-                  header('Location: private/admin');
+                  header('Location: auth/admin');
 
               
               }else{
@@ -111,7 +111,7 @@ if(isset($_POST["login"])){
 
               $_SESSION["username"] = $session_user;
               
-              header('Location: private/user');
+              header('Location: auth/users');
 
               }else{
               
@@ -119,21 +119,8 @@ if(isset($_POST["login"])){
                   echo"<script>alert('Your Password is incorrect!');</script>";
               
               }   
-      }elseif ($account_type == "3") {
-
-          if ($db_pass == $session_pass) {
-
-              $_SESSION["username"] = $session_user;
-              
-              header('Location: private/teacher');
-
-              }else{
-              
-                  $session_pass = "";
-                  echo"<script>alert('Your Password is incorrect!');</script>";
-              
-              }   
-    }   
+   
+        }   
           
       }else{
 
