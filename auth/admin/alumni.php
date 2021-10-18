@@ -15,7 +15,7 @@ if(isset($_SESSION["username"])){
     $account_type = $get_account_type["account_type"];
     $name = $get_account_type["firstName"];
     
-    if($account_type != 2){
+    if($account_type != 1){
     
         header('Location: ../../forbidden');
 

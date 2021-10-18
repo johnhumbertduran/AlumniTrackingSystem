@@ -3,7 +3,7 @@
 session_start();
 
 
-include("../bins/header.php");
+include("bins/header.php");
 include("../bins/connections.php");
 include("bins/nav.php");
 
@@ -36,57 +36,72 @@ $email = $profile_info["email"];
 
 
 $tmp_img = "bins/avatardefault.png";
+
+
+
+
+$target_dir = "bins/img/";
+$uploadErr = "";
+
+if(isset($_POST["upload_btn"])){
+
+    $target_file = $target_dir . basename($_FILES["profile_pic"]["name"]);
+    $uploadOk = 1;
+
+    if(file_exists($target_file)){
+        $target_file = $target_dir . rand(1,9) . rand(1,9) . rand(1,9) . rand(1,9) . "_" . basename($_FILES["profile_pic"]["name"]);
+
+        $uploadOk = 1;
+    }
+
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+    if($_FILES["profile_pic"]["size"]>1000000000000000000000000){
+
+        $uploadErr = "Sorry, your file is too large!";
+        // echo "<script>alert('Too large');</script>";
+        $uploadOk = 0;
+    }
+
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "JPEG" && $imageFileType != "GIF"){
+
+        $uploadErr = "Sorry, only JPG, JPEG, PNG & GIF files are allowed!";
+        // echo "<script>alert('File type');</script>";
+        $uploadOk = 0;
+    }
+
+    if($uploadOk == 1){
+
+        if(move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)){
+
+            // echo "<font color=green> The file " . basename($_FILES["profile_pic"]["name"]) . " has been uploaded.</font>";
+            $ran_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $amp = md5(rand(1,5));
+            $wer = substr(str_shuffle($ran_chars), 0, 15);
+            $pon = substr(str_shuffle($ran_chars), 0, 19);
+            $text = substr(str_shuffle($ran_chars), 0, 4);
+            $ver = sha1(rand(1,9));
+
+            mysqli_query($connections, "UPDATE users_tbl SET img='$target_file' WHERE username='$session_user'");
+            
+            echo "<script>window.location.href='?&&$wer';</script>";
+            //   header('Location: ?&&' . $x . "_" . $qw . "=" . $r . "&&" . $o . "=" . $hg);
+
+
+        }else{
+            echo "Sorry, there was an error uploading your file.";
+            echo 'Error:  '.$_FILES['profile_pic']['error'];
+        }
+    }
+
+}
+
+
+
+
 ?>
-<style>
-.sidebar {
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  /* top: 0; */
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  /* padding-top: 20px; */
-}
 
 
-.profile_cover{
-    border-radius: 50%;
-    /* background-color: blueviolet; */
-    width: 130px;
-    height: 130px;
-    overflow: hidden;
-    border: 5px solid rgb(42, 196, 67);
-    
-    /* object-fit: contain; */
-}
-
-.dp{
-    object-fit: cover;
-    width: 120px;
-    height: 120px;
-}
-
-.upload{
-    display: none;
-    background-color: rgba(0, 0, 0, 0.671);
-    text-align: center;
-    position: relative;
-    padding: 1% 3.3%;
-    bottom: 35%;
-    text-overflow: hidden;
-}
-
-.profile_cover:hover .upload{
-    display: block;
-}
-
-.profile_cover:hover .dp{
-    opacity: 0.8;
-    filter: alpha(opacity=80); /* For IE8 and earlier */
-}
-</style>
 
 <nav class="nav flex-column bg-primary sidebar fixed">
 
@@ -105,7 +120,7 @@ $tmp_img = "bins/avatardefault.png";
             echo "<center>
                     <div class='profile_cover'>
                         <img src='$img' class='dp' alt='profile_pic' srcset=''>
-                        <div class='upload'><a href='#' data-toggle='modal' data-target='#upload_photo'>Upload</a><br><br></div>
+                        <div class='upload'><a href='#' data-bs-toggle='modal' data-bs-target='#upload_photo'>Upload</a><br><br></div>
                     </div>
                 </center>";
         }
@@ -113,9 +128,9 @@ $tmp_img = "bins/avatardefault.png";
         ?>
         </div>
 
-  <a class="nav-link text-light" aria-current="page" href="#">Active</a>
+  <!-- <a class="nav-link text-light" aria-current="page" href="#">Active</a>
   <a class="nav-link text-light" href="#">Link</a>
-  <a class="nav-link text-light" href="#">Link</a>
+  <a class="nav-link text-light" href="#">Link</a> -->
 </nav>
 
        
@@ -153,7 +168,7 @@ $tmp_img = "bins/avatardefault.png";
             <!-- Modal footer -->
             <div class="modal-footer">
                         <center>
-                            <input type="submit" name="btnUpload" class="btn btn-success" id="uploadPhotoBtn" value="Upload">
+                            <input type="submit" name="upload_btn" class="btn btn-success" id="uploadPhotoBtn" value="Upload">
                         </center>
                     </form>
                 <span class="error"><?php  ?></span>
@@ -172,5 +187,5 @@ $tmp_img = "bins/avatardefault.png";
 <br>
 <script src="../../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script> <!-- Bootstrap4 for offline -->
 <?php
-include("../bins/footer.php");
+include("bins/footer.php");
 ?>

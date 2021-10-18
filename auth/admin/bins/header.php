@@ -9,7 +9,7 @@
 
     <!-- <link rel="icon" type="image/png" href="public/images/logo.png"> -->
 
-    <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css"> <!-- Bootstrap5 offline -->
+    <link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.min.css"> <!-- Bootstrap5 offline -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous">
     
     <title>Alumni Stracking System</title>

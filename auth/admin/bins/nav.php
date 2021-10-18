@@ -6,7 +6,7 @@
 ?>
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="../users"><?php echo "Welcome, " . $name; ?></a>
+    <a class="navbar-brand" href="../admin">Alumni Tracking System</a>
     <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -16,11 +16,11 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="../users">Home</a>
+          <a class="nav-link" href="../admin">Home</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="profile">My Profile</a>
+          <a class="nav-link" href="alumni">Alumni</a>
         </li>
 
         <li class="nav-item d-flex justify-content-end">
