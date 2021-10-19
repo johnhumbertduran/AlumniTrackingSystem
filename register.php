@@ -68,24 +68,52 @@ include("bins/nav.php");
                     $workPosition = $_POST["work_position"];
                 }
 
+                if(!empty($_POST["elementary"])){
+                $elementary = $_POST["elementary"];
+                }
+
                 if(!empty($_POST["elementary_year_graduate"])){
                     $elementaryYearGraduate = $_POST["elementary_year_graduate"];
+                    if(strlen($elementaryYearGraduate) < 4){
+                        echo "<script> alert('Elementary Year Graduated must be 4 numbers!'); </script>";
+                    }
+                }
+
+                if(!empty($_POST["college"])){
+                $college = $_POST["college"];
                 }
 
                 if(!empty($_POST["college_year_graduate"])){
                     $collegeYearGraduate = $_POST["college_year_graduate"];
+                    if(strlen($collegeYearGraduate) < 4){
+                        echo "<script> alert('College Year Graduated must be 4 numbers!'); </script>";
+                    }
                 }
 
                 if(!empty($_POST["college_degree"])){
                     $collegeDegree = $_POST["college_degree"];
                 }
 
+                if(!empty($_POST["high_school"])){
+                    $highSchool = $_POST["high_school"];
+                }
+
                 if(!empty($_POST["high_school_year_graduate"])){
                     $highSchoolYearGraduate = $_POST["high_school_year_graduate"];
+                    if(strlen($highSchoolYearGraduate) < 4){
+                        echo "<script> alert('High School Year Graduated must be 4 numbers!'); </script>";
+                    }
+                }
+
+                if(!empty($_POST["graduate_school"])){
+                    $graduate = $_POST["graduate_school"];
                 }
 
                 if(!empty($_POST["graduate_school_year_graduate"])){
                     $graduateSchoolYearGraduate = $_POST["graduate_school_year_graduate"];
+                    if(strlen($graduateSchoolYearGraduate) < 4){
+                        echo "<script> alert('Graduate School Year Graduated must be 4 numbers!'); </script>";
+                    }
                 }
 
                 if(!empty($_POST["graduate_degree"])){
@@ -115,40 +143,39 @@ include("bins/nav.php");
                 if(!empty($_POST["password"])){
                     $password = $_POST["password"];
                 }
+                
 
-                    if($firstName && $lastName && $address && $email && $userName && $password){
-                        if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstName)){
-                            echo "<script> alert('First Name should not have numbers or symbols.'); </script>";
+                    if($lastName && $firstName && $middleName && $address && $sex && $civilStatus
+                        && $employmentAddress && $workPosition && ($elementary && $elementaryYearGraduate)
+                        || ($college && $collegeYearGraduate && $collegeDegree) || ($highSchool && $highSchoolYearGraduate)
+                        || ($graduate && $graduateSchoolYearGraduate && $graduateDegree) && $officeTelephoneNo
+                        && $mobilePhoneNo && $alumniChapterMembership && $email && $userName && $password){
+
+                        if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastName)){
+                            echo "<script> alert('Last Name should not have numbers or symbols.'); </script>";
                         }else{
-                            if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastName)){
-                                echo "<script> alert('Last Name should not have numbers or symbols.'); </script>";
+                            if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstName)){
+                                echo "<script> alert('First Name should not have numbers or symbols.'); </script>";
                             }else{
-                                if(strlen($officeTelephoneNo) < 8){
-                                // echo "<script> alert('Contact Number is insufficient!'); </script>";
+                                if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $middleName)){
+                                    echo "<script> alert('Middle Name should not have numbers or symbols.'); </script>";
                                 }else{
-                                    if(strlen($userName) < 8){
-                                        echo "<script> alert('User Name must have atleast 8 alpha numeric character!'); </script>";
-                                    }else{
-                                        if(strlen($password) < 8){
-                                            echo "<script> alert('Password must have atleast 8 alpha numeric character!'); </script>";
+                                    if(strlen($mobilePhoneNo) < 11){
+                                        echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";                                    
                                         }else{
-                                            // mysqli_query($connections, "INSERT INTO users_tbl (id_no,firstName,lastName,address,
+                                        // mysqli_query($connections, "INSERT INTO users_tbl (id_no,firstName,lastName,address,
                                             // contactNo,email,username,password,account_type)
                                             // VALUES ('$id_no','$firstName','$lastName','$address','$contactNo',
                                             // '$email','$userName','$password','2')");
                                             echo "<script> alert('Successfully Registered!'); </script>";
                                             // header('Location: ?');
-                                        }
                                     }
-                                }
                             }
                         }
-
                     }
-
                 }
-
             }
+        }
             
             ?>
                 <h4>Contact Information</h4>
@@ -247,29 +274,29 @@ include("bins/nav.php");
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="elementary" name="elementary" value="elementary">
+                <input type="checkbox" class="form-check-input" id="elementary" name="elementary" <?php if($elementary == "elementary"){ echo "checked "; } ?> value="elementary" onclick="elementaryDisable()">
                 <label class="form-check-label" for="elementary">Elementary</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $elementaryYearGraduate; ?>" placeholder="Year Graduated" name="elementary_year_graduate" class="" id="elementary_year_graduate" autocomplete="new-elementary-graduate" required >
+                    <input class="form-control" type="text" value="<?php echo $elementaryYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="elementary_year_graduate" class="" id="elementary_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-elementary-graduate" <?php if($elementary != "elementary"){ echo "disabled"; } ?> required >
                     <label for="elementary_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="college" name="college" value="college">
+                <input type="checkbox" class="form-check-input" id="college" name="college" <?php if($college == "college"){ echo "checked "; } ?> value="college" onclick="collegeDisable()">
                 <label class="form-check-label" for="college">College</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $collegeYearGraduate; ?>" placeholder="Year Graduated" name="college_year_graduate" class="" id="college_year_graduate" autocomplete="new-college-graduate" required >
+                    <input class="form-control" type="text" value="<?php echo $collegeYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="college_year_graduate" class="" id="college_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-college-graduate" <?php if($college != "college"){ echo "disabled"; } ?> required >
                     <label for="college_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $collegeDegree; ?>" placeholder="Degree" name="college_degree" class="" id="college_degree" autocomplete="new-college-degree" required >
+                    <input class="form-control" type="text" value="<?php echo $collegeDegree; ?>" placeholder="Degree" name="college_degree" class="" id="college_degree" autocomplete="new-college-degree" <?php if($college != "college"){ echo "disabled"; } ?> required >
                     <label for="college_degree">Degree</label>
                 </div>
 
@@ -281,29 +308,29 @@ include("bins/nav.php");
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="high_school" name="high_school" value="high_school">
+                <input type="checkbox" class="form-check-input" id="high_school" name="high_school" <?php if($highSchool == "high_school"){ echo "checked "; } ?> value="high_school" onclick="highSchoolDisable()">
                 <label class="form-check-label" for="high_school">High School</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $highSchoolYearGraduate; ?>" placeholder="Year Graduated" name="high_school_year_graduate" class="" id="high_school_year_graduate" autocomplete="new-high-school-graduate" required >
+                    <input class="form-control" type="text" value="<?php echo $highSchoolYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="high_school_year_graduate" class="" id="high_school_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-high-school-graduate" <?php if($highSchool != "high_school"){ echo "disabled"; } ?> required >
                     <label for="high_school_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="graduate_school" name="graduate_school" value="graduate_school">
+                <input type="checkbox" class="form-check-input" id="graduate_school" name="graduate_school" <?php if($graduate == "graduate_school"){ echo "checked "; } ?> value="graduate_school" onclick="graduateDisable()">
                 <label class="form-check-label" for="graduate_school">Graduate</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $graduateSchoolYearGraduate; ?>" placeholder="Year Graduated" name="graduate_school_year_graduate" class="" id="graduate_school_year_graduate" autocomplete="new-graduate" required >
+                    <input class="form-control" type="text" value="<?php echo $graduateSchoolYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="graduate_school_year_graduate" class="" id="graduate_school_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-graduate" <?php if($graduate != "graduate_school"){ echo "disabled"; } ?> required >
                     <label for="graduate_school_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $graduateDegree; ?>" placeholder="Degree" name="graduate_degree" class="" id="graduate_degree" autocomplete="new-graduate-degree" required >
+                    <input class="form-control" type="text" value="<?php echo $graduateDegree; ?>" placeholder="Degree" name="graduate_degree" class="" id="graduate_degree" autocomplete="new-graduate-degree" <?php if($graduate != "graduate_school"){ echo "disabled"; } ?> required >
                     <label for="graduate_degree">Degree</label>
                 </div>
 
@@ -387,8 +414,74 @@ if(charCode > 31 && (charCode < 40 || charCode > 41) && ( charCode < 48 || charC
 return true;
 
 }
+
+function elementaryDisable(){
+    let elementaryYearGraduate = document.getElementById("elementary_year_graduate");
+    let elementary = document.getElementById("elementary");
+    
+    if(elementary.checked == true){
+        elementaryYearGraduate.disabled = false;
+    }
+    
+    if(elementary.checked == false){
+        elementaryYearGraduate.disabled = true;
+        elementaryYearGraduate.value = "";
+    }
+}
+
+function collegeDisable(){
+    let collegeYearGraduate = document.getElementById("college_year_graduate");
+    let collegeDegree = document.getElementById("college_degree");
+    let college = document.getElementById("college");
+    
+    if(college.checked == true){
+        collegeYearGraduate.disabled = false;
+        collegeDegree.disabled = false;
+    }
+    
+    if(college.checked == false){
+        collegeYearGraduate.disabled = true;
+        collegeYearGraduate.value = "";
+        collegeDegree.disabled = true;
+        collegeDegree.value = "";
+    }
+}
+
+function highSchoolDisable(){
+    let high_school_year_graduate = document.getElementById("high_school_year_graduate");
+    let high_school = document.getElementById("high_school");
+    
+    if(high_school.checked == true){
+        high_school_year_graduate.disabled = false;
+    }
+    
+    if(high_school.checked == false){
+        high_school_year_graduate.disabled = true;
+        high_school_year_graduate.value = "";
+    }
+}
+
+function graduateDisable(){
+    let graduate_school_year_graduate = document.getElementById("graduate_school_year_graduate");
+    let graduate_degree = document.getElementById("graduate_degree");
+    let graduate_school = document.getElementById("graduate_school");
+    
+    if(graduate_school.checked == true){
+        graduate_school_year_graduate.disabled = false;
+        graduate_degree.disabled = false;
+    }
+    
+    if(graduate_school.checked == false){
+        graduate_school_year_graduate.disabled = true;
+        graduate_degree.disabled = true;
+        graduate_school_year_graduate.value = "";
+        graduate_degree.value ="";
+    }
+}
+
 </script>
 
 <?php
 include("bins/footer.php");
 ?>
+
