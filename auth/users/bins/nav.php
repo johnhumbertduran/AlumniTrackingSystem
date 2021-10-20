@@ -2,7 +2,7 @@
     $session_user = $_SESSION["username"];
     $check_user = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user'");
     $get_name = mysqli_fetch_assoc($check_user);
-    $name = $get_name["firstName"];
+    $name = $get_name["first_name"];
 ?>
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
   <div class="container-fluid">

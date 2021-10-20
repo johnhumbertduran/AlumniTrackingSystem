@@ -40,22 +40,10 @@ $post = "";
         <div class="card-body">
             <form autocomplete="off" method="POST">
             <?php
-            $firstName = $lastName = $address = $contactNo = $email = $userName = $password = "";
+            $cashOfficialReceipt = $cashDateOfPayment = $bankOfficialReceipt = $bankDateOfPayment = $chequeNo =
+            $chequeBank = $chequeOfficialReceipt = $chequeDateOfPayment = $id_no = "";
 
-            $id_no = "20210000";
 
-            $check_id_no = mysqli_query($connections, "SELECT id_no FROM users_tbl ORDER BY id_no DESC LIMIT 1 ");
-            while($get_id_no = mysqli_fetch_assoc($check_id_no)){
-
-                $db_id_number = $get_id_no["id_no"];
-                $id_no = $db_id_number;
-            
-            
-            if($db_id_number >= $id_no){
-            
-                $id_no += 1;
-                
-            }
 
             if(isset($_POST["submit"])){
                 // echo "<script>alert('clicked');</script>";
@@ -119,13 +107,11 @@ $post = "";
                     }
 
                 }
-
-            }
             
             ?>
                 
                 <div class="form-floating ">
-                    <input class="form-control" type="text" value="<?php echo $id_no; ?>" placeholder="ID Number" name="id_no" class="" id="id_no" disabled>
+                    <input class="form-control" type="text" value="<?php echo $id_no; ?>" placeholder="ID Number" name="id_no" class="" id="id_no" >
                     <label for="id_no">ID Number</label>
                 </div>
 
@@ -138,19 +124,19 @@ $post = "";
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-4">
-                <input class="form-check-input" type="radio" name="male" id="male">
+                <input class="form-check-input" type="radio" name="male" id="male" onclick="cashPaymentDisable()">
                 <label class="form-check-label" for="male">Option 1: Cash Payment</label>
             </div>
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Official Recipt No." name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Official Recipt No.</label>
+                    <input class="form-control" type="text" value="<?php echo $cashOfficialReceipt; ?>" placeholder="Official Recipt No." name="cash_official_receipt" class="" id="cash_official_receipt" autocomplete="new-address-cash-official-receipt" disabled required >
+                    <label for="cash_official_receipt">Official Receipt No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Date of Payment" name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Date of Payment</label>
+                    <input class="form-control" type="text" value="<?php echo $cashDateOfPayment; ?>" placeholder="Date of Payment" name="cash_date_of_payment" class="" id="cash_date_of_payment" autocomplete="new-cash-date-of-payment" disabled required >
+                    <label for="cash_date_of_payment">Date of Payment</label>
                 </div>
 
                 </div>
@@ -165,14 +151,14 @@ $post = "";
             </div>
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Official Recipt No." name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Official Recipt No.</label>
+                    <input class="form-control" type="text" value="<?php echo $bankOfficialReceipt; ?>" placeholder="Official Recipt No." name="bank_official_receipt" class="" id="bank_official_receipt" autocomplete="new-bank-official-receipt" disabled required >
+                    <label for="bank_official_receipt">Official Receipt No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Date of Payment" name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Date of Payment</label>
+                    <input class="form-control" type="text" value="<?php echo $bankDateOfPayment; ?>" placeholder="Date of Payment" name="bank_date_of_payment" class="" id="bank_date_of_payment" autocomplete="new-bank-date-of-payment" disabled required >
+                    <label for="bank_date_of_payment">Date of Payment</label>
                 </div>
 
                 </div>
@@ -187,26 +173,26 @@ $post = "";
             </div>
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Cheque No." name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Cheque No.</label>
+                    <input class="form-control" type="text" value="<?php echo $chequeNo; ?>" placeholder="Cheque No." name="cheque_no" class="" id="cheque_no" autocomplete="new-cheque-no" disabled required >
+                    <label for="cheque_no">Cheque No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Bank" name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Bank</label>
+                    <input class="form-control" type="text" value="<?php echo $chequeBank; ?>" placeholder="Bank" name="cheque_bank" class="" id="cheque_bank" autocomplete="new-cheque-bank" disabled required >
+                    <label for="cheque_bank">Bank</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Official Recipt No." name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Official Recipt No.</label>
+                    <input class="form-control" type="text" value="<?php echo $chequeOfficialReceipt; ?>" placeholder="Official Recipt No." name="cheque_official_receipt" class="" id="cheque_official_receipt" autocomplete="new-cheque-official-receipt" disabled required >
+                    <label for="cheque_official_receipt">Official Recipt No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $address; ?>" placeholder="Date of Payment" name="address" class="" id="address" autocomplete="new-address" required >
-                    <label for="address">Date of Payment</label>
+                    <input class="form-control" type="text" value="<?php echo $chequeDateOfPayment; ?>" placeholder="Date of Payment" name="cheque_date_of_payment" class="" id="cheque_date_of_payment" autocomplete="new-cheque-date-of-payment" disabled required >
+                    <label for="cheque_date_of_payment">Date of Payment</label>
                 </div>
 
                 </div>
@@ -240,6 +226,21 @@ if(charCode > 31 && (charCode < 40 || charCode > 41) && ( charCode < 48 || charC
 return true;
 
 }
+
+function cashPaymentDisable(){
+    let cashOfficialReceipt = document.getElementById("cash_official_receipt");
+    let cashDateOfPayment = document.getElementById("cash_date_of_payment");
+    
+    if(elementary.checked == true){
+        elementaryYearGraduate.disabled = false;
+    }
+    
+    if(elementary.checked == false){
+        elementaryYearGraduate.disabled = true;
+        elementaryYearGraduate.value = "";
+    }
+}
+
 </script>
 
 <br>

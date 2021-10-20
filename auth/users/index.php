@@ -13,7 +13,7 @@ if(isset($_SESSION["username"])){
     $check_account_type = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user'");
     $get_account_type = mysqli_fetch_assoc($check_account_type);
     $account_type = $get_account_type["account_type"];
-    $name = $get_account_type["firstName"];
+    $name = $get_account_type["first_name"];
     
     if($account_type != 2){
     

@@ -2,6 +2,30 @@
 include("bins/header.php");
 include("auth/bins/connections.php");
 include("bins/nav.php");
+
+if(isset($_SESSION["username"])){
+
+    $session_user = $_SESSION["username"];
+    $check_account_type = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user'");
+    $get_account_type = mysqli_fetch_assoc($check_account_type);
+    $account_type = $get_account_type["account_type"];
+    
+    if($account_type == 1){
+    
+        header('Location: auth/admin');
+    
+    }elseif($account_type == 2){
+    
+        header('Location: auth/users');
+
+    }else{
+    
+        header('Location: forbidden');
+
+    }
+
+}
+
 ?>
 
 
@@ -13,15 +37,16 @@ include("bins/nav.php");
 <div class="card">
 
     <div class="card-header bg-primary text-light"><h2>Registration Form</h2></div>
-
+<h2>year not greater than this year</h2>
         <div class="card-body">
             <form autocomplete="off" method="POST">
             <?php
-           $lastName = $firstName = $middleName = $address = $sex = $civilStatus = $employmentAddress =
+           $id_no = $lastName = $firstName = $middleName = $address = $sex = $civilStatus = $employmentAddress =
            $workPosition = $elementary = $elementaryYearGraduate = $college = $collegeYearGraduate =
            $collegeDegree = $highSchool = $highSchoolYearGraduate = $graduate = $graduateSchoolYearGraduate =
            $graduateDegree = $officeTelephoneNo = $mobilePhoneNo = $alumniChapterMembership = $email = $userName = $password = "";
 
+           $date = date("Y");
             $id_no = "20210000";
 
             $check_id_no = mysqli_query($connections, "SELECT id_no FROM users_tbl ORDER BY id_no DESC LIMIT 1 ");
@@ -56,9 +81,13 @@ include("bins/nav.php");
                     $address = $_POST["address"];
                 }
 
+                if(!empty($_POST["sex"])){
                 $sex = $_POST["sex"];
+                }
 
+                if(!empty($_POST["civil_status"])){
                 $civilStatus = $_POST["civil_status"];
+                }
 
                 if(!empty($_POST["employment_address"])){
                     $employmentAddress = $_POST["employment_address"];
@@ -136,8 +165,8 @@ include("bins/nav.php");
                     $email = $_POST["email"];
                 }
 
-                if(!empty($_POST["user_name"])){
-                    $userName = $_POST["user_name"];
+                if(!empty($_POST["username"])){
+                    $userName = $_POST["username"];
                 }
 
                 if(!empty($_POST["password"])){
@@ -146,10 +175,8 @@ include("bins/nav.php");
                 
 
                     if($lastName && $firstName && $middleName && $address && $sex && $civilStatus
-                        && $employmentAddress && $workPosition && ($elementary && $elementaryYearGraduate)
-                        || ($college && $collegeYearGraduate && $collegeDegree) || ($highSchool && $highSchoolYearGraduate)
-                        || ($graduate && $graduateSchoolYearGraduate && $graduateDegree) && $officeTelephoneNo
-                        && $mobilePhoneNo && $alumniChapterMembership && $email && $userName && $password){
+                        && $employmentAddress && $workPosition && $mobilePhoneNo && $alumniChapterMembership
+                        && $email && $userName && $password){
 
                         if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastName)){
                             echo "<script> alert('Last Name should not have numbers or symbols.'); </script>";
@@ -160,22 +187,50 @@ include("bins/nav.php");
                                 if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $middleName)){
                                     echo "<script> alert('Middle Name should not have numbers or symbols.'); </script>";
                                 }else{
-                                    if(strlen($mobilePhoneNo) < 11){
-                                        echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";                                    
+                                    if($elementaryYearGraduate >= $date){
+                                        echo "<script> alert('Elementary Year Graduated should not be greater than or equal to this year'); </script>";
+                                    }else{
+                                        if($highSchoolYearGraduate >= $date){
+                                            echo "<script> alert('Hgih School Year Graduated should not be greater than or equal to this year'); </script>";
                                         }else{
-                                        // mysqli_query($connections, "INSERT INTO users_tbl (id_no,firstName,lastName,address,
-                                            // contactNo,email,username,password,account_type)
-                                            // VALUES ('$id_no','$firstName','$lastName','$address','$contactNo',
-                                            // '$email','$userName','$password','2')");
-                                            echo "<script> alert('Successfully Registered!'); </script>";
-                                            // header('Location: ?');
+                                            if($collegeYearGraduate >= $date){
+                                                echo "<script> alert('College Year Graduated should not be greater than or equal to this year'); </script>";
+                                            }else{
+                                                if($graduateSchoolYearGraduate >= $date){
+                                                    echo "<script> alert('Graduate Year Graduated should not be greater than or equal to this year'); </script>";
+                                                }else{
+                                                    if(empty($elementary) && empty($highSchool) && empty($college) && empty($graduate)){
+                                                        echo "<script> alert('Please select school level you attended!'); </script>";
+                                                    }else{
+                                                        if(strlen($mobilePhoneNo) < 11){
+                                                            echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";                                    
+                                                            }else{
+                                                            mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,middle_name,home_address,
+                                                                sex,civil_status,employment_address,current_work,elementary_graduate,highschool_graduate,college_graduate,
+                                                                graduate_graduate,college_degree,graduate_degree,office_telephone,mobile_number,alumni_chapter_membership,
+                                                                email_address,username,password,account_type)
+                                                                VALUES ('$id_no','$lastName','$firstName','$middleName','$address','$sex','$civilStatus','$employmentAddress',
+                                                                '$workPosition','$elementaryYearGraduate','$highSchoolYearGraduate','$collegeYearGraduate','$graduateSchoolYearGraduate',
+                                                                '$collegeDegree','$graduateDegree','$officeTelephoneNo','$mobilePhoneNo','$alumniChapterMembership',
+                                                                '$email','$userName','$password','2')");
+                                                            session_start();
+                                                            $session_user = $_POST["username"];
+                                                            $_SESSION["username"] = $session_user;
+                                                            echo "<script> alert('Successfully Registered!'); window.location.href='auth/users'; </script>";
+                                                            // header('Location: ?');
+                                                    
+                                                }
+                                            }
+                                        }
                                     }
+                                }   
                             }
                         }
                     }
                 }
             }
         }
+    }
             
             ?>
                 <h4>Contact Information</h4>
@@ -224,10 +279,10 @@ include("bins/nav.php");
                 <p>Sex:&nbsp;</p>
                 <div class="form-check flex-fill">
                 
-                    <input class="form-check-input" type="radio" name="sex" value="Male" <?php if($sex == "Male"){ echo "checked "; } ?> id="male">
+                    <input class="form-check-input" type="radio" name="sex" value="Male" <?php if($sex == "Male"){ echo "checked "; } ?> id="male" required>
                     <label class="form-check-label" for="male">Male</label>
                     <br>
-                    <input class="form-check-input" type="radio" name="sex" value="Female" <?php if($sex == "Female"){ echo "checked "; } ?> id="female">
+                    <input class="form-check-input" type="radio" name="sex" value="Female" <?php if($sex == "Female"){ echo "checked "; } ?> id="female" required>
                     <label class="form-check-label" for="female">Female</label>
                     
 
@@ -237,12 +292,12 @@ include("bins/nav.php");
                 <p>Civil&nbsp;Status:&nbsp;</p>
                 <div class="form-check flex-fill">
                 
-                    <input class="form-check-input" type="radio" name="civil_status" value="Single" <?php if($civilStatus == "Single"){ echo "checked "; } ?> id="single">
+                    <input class="form-check-input" type="radio" name="civil_status" value="Single" <?php if($civilStatus == "Single"){ echo "checked "; } ?> id="single" required>
                     <label class="form-check-label" for="single">Single</label>
                     
                     <br>
                 
-                    <input class="form-check-input" type="radio" name="civil_status" value="Married" <?php if($civilStatus == "Married"){ echo "checked "; } ?> id="married">
+                    <input class="form-check-input" type="radio" name="civil_status" value="Married" <?php if($civilStatus == "Married"){ echo "checked "; } ?> id="married" required>
                     <label class="form-check-label" for="married">Married</label>
                     
 
@@ -342,7 +397,7 @@ include("bins/nav.php");
                 <div class="d-flex justify-content-between">
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $officeTelephoneNo; ?>" placeholder="Office Telephone No." maxlength="7" name="office_telephone_no" class="" id="office_telephone_no" autocomplete="new-telephone" onkeypress='return isNumberKey(event)' required  >
+                    <input class="form-control" type="text" value="<?php echo $officeTelephoneNo; ?>" placeholder="Office Telephone No." maxlength="7" name="office_telephone_no" class="" id="office_telephone_no" autocomplete="new-telephone" onkeypress='return isNumberKey(event)'  >
                     <label for="office_telephone_no">Office Telephone No.</label>
                 </div>
                 &nbsp;&nbsp;
@@ -372,8 +427,8 @@ include("bins/nav.php");
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $userName; ?>" placeholder="Username" name="user_name" class="" id="user_name" autocomplete="off" required >
-                    <label for="user_name">Username</label>
+                    <input class="form-control" type="text" value="<?php echo $userName; ?>" placeholder="Username" name="username" class="" id="username" autocomplete="off" required >
+                    <label for="username">Username</label>
                 </div>
                 &nbsp;&nbsp;
 

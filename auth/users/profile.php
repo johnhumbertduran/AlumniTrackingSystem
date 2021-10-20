@@ -13,7 +13,7 @@ if(isset($_SESSION["username"])){
     $check_account_type = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user'");
     $get_account_type = mysqli_fetch_assoc($check_account_type);
     $account_type = $get_account_type["account_type"];
-    $name = $get_account_type["firstName"];
+    $name = $get_account_type["first_name"];
     
     if($account_type != 2){
     
@@ -28,11 +28,11 @@ $query_info = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username
 $profile_info = mysqli_fetch_assoc($query_info);
 // $account_type = $profile_info["account_type"];
 $img = $profile_info["img"];
-$firstName = ucfirst($profile_info["firstName"]);
-$lastName = ucfirst($profile_info["lastName"]);
-$address = ucfirst($profile_info["address"]);
-$contact = ucfirst($profile_info["contactNo"]);
-$email = $profile_info["email"];
+$firstName = ucfirst($profile_info["first_name"]);
+$lastName = ucfirst($profile_info["last_name"]);
+$address = ucfirst($profile_info["home_address"]);
+$contact = ucfirst($profile_info["mobile_number"]);
+$email = $profile_info["email_address"];
 
 
 $tmp_img = "bins/avatardefault.png";
