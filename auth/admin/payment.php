@@ -46,9 +46,16 @@ $post = "";
 
 
             if(isset($_POST['search'])){
+                $id_no = $_POST['id_no'];
+                $check_id_no = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no' AND account_type='2' ");
+                $row_user_check = mysqli_num_rows($check_id_no);
+  
+                if($row_user_check > 0){
+
+
                 if(!empty($_POST['id_no'])){
-                    $id_no = $_POST['id_no'];
-                    $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no'");
+                    
+                    $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no' AND account_type='2' ");
                     $get_alumni_names = mysqli_fetch_assoc($check_alumni_id);
                     $firstName = $get_alumni_names["first_name"];
                     $lastName = $get_alumni_names["last_name"];
@@ -61,17 +68,26 @@ $post = "";
                     $check_payment_record = mysqli_query($connections, "SELECT * FROM payments_tbl WHERE id_no='$search'");
                     $row_id = mysqli_num_rows($check_payment_record);
       
-                    if($row_id > 0){
-                        echo "<script>alert('User $search, named $fullName is already paid!');</script>";
-                    }else{
-                        $alumni_name = $fullName;
+                        if($row_id > 0){
+                            echo "<script>alert('User $search, named $fullName is already paid!');</script>";
+                        }else{
+                            $alumni_name = $fullName;
+                        }
                     }
+                }else{
+                    echo "<script>alert('User not found!');</script>";
                 }
             }
+
+            
+                
 
             if(isset($_POST["payment"])){
                 // echo "<script>alert('clicked');</script>";
 
+            if($search == ""){
+                echo "<script>alert('Please input ID number and Payment Method!');</script>";
+            }else{
                 if(!empty($_POST["payment_method"])){
                     $id_no = $_POST['id_no'];
                     $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no'");
@@ -146,6 +162,7 @@ $post = "";
                        
 
                     // }
+                }
             }
 
             
