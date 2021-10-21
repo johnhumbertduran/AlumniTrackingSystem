@@ -41,78 +41,134 @@ $post = "";
             <form autocomplete="off" method="POST">
             <?php
             $cashOfficialReceipt = $cashDateOfPayment = $bankOfficialReceipt = $bankDateOfPayment = $chequeNo =
-            $chequeBank = $chequeOfficialReceipt = $chequeDateOfPayment = $id_no = "";
+            $chequeBank = $chequeOfficialReceipt = $chequeDateOfPayment = $id_no = $alumni_name = $payment_method =
+            $search = "";
 
 
+            if(isset($_POST['search'])){
+                if(!empty($_POST['id_no'])){
+                    $id_no = $_POST['id_no'];
+                    $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no'");
+                    $get_alumni_names = mysqli_fetch_assoc($check_alumni_id);
+                    $firstName = $get_alumni_names["first_name"];
+                    $lastName = $get_alumni_names["last_name"];
+                    $middleName = $get_alumni_names["middle_name"];
+                    $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
+                    
+                    $search = $_POST['id_no'];
+                    
 
-            if(isset($_POST["submit"])){
+                    $check_payment_record = mysqli_query($connections, "SELECT * FROM payments_tbl WHERE id_no='$search'");
+                    $row_id = mysqli_num_rows($check_payment_record);
+      
+                    if($row_id > 0){
+                        echo "<script>alert('User $search, named $fullName is already paid!');</script>";
+                    }else{
+                        $alumni_name = $fullName;
+                    }
+                }
+            }
+
+            if(isset($_POST["payment"])){
                 // echo "<script>alert('clicked');</script>";
 
-                if(!empty($_POST["first_name"])){
-                    $firstName = $_POST["first_name"];
-                }
+                if(!empty($_POST["payment_method"])){
+                    $id_no = $_POST['id_no'];
+                    $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no'");
+                    $get_alumni_names = mysqli_fetch_assoc($check_alumni_id);
+                    $firstName = $get_alumni_names["first_name"];
+                    $lastName = $get_alumni_names["last_name"];
+                    $middleName = $get_alumni_names["middle_name"];
+                    $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
+                    $payment_method = $_POST["payment_method"];
+                    $search = $_POST['id_no'];
+                    $alumni_name = $fullName;
 
-                if(!empty($_POST["last_name"])){
-                    $lastName = $_POST["last_name"];
-                }
-
-                if(!empty($_POST["address"])){
-                    $address = $_POST["address"];
-                }
-
-                if(!empty($_POST["contact"])){
-                    $contactNo = $_POST["contact"];
-                }
-
-                if(!empty($_POST["email"])){
-                    $email = $_POST["email"];
-                }
-
-                if(!empty($_POST["user_name"])){
-                    $userName = $_POST["user_name"];
-                }
-
-                if(!empty($_POST["password"])){
-                    $password = $_POST["password"];
-                }
-
-                    if($firstName && $lastName && $address && $contactNo && $email && $userName && $password){
-                        if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstName)){
-                            echo "<script> alert('First Name should not have numbers or symbols.'); </script>";
-                        }else{
-                            if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastName)){
-                                echo "<script> alert('Last Name should not have numbers or symbols.'); </script>";
-                            }else{
-                                if(strlen($contactNo) < 11){
-                                echo "<script> alert('Contact Number is insufficient!'); </script>";
-                                }else{
-                                    if(strlen($userName) < 8){
-                                        echo "<script> alert('User Name must have atleast 8 alpha numeric character!'); </script>";
-                                    }else{
-                                        if(strlen($password) < 8){
-                                            echo "<script> alert('Password must have atleast 8 alpha numeric character!'); </script>";
-                                        }else{
-                                            mysqli_query($connections, "INSERT INTO users_tbl (id_no,firstName,lastName,address,
-                                            contactNo,email,username,password,account_type)
-                                            VALUES ('$id_no','$firstName','$lastName','$address','$contactNo',
-                                            '$email','$userName','$password','2')");
-                                            echo "<script> alert('Successfully Registered!'); </script>";
-                                            header('Location: ?');
-                                        }
-                                    }
-                                }
-                            }
+                    if($payment_method == "Cash Payment"){
+                        if(!empty($_POST["cash_official_receipt"])){
+                            $cashOfficialReceipt = $_POST["cash_official_receipt"];
                         }
 
-                    }
+                        if(!empty($_POST["cash_date_of_payment"])){
+                            $cashDateOfPayment = $_POST["cash_date_of_payment"];
+                        }
 
+                        if($id_no && $cashOfficialReceipt && $cashDateOfPayment){
+                            mysqli_query($connections, "INSERT INTO payments_tbl (id_no,cash_official_receipt,cash_date_of_payment)
+                            VALUES ('$id_no','$cashOfficialReceipt','$cashDateOfPayment')");
+                            echo "<script> alert('Payment Successfully!'); window.location.href='?';</script>";
+                            // header('Location: ?');
+                        }
+                    }elseif($payment_method == "Bank Payment"){
+                        if(!empty($_POST["bank_official_receipt"])){
+                            $bankOfficialReceipt = $_POST["bank_official_receipt"];
+                        }
+
+                        if(!empty($_POST["bank_date_of_payment"])){
+                            $bankDateOfPayment = $_POST["bank_date_of_payment"];
+                        }
+                        
+                        if($id_no && $bankOfficialReceipt && $bankDateOfPayment){
+                            mysqli_query($connections, "INSERT INTO payments_tbl (id_no,bank_official_receipt,bank_date_of_payment)
+                            VALUES ('$id_no','$bankOfficialReceipt','$bankDateOfPayment')");
+                            echo "<script> alert('Payment Successfully!'); window.location.href='?';</script>";
+                            // header('Location: ?');
+                        }
+                    }elseif($payment_method == "Cheque Payment"){
+                        if(!empty($_POST["cheque_no"])){
+                            $chequeNo = $_POST["cheque_no"];
+                        }
+
+                        if(!empty($_POST["cheque_bank"])){
+                            $chequeBank = $_POST["cheque_bank"];
+                        }
+                        if(!empty($_POST["cheque_official_receipt"])){
+                            $chequeOfficialReceipt = $_POST["cheque_official_receipt"];
+                        }
+
+                        if(!empty($_POST["cheque_date_of_payment"])){
+                            $chequeDateOfPayment = $_POST["cheque_date_of_payment"];
+                        }
+                                                
+                        if($id_no && $chequeNo && $chequeBank && $chequeOfficialReceipt && $chequeDateOfPayment){
+                            mysqli_query($connections, "INSERT INTO payments_tbl (id_no,cheque_no,cheque_bank,
+                            cheque_official_receipt,cheque_date_of_payment)
+                            VALUES ('$id_no','$chequeNo','$chequeBank','$chequeOfficialReceipt','$chequeDateOfPayment')");
+                            echo "<script> alert('Payment Successfully!'); window.location.href='?';</script>";
+                            // header('Location: ?');
+                        }
+                    }
                 }
+
+                echo $payment_method;
+
+                //     if($payment_method){
+                       
+
+                    // }
+            }
+
             
             ?>
                 
-                <div class="form-floating ">
-                    <input class="form-control" type="text" value="<?php echo $id_no; ?>" placeholder="ID Number" name="id_no" class="" id="id_no" >
+                <div class="d-flex justify-content-between">
+                <form method="POST">
+                <div class="form-floating">
+                    <input class="form-control" type="text" value="<?php echo $id_no; ?>" placeholder="ID Number" name="id_no" class="" id="id_no" onkeypress='return isEnterKey(event)'>
                     <label for="id_no">ID Number</label>
+                </div>
+                
+
+                <div class="form-floating ps-3 pe-3">
+                <input class="btn btn-success p-3 ps-5 pe-5" type="submit" name="search" value="Search">
+                </div>
+                
+
+                <div class="form-floating flex-fill">
+                    <input class="form-control" type="text" value="<?php echo $alumni_name; ?>" placeholder="First Name" name="first_name" class="" id="first_name" autocomplete="new-first" disabled>
+                    <label for="first_name">Name</label>
+                </div>
+
                 </div>
 
                 <hr>
@@ -124,18 +180,18 @@ $post = "";
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-4">
-                <input class="form-check-input" type="radio" name="male" id="male" onclick="cashPaymentDisable()">
-                <label class="form-check-label" for="male">Option 1: Cash Payment</label>
+                <input class="form-check-input" type="radio" name="payment_method" value="Cash Payment" <?php if($payment_method == "Cash Payment"){ echo "checked"; } ?> id="cash_payment" onclick="cashPaymentDisable()">
+                <label class="form-check-label" for="cash_payment">Option 1: Cash Payment</label>
             </div>
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $cashOfficialReceipt; ?>" placeholder="Official Recipt No." name="cash_official_receipt" class="" id="cash_official_receipt" autocomplete="new-address-cash-official-receipt" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $cashOfficialReceipt; ?>" placeholder="Official Recipt No." name="cash_official_receipt" class="" id="cash_official_receipt" <?php if($payment_method != "Cash Payment"){ echo "disabled"; } ?> autocomplete="new-address-cash-official-receipt" required >
                     <label for="cash_official_receipt">Official Receipt No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $cashDateOfPayment; ?>" placeholder="Date of Payment" name="cash_date_of_payment" class="" id="cash_date_of_payment" autocomplete="new-cash-date-of-payment" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $cashDateOfPayment; ?>" placeholder="Date of Payment" name="cash_date_of_payment" class="" id="cash_date_of_payment" <?php if($payment_method != "Cash Payment"){ echo "disabled"; } ?> autocomplete="new-cash-date-of-payment" required >
                     <label for="cash_date_of_payment">Date of Payment</label>
                 </div>
 
@@ -146,18 +202,18 @@ $post = "";
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-4">
-                <input class="form-check-input" type="radio" name="male" id="male">
-                <label class="form-check-label" for="male">Option 2: Bank Payment</label>
+                <input class="form-check-input" type="radio" name="payment_method" value="Bank Payment" <?php if($payment_method == "Bank Payment"){ echo "checked"; } ?> id="bank_payment" onclick="bankPaymentDisable()">
+                <label class="form-check-label" for="bank_payment">Option 2: Bank Payment</label>
             </div>
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $bankOfficialReceipt; ?>" placeholder="Official Recipt No." name="bank_official_receipt" class="" id="bank_official_receipt" autocomplete="new-bank-official-receipt" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $bankOfficialReceipt; ?>" placeholder="Official Recipt No." name="bank_official_receipt" class="" id="bank_official_receipt" <?php if($payment_method != "Bank Payment"){ echo "disabled"; } ?> autocomplete="new-bank-official-receipt" required >
                     <label for="bank_official_receipt">Official Receipt No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-4 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $bankDateOfPayment; ?>" placeholder="Date of Payment" name="bank_date_of_payment" class="" id="bank_date_of_payment" autocomplete="new-bank-date-of-payment" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $bankDateOfPayment; ?>" placeholder="Date of Payment" name="bank_date_of_payment" class="" id="bank_date_of_payment" <?php if($payment_method != "Bank Payment"){ echo "disabled"; } ?> autocomplete="new-bank-date-of-payment" required >
                     <label for="bank_date_of_payment">Date of Payment</label>
                 </div>
 
@@ -168,30 +224,30 @@ $post = "";
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-3">
-                <input class="form-check-input" type="radio" name="male" id="male">
-                <label class="form-check-label" for="male">Option 3: Cheque Payment</label>
+                <input class="form-check-input" type="radio" name="payment_method" value="Cheque Payment" <?php if($payment_method == "Cheque Payment"){ echo "checked"; } ?> id="cheque_payment" onclick="chequePaymentDisable()">
+                <label class="form-check-label" for="cheque_payment">Option 3: Cheque Payment</label>
             </div>
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $chequeNo; ?>" placeholder="Cheque No." name="cheque_no" class="" id="cheque_no" autocomplete="new-cheque-no" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $chequeNo; ?>" placeholder="Cheque No." name="cheque_no" class="" id="cheque_no" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-no" required >
                     <label for="cheque_no">Cheque No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $chequeBank; ?>" placeholder="Bank" name="cheque_bank" class="" id="cheque_bank" autocomplete="new-cheque-bank" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $chequeBank; ?>" placeholder="Bank" name="cheque_bank" class="" id="cheque_bank" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-bank" required >
                     <label for="cheque_bank">Bank</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $chequeOfficialReceipt; ?>" placeholder="Official Recipt No." name="cheque_official_receipt" class="" id="cheque_official_receipt" autocomplete="new-cheque-official-receipt" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $chequeOfficialReceipt; ?>" placeholder="Official Recipt No." name="cheque_official_receipt" class="" id="cheque_official_receipt" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-official-receipt" required >
                     <label for="cheque_official_receipt">Official Recipt No.</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-2 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $chequeDateOfPayment; ?>" placeholder="Date of Payment" name="cheque_date_of_payment" class="" id="cheque_date_of_payment" autocomplete="new-cheque-date-of-payment" disabled required >
+                    <input class="form-control" type="text" value="<?php echo $chequeDateOfPayment; ?>" placeholder="Date of Payment" name="cheque_date_of_payment" class="" id="cheque_date_of_payment" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-date-of-payment" required >
                     <label for="cheque_date_of_payment">Date of Payment</label>
                 </div>
 
@@ -201,8 +257,9 @@ $post = "";
                 <!-- ######################################################################## -->
 
     
-                <input style="float:right;" class="btn btn-success" type="submit" name="submit" value="Submit Payment">
+                <input style="float:right;" class="btn btn-success" type="submit" name="payment" value="Submit Payment">
                 
+                </form>
 
         </div>
         <div class="card-footer bg-primary text-light">
@@ -227,19 +284,98 @@ return true;
 
 }
 
-function cashPaymentDisable(){
-    let cashOfficialReceipt = document.getElementById("cash_official_receipt");
-    let cashDateOfPayment = document.getElementById("cash_date_of_payment");
-    
-    if(elementary.checked == true){
-        elementaryYearGraduate.disabled = false;
+    let cash_official_receipt = document.getElementById("cash_official_receipt");
+    let cash_date_of_payment = document.getElementById("cash_date_of_payment");
+    let cash_payment = document.getElementById("cash_payment");
+
+    let bank_official_receipt = document.getElementById("bank_official_receipt");
+    let bank_date_of_payment = document.getElementById("bank_date_of_payment");
+    let bank_payment = document.getElementById("bank_payment");
+
+    let cheque_official_receipt = document.getElementById("cheque_official_receipt");
+    let cheque_date_of_payment = document.getElementById("cheque_date_of_payment");
+    let cheque_payment = document.getElementById("cheque_payment");
+    let cheque_bank = document.getElementById("cheque_bank");
+    let cheque_no = document.getElementById("cheque_no");
+
+    function cashPaymentDisable(){
+        
+        if(cash_payment.checked == true){
+            cash_official_receipt.disabled = false;
+            cash_date_of_payment.disabled = false;
+            cash_official_receipt.focus();
+
+            bank_official_receipt.disabled = true;
+            bank_date_of_payment.disabled = true;
+
+            cheque_official_receipt.disabled = true;
+            cheque_date_of_payment.disabled = true;
+            cheque_bank.disabled = true;
+            cheque_no.disabled = true;
+
+            bank_official_receipt.value = "";
+            bank_date_of_payment.value = "";
+
+            cheque_official_receipt.value = "";
+            cheque_date_of_payment.value = "";
+            cheque_bank.value = "";
+            cheque_no.value = "";
+        }
+        
     }
     
-    if(elementary.checked == false){
-        elementaryYearGraduate.disabled = true;
-        elementaryYearGraduate.value = "";
+    function bankPaymentDisable(){
+        
+        if(bank_payment.checked == true){
+            bank_official_receipt.disabled = false;
+            bank_date_of_payment.disabled = false;
+            bank_official_receipt.focus();
+
+            cheque_official_receipt.disabled = true;
+            cheque_date_of_payment.disabled = true;
+            cheque_bank.disabled = true;
+            cheque_no.disabled = true;
+
+            cash_official_receipt.disabled = true;
+            cash_date_of_payment.disabled = true;
+
+            cheque_official_receipt.value = "";
+            cheque_date_of_payment.value = "";
+            cheque_bank.value = "";
+            cheque_no.value = "";
+
+            cash_official_receipt.value = "";
+            cash_date_of_payment.value = "";
+        }
+
+    
     }
-}
+    
+    function chequePaymentDisable(){
+        
+        if(cheque_payment.checked == true){
+            cheque_official_receipt.disabled = false;
+            cheque_date_of_payment.disabled = false;
+            cheque_bank.disabled = false;
+            cheque_no.disabled = false;
+            cheque_no.focus();
+
+            cash_official_receipt.disabled = true;
+            cash_date_of_payment.disabled = true;
+
+            bank_official_receipt.disabled = true;
+            bank_date_of_payment.disabled = true;
+
+            cash_official_receipt.value = "";
+            cash_date_of_payment.value = "";
+
+            bank_official_receipt.value = "";
+            bank_date_of_payment.value = "";
+        }
+
+    
+    }
+
 
 </script>
 

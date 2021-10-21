@@ -216,7 +216,8 @@ if(isset($_SESSION["username"])){
                                                             session_start();
                                                             $session_user = $_POST["username"];
                                                             $_SESSION["username"] = $session_user;
-                                                            echo "<script> alert('Successfully Registered!'); window.location.href='auth/users'; </script>";
+                                                            echo "<script> alert('Successfully Registered!');
+                                                            window.location.href='auth/users'; </script>";
                                                             // header('Location: ?');
                                                     
                                                 }
