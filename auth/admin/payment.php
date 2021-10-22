@@ -69,6 +69,7 @@ $post = "";
                     $row_id = mysqli_num_rows($check_payment_record);
       
                         if($row_id > 0){
+                            $id_no = "";
                             echo "<script>alert('User $search, named $fullName is already paid!');</script>";
                         }else{
                             $alumni_name = $fullName;

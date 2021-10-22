@@ -125,6 +125,7 @@ if(isset($_POST["login"])){
       }else{
 
           $session_user = "";
+          $session_pass = "";
           echo"<script>alert('Sorry, the User Name you entered is not registered.');</script>";
       }
   }

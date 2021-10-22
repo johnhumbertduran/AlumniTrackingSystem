@@ -24,6 +24,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="archive">Archive</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="payment">Payment</a>
         </li>
 

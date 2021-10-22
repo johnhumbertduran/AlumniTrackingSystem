@@ -27,7 +27,7 @@ if(isset($_SESSION["username"])){
 
 <center>
 <?php
-include("retrieve_records.php");
+// include("retrieve_records.php");
 ?>
 </center>
 
