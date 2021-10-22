@@ -1,42 +1,10 @@
-<?php
-include("bins/header.php");
-include("auth/bins/connections.php");
-include("bins/nav.php");
-
-if(isset($_SESSION["username"])){
-
-    $session_user = $_SESSION["username"];
-    $check_account_type = mysqli_query($connections, "SELECT * FROM users_tbl WHERE username='$session_user'");
-    $get_account_type = mysqli_fetch_assoc($check_account_type);
-    $account_type = $get_account_type["account_type"];
-    
-    if($account_type == 1){
-    
-        header('Location: auth/admin');
-    
-    }elseif($account_type == 2){
-    
-        header('Location: auth/users');
-
-    }else{
-    
-        header('Location: forbidden');
-
-    }
-
-}
-
-?>
-
-
 <br>
-
 
 <div class="container col">
 
 <div class="card">
 
-    <div class="card-header bg-primary text-light"><h2>Registration Form</h2></div>
+    <div class="card-header bg-primary text-light"><h2>Update Record</h2><button type="button" style="position:absolute; right:10px; top: 10px;" class="btn-close" onclick="backToAlumni()"></button></div>
     
         <div class="card-body">
             <form autocomplete="off" method="POST">
@@ -44,23 +12,40 @@ if(isset($_SESSION["username"])){
            $id_no = $lastName = $firstName = $middleName = $address = $sex = $civilStatus = $employmentAddress =
            $workPosition = $elementary = $elementaryYearGraduate = $college = $collegeYearGraduate =
            $collegeDegree = $highSchool = $highSchoolYearGraduate = $graduate = $graduateSchoolYearGraduate =
-           $graduateDegree = $officeTelephoneNo = $mobilePhoneNo = $alumniChapterMembership = $email = $userName = $password = "";
+           $graduateDegree = $officeTelephoneNo = $mobilePhoneNo = $alumniChapterMembership = "";
 
            $date = date("Y");
-            $id_no = "20210000";
+           if(isset($_GET["update"])){
+               $id_no = $_GET["update"];
+           }
 
-            $check_id_no = mysqli_query($connections, "SELECT id_no FROM users_tbl ORDER BY id_no DESC LIMIT 1 ");
+
+            $check_id_no = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no' ");
             while($get_id_no = mysqli_fetch_assoc($check_id_no)){
 
                 $db_id_number = $get_id_no["id_no"];
-                $id_no = $db_id_number;
-            
-            
-            if($db_id_number >= $id_no){
-            
-                $id_no += 1;
-                
-            }
+                $lastName = $get_id_no["last_name"];
+                $firstName = $get_id_no["first_name"];
+                $middleName = $get_id_no["middle_name"];
+                $address = $get_id_no["employment_address"];
+                $sex = $get_id_no["sex"];
+                $civilStatus = $get_id_no["civil_status"];
+                $employmentAddress = $get_id_no["employment_address"];
+                $workPosition = $get_id_no["current_work"];
+                // $elementary = $get_id_no[""];
+                $elementaryYearGraduate = $get_id_no["elementary_graduate"];
+                // $college = $get_id_no[""];
+                $collegeYearGraduate = $get_id_no["college_graduate"];
+                $collegeDegree = $get_id_no["college_degree"];
+                // $highSchool = $get_id_no[""];
+                $highSchoolYearGraduate = $get_id_no["highschool_graduate"];
+                // $graduate = $get_id_no[""];
+                $graduateSchoolYearGraduate = $get_id_no["graduate_graduate"];
+                $graduateDegree = $get_id_no["graduate_degree"];
+                $officeTelephoneNo = $get_id_no["office_telephone"];
+                $mobilePhoneNo = $get_id_no["mobile_number"];
+                $alumniChapterMembership = $get_id_no["alumni_chapter_membership"];
+
 
             if(isset($_POST["submit"])){
                 // echo "<script>alert('clicked');</script>";
@@ -175,8 +160,7 @@ if(isset($_SESSION["username"])){
                 
 
                     if($lastName && $firstName && $middleName && $address && $sex && $civilStatus
-                        && $employmentAddress && $workPosition && $mobilePhoneNo && $alumniChapterMembership
-                        && $email && $userName && $password){
+                        && $employmentAddress && $workPosition && $mobilePhoneNo && $alumniChapterMembership){
 
                         if(!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastName)){
                             echo "<script> alert('Last Name should not have numbers or symbols.'); </script>";
@@ -205,19 +189,14 @@ if(isset($_SESSION["username"])){
                                                         if(strlen($mobilePhoneNo) < 11){
                                                             echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";                                    
                                                             }else{
-                                                            mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,middle_name,home_address,
-                                                                sex,civil_status,employment_address,current_work,elementary_graduate,highschool_graduate,college_graduate,
-                                                                graduate_graduate,college_degree,graduate_degree,office_telephone,mobile_number,alumni_chapter_membership,
-                                                                email_address,username,password,account_type)
-                                                                VALUES ('$id_no','$lastName','$firstName','$middleName','$address','$sex','$civilStatus','$employmentAddress',
-                                                                '$workPosition','$elementaryYearGraduate','$highSchoolYearGraduate','$collegeYearGraduate','$graduateSchoolYearGraduate',
-                                                                '$collegeDegree','$graduateDegree','$officeTelephoneNo','$mobilePhoneNo','$alumniChapterMembership',
-                                                                '$email','$userName','$password','2')");
-                                                            session_start();
-                                                            $session_user = $_POST["username"];
-                                                            $_SESSION["username"] = $session_user;
+                                                            // mysqli_query($connections, "UPDATE users_tbl SET last_name='$lastName',first_name='$firstName',middle_name='$middleName',
+                                                            // home_address='$address',sex='$sex',civil_status='$civilStatus',employment_address='$employmentAddress',current_work='$workPosition',
+                                                            // elementary_graduate='$elementaryYearGraduate',highschool_graduate='$highSchoolYearGraduate',college_graduate='$collegeYearGraduate',
+                                                            // graduate_graduate='$graduateSchoolYearGraduate',college_degree='$collegeDegree',graduate_degree='$graduateDegree',
+                                                            // office_telephone='$officeTelephoneNo',mobile_number='$mobilePhoneNo',alumni_chapter_membership='$alumniChapterMembership' WHERE id_no='$id_no' ");
+                                                            
                                                             echo "<script> alert('Successfully Registered!');
-                                                            window.location.href='auth/users'; </script>";
+                                                            // window.location.href='auth/users'; </script>";
                                                             // header('Location: ?');
                                                     
                                                 }
@@ -330,29 +309,29 @@ if(isset($_SESSION["username"])){
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="elementary" name="elementary" <?php if($elementary == "elementary"){ echo "checked "; } ?> value="elementary" onclick="elementaryDisable()">
+                <input type="checkbox" class="form-check-input" id="elementary" name="elementary" <?php if($elementary == "elementary"){ echo "checked "; } if(!empty($elementaryYearGraduate)){ echo "checked "; } ?> value="elementary" onclick="elementaryDisable()">
                 <label class="form-check-label" for="elementary">Elementary</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $elementaryYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="elementary_year_graduate" class="" id="elementary_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-elementary-graduate" <?php if($elementary != "elementary"){ echo "disabled"; } ?> required >
+                    <input class="form-control" type="text" value="<?php echo $elementaryYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="elementary_year_graduate" class="" id="elementary_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-elementary-graduate" <?php if($elementary != "elementary"){ echo "disabled"; } if(!empty($elementaryYearGraduate)){ echo "enabled "; } ?> required >
                     <label for="elementary_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="college" name="college" <?php if($college == "college"){ echo "checked "; } ?> value="college" onclick="collegeDisable()">
+                <input type="checkbox" class="form-check-input" id="college" name="college" <?php if($college == "college"){ echo "checked "; } if(!empty($collegeYearGraduate)){ echo "checked "; } ?> value="college" onclick="collegeDisable()">
                 <label class="form-check-label" for="college">College</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $collegeYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="college_year_graduate" class="" id="college_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-college-graduate" <?php if($college != "college"){ echo "disabled"; } ?> required >
+                    <input class="form-control" type="text" value="<?php echo $collegeYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="college_year_graduate" class="" id="college_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-college-graduate" <?php if($college != "college"){ echo "disabled"; } if(!empty($collegeYearGraduate)){ echo "enabled "; } ?> required >
                     <label for="college_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $collegeDegree; ?>" placeholder="Degree" name="college_degree" class="" id="college_degree" autocomplete="new-college-degree" <?php if($college != "college"){ echo "disabled"; } ?> required >
+                    <input class="form-control" type="text" value="<?php echo $collegeDegree; ?>" placeholder="Degree" name="college_degree" class="" id="college_degree" autocomplete="new-college-degree" <?php if($college != "college"){ echo "disabled"; } if(!empty($collegeYearGraduate)){ echo "enabled "; } ?> required >
                     <label for="college_degree">Degree</label>
                 </div>
 
@@ -364,29 +343,29 @@ if(isset($_SESSION["username"])){
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="high_school" name="high_school" <?php if($highSchool == "high_school"){ echo "checked "; } ?> value="high_school" onclick="highSchoolDisable()">
+                <input type="checkbox" class="form-check-input" id="high_school" name="high_school" <?php if($highSchool == "high_school"){ echo "checked "; } if(!empty($highSchoolYearGraduate)){ echo "checked "; } ?> value="high_school" onclick="highSchoolDisable()">
                 <label class="form-check-label" for="high_school">High School</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $highSchoolYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="high_school_year_graduate" class="" id="high_school_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-high-school-graduate" <?php if($highSchool != "high_school"){ echo "disabled"; } ?> required >
+                    <input class="form-control" type="text" value="<?php echo $highSchoolYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="high_school_year_graduate" class="" id="high_school_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-high-school-graduate" <?php if($highSchool != "high_school"){ echo "disabled"; } if(!empty($highSchoolYearGraduate)){ echo "enabled "; } ?> required >
                     <label for="high_school_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-check flex-fill">
-                <input type="checkbox" class="form-check-input" id="graduate_school" name="graduate_school" <?php if($graduate == "graduate_school"){ echo "checked "; } ?> value="graduate_school" onclick="graduateDisable()">
+                <input type="checkbox" class="form-check-input" id="graduate_school" name="graduate_school" <?php if($graduate == "graduate_school"){ echo "checked "; } if(!empty($graduateSchoolYearGraduate)){ echo "checked "; } ?> value="graduate_school" onclick="graduateDisable()">
                 <label class="form-check-label" for="graduate_school">Graduate</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $graduateSchoolYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="graduate_school_year_graduate" class="" id="graduate_school_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-graduate" <?php if($graduate != "graduate_school"){ echo "disabled"; } ?> required >
+                    <input class="form-control" type="text" value="<?php echo $graduateSchoolYearGraduate; ?>" maxlength="4" placeholder="Year Graduated" name="graduate_school_year_graduate" class="" id="graduate_school_year_graduate" onkeypress='return isNumberKey(event)' autocomplete="new-graduate" <?php if($graduate != "graduate_school"){ echo "disabled"; } if(!empty($graduateSchoolYearGraduate)){ echo "enabled "; } ?> required >
                     <label for="graduate_school_year_graduate">Year Graduated</label>
                 </div>
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $graduateDegree; ?>" placeholder="Degree" name="graduate_degree" class="" id="graduate_degree" autocomplete="new-graduate-degree" <?php if($graduate != "graduate_school"){ echo "disabled"; } ?> required >
+                    <input class="form-control" type="text" value="<?php echo $graduateDegree; ?>" placeholder="Degree" name="graduate_degree" class="" id="graduate_degree" autocomplete="new-graduate-degree" <?php if($graduate != "graduate_school"){ echo "disabled"; } if(!empty($graduateSchoolYearGraduate)){ echo "enabled "; } ?> required >
                     <label for="graduate_degree">Degree</label>
                 </div>
 
@@ -416,37 +395,16 @@ if(isset($_SESSION["username"])){
 
                 </div>
 
-                <hr>
-                <!-- ######################################################################## -->
-
-                <div class="d-flex justify-content-between">
-                    
-                <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="email" value="<?php echo $email; ?>" placeholder="Email" name="email" class="" id="email" autocomplete="off" required >
-                    <label for="email">Email</label>
-                </div>
-                &nbsp;&nbsp;
-
-                <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $userName; ?>" placeholder="Username" name="username" class="" id="username" autocomplete="off" required >
-                    <label for="username">Username</label>
-                </div>
-                &nbsp;&nbsp;
-
-
-                <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="password" value="<?php echo $password; ?>" placeholder="Password" name="password" class="" id="password" autocomplete="off" required >
-                    <label for="password">Password</label>
-                </div>
-
-                </div>
+               
 
                 <hr>
                 <!-- ######################################################################## -->
 
     
-                <input style="float:right;" class="btn btn-success" type="submit" name="submit" value="Register">
-                
+                <div style="float:right;">
+                <a href="?" class="btn btn-danger" type="submit" name="submit">Cancel</a>
+                <input class="btn btn-success" type="submit" name="submit" value="Update">
+                </div>
 
         </div>
         <div class="card-footer bg-primary text-light">
@@ -535,9 +493,8 @@ function graduateDisable(){
     }
 }
 
+function backToAlumni(){
+    window.location.href = "?";
+}
+
 </script>
-
-<?php
-include("bins/footer.php");
-?>
-

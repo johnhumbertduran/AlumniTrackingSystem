@@ -88,6 +88,16 @@
           $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
           $schoolAttended = "";
           $paymentStatus = "";
+
+          $checkPaymentStatus = mysqli_query($connections, "SELECT * FROM payments_tbl WHERE id_no='$idNo' ");
+          $rowCheckPayment = mysqli_num_rows($checkPaymentStatus);
+          if($rowCheckPayment > 0){
+            $paymentStatus = "Paid";
+          }else{
+            $paymentStatus = "Pending";
+          }
+
+          
     
     ?>
       <tr class="text-center">
@@ -104,7 +114,7 @@
         <td class="align-middle"><?php echo $alumniChapterMembership; ?></td> -->
         <td class="align-middle"><a class="btn btn-info" id="<?php echo $id; ?>" href="?view=<?php echo $id; ?>">View</a></td>
         <td class="align-middle"><?php echo $paymentStatus; ?></td>
-        <td class="align-middle"><a class="btn btn-success" id="<?php echo $id; ?>" href="?customers=<?php echo $id; ?>">Update</a>&nbsp<a class="btn btn-danger" href="?set=<?php echo $id; ?>">Delete</a></td>
+        <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $id; ?>" href="?update=<?php echo $id; ?>">Update</a>&nbsp<a class="btn btn-danger" href="?set=<?php echo $id; ?>">Delete</a></td>
       </tr>
 
       <?php
@@ -130,10 +140,9 @@
       $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
     }
 
-    if(isset($_POST["btnDelete"])){
-    //   mysqli_query($connections, "UPDATE customert SET stat='0' WHERE id = '$alumni_id' ");
+    if(isset($_POST["btn_delete"])){
+      mysqli_query($connections, "DELETE FROM users_tbl WHERE id_no='$alumni_id' ");
 			echo"<script>window.location.href='?'; alert('Record succesfully Deleted!');</script>";
-			
     }
 ?>
   <!-- The Modal -->
@@ -143,7 +152,7 @@
           
             <!-- Modal Header -->
             <div class="modal-header">
-                <h2>Record</h2>
+                <h2>Delete Record</h2>
               <button type="button" class="btn-close" onclick="closeModal()"></button>
             </div>
             
@@ -154,7 +163,7 @@
                 <form method="post" enctype="multipart/form-data">
 
 
-                            <center><h4>Do you want to <font color="red">Delete</font> <h2><?php echo strtoupper($fullName) . "?"; ?></h2> </h4></center>
+                            <center><h4>Do you want to <font color="red">DELETE</font> <h2><?php echo strtoupper($fullName) . "'s Record?"; ?></h2> </h4></center>
 
                             
 
@@ -163,7 +172,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                         <center>
-                            <input type="submit" name="btnDelete" class="btn btn-danger" id="uploadPhotoBtn" value="Delete">
+                            <input type="submit" name="btn_delete" class="btn btn-danger" id="uploadPhotoBtn" value="Delete">
                         </center>
                     </form>
                 </center>
@@ -191,11 +200,6 @@
       $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
     }
 
-    if(isset($_POST["btnDelete"])){
-    //   mysqli_query($connections, "UPDATE customert SET stat='0' WHERE id = '$alumni_id' ");
-			echo"<script>window.location.href='?'; alert('Record succesfully Deleted!');</script>";
-			
-    }
 ?>
 
   <!-- The Modal -->
@@ -222,7 +226,6 @@
                         <th>Office Tel. No.</th>
                         <th>Mobile No.</th>
                         <th>Alumni Chapter Membership</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -279,7 +282,6 @@
         <td class="align-middle"><?php echo $officeTelephone; ?></td>
         <td class="align-middle"><?php echo $mobileNumber; ?></td>
         <td class="align-middle"><?php echo $alumniChapterMembership; ?></td>
-        <td class="align-middle"><a class="btn btn-success" id="<?php echo $id; ?>" href="?customers=<?php echo $id; ?>">Update</a></td>
       </tr>
 
       <?php
@@ -293,7 +295,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                         <center>
-                            <input type="submit" name="btnDelete" class="btn btn-danger invisible" value="Delete">
+                            <input type="submit" name="" class="btn btn-danger invisible" value="Delete">
                         </center>
             </div>
 

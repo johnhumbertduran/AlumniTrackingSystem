@@ -27,7 +27,11 @@ if(isset($_SESSION["username"])){
 
 <center>
 <?php
+if(empty($_GET["update"])){
 include("retrieve_records.php");
+}else{
+include("update_records.php");
+}
 ?>
 </center>
 

@@ -22,10 +22,10 @@
         <li class="nav-item">
           <a class="nav-link" href="alumni">Alumni</a>
         </li>
-
+<!-- 
         <li class="nav-item">
           <a class="nav-link" href="archive">Archive</a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
           <a class="nav-link" href="payment">Payment</a>
