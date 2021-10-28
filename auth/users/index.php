@@ -38,5 +38,5 @@ if(isset($_SESSION["username"])){
 <br>
 
 <?php
-include("bins/footer.php");
+include("bins/footer_fixed.php");
 ?>

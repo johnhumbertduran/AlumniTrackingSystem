@@ -41,5 +41,5 @@ include("update_records.php");
 <br>
 
 <?php
-include("bins/footer.php");
+include("bins/footer_fixed.php");
 ?>

@@ -8,7 +8,7 @@
         <footer>
         <hr>
         <div class="container">
-        &copy;2021
+        &copy;<?php echo date("Y"); ?>
         </div>
         <br>
         </footer>

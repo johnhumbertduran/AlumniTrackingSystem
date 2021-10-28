@@ -65,7 +65,7 @@
     $alumni_qry = mysqli_query($connections, "SELECT * FROM users_tbl WHERE account_type='2' ");
     
     while($row_alumni = mysqli_fetch_assoc($alumni_qry)){
-          $id = $row_alumni["id"];
+          // $id = $row_alumni["id"];
           $idNo = $row_alumni["id_no"];
           $lastName = $row_alumni["last_name"];
           $firstName = $row_alumni["first_name"];
@@ -112,9 +112,9 @@
         <td class="align-middle"><?php echo $officeTelephone; ?></td>
         <td class="align-middle"><?php echo $mobileNumber; ?></td>
         <td class="align-middle"><?php echo $alumniChapterMembership; ?></td> -->
-        <td class="align-middle"><a class="btn btn-info" id="<?php echo $id; ?>" href="?view=<?php echo $id; ?>">View</a></td>
+        <td class="align-middle"><a class="btn btn-info" id="<?php echo $idNo; ?>" href="?view=<?php echo $idNo; ?>">View</a></td>
         <td class="align-middle"><?php echo $paymentStatus; ?></td>
-        <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $id; ?>" href="?update=<?php echo $id; ?>">Update</a>&nbsp<a class="btn btn-danger" href="?set=<?php echo $id; ?>">Delete</a></td>
+        <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $idNo; ?>" href="?update=<?php echo $idNo; ?>">Update</a>&nbsp<a class="btn btn-danger" href="?set=<?php echo $idNo; ?>">Delete</a></td>
       </tr>
 
       <?php

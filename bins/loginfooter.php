@@ -18,7 +18,7 @@
         <footer class="fixed-bottom">
         <hr>
         <div class="container">
-        &copy;2020
+        &copy;<?php echo date("Y"); ?>
         </div>
     <br>
         </footer>
