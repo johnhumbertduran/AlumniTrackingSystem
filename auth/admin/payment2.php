@@ -42,7 +42,7 @@ $post = "";
             <?php
             $cashOfficialReceipt = $cashDateOfPayment = $bankOfficialReceipt = $bankDateOfPayment = $chequeNo =
             $chequeBank = $chequeOfficialReceipt = $chequeDateOfPayment = $id_no = $alumni_name = $alumni_name_retain = $payment_method =
-            $search = $fullName = "";
+            $search = $fullName = $numberOfPerson = $tshirtSize = "";
 
 
             if(isset($_POST['search'])){
@@ -255,7 +255,7 @@ $post = "";
                 <div class="form-check col-3">
                 <input class="form-check-input" type="radio" name="payment_method" value="Cheque Payment" <?php if($payment_method == "Cheque Payment"){ echo "checked"; } ?> id="cheque_payment" onclick="chequePaymentDisable()">
                 <label class="form-check-label" for="cheque_payment">Option 3: Cheque Payment</label>
-            </div>
+                </div>
 
                 <div class="form-floating col-2 flex-fill">
                     <input class="form-control" type="text" value="<?php echo $chequeNo; ?>" placeholder="Cheque No." name="cheque_no" class="" id="cheque_no" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-no" required >
@@ -278,6 +278,29 @@ $post = "";
                 <div class="form-floating col-2 flex-fill">
                     <input class="form-control" type="text" value="<?php echo $chequeDateOfPayment; ?>" placeholder="Date of Payment" name="cheque_date_of_payment" class="" id="cheque_date_of_payment" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-date-of-payment" required >
                     <label for="cheque_date_of_payment">Date of Payment</label>
+                </div>
+
+                </div>
+
+                <hr>
+                <br>
+
+                <div class="d-flex justify-content-between">
+
+                <div class="form-floating col-2 flex-fill">
+                <h6>Registration Fee per Person = Php 1,000 or US$20</h6>
+                </div>
+                &nbsp;&nbsp;
+
+                <div class="form-floating col-2 flex-fill">
+                    <input class="form-control" type="text" value="<?php echo $numberOfPerson; ?>" placeholder="Number of Persons" name="number_of_person" class="" id="number_of_person" autocomplete="number-of-person" required >
+                    <label for="number_of_person">Number of Persons</label>
+                </div>
+                &nbsp;&nbsp;
+
+                <div class="form-floating col-2 flex-fill">
+                    <input class="form-control" type="text" value="<?php echo $tshirtSize; ?>" placeholder="T-Shirt Size" name="tshirt_size" class="" id="tshirt_size" autocomplete="tshirt-size" required >
+                    <label for="tshirt_size">T-Shirt Size</label>
                 </div>
 
                 </div>
