@@ -42,7 +42,8 @@ $post = "";
             <?php
             $cashOfficialReceipt = $cashDateOfPayment = $bankOfficialReceipt = $bankDateOfPayment = $chequeNo =
             $chequeBank = $chequeOfficialReceipt = $chequeDateOfPayment = $id_no = $alumni_name = $alumni_name_retain = $payment_method =
-            $search = $fullName = $numberOfPerson = $tshirtSize = "";
+            $search = $fullName = $numberOfPerson = $tshirtSize = $diamond_jubilee = "";
+            $total_amount = "0.00";
 
 
             if(isset($_POST['search'])){
@@ -304,6 +305,61 @@ $post = "";
                 </div>
 
                 </div>
+
+                <hr>
+
+
+                <div class="d-flex justify-content-between">
+
+                <div class="form-floating col-2 flex-fill">
+                <h6>Diamond Jubilee Souvenir Program</h6>
+                </div>
+
+                </div>
+
+
+                <div class="container">
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="diamond_jubilee" value="Whole page" <?php if($diamond_jubilee == "Whole page"){ echo "checked"; } ?> id="whole_page">
+                <label class="form-check-label" for="whole_page">Whole Page, Php 5,000.00**</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="diamond_jubilee" value="Half Page" <?php if($diamond_jubilee == "Half Page"){ echo "checked"; } ?> id="half_page">
+                <label class="form-check-label" for="half_page">Half Page, Php 3,000.00**</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="diamond_jubilee" value="Front Cover" <?php if($diamond_jubilee == "Front Cover"){ echo "checked"; } ?> id="inside_front">
+                <label class="form-check-label" for="inside_front">Inside Front Cover Page, Php 10,000.00**</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="diamond_jubilee" value="Back Cover" <?php if($diamond_jubilee == "Back Cover"){ echo "checked"; } ?> id="inside_back">
+                <label class="form-check-label" for="inside_back">Inside Back Cover Page, Php 10,000.00**</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="diamond_jubilee" value="Flip Front" <?php if($diamond_jubilee == "Flip Front"){ echo "checked"; } ?> id="inside_flip">
+                <label class="form-check-label" for="inside_flip">Inside Flip Front Cover Page, Php 10,000.00**</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="diamond_jubilee" value="One Liner" <?php if($diamond_jubilee == "One Liner"){ echo "checked"; } ?> id="one_liner">
+                <label class="form-check-label" for="one_liner">One Liner, Php 1,000.00**</label>
+                </div>
+                
+                <br>
+                <p class="d-flex justify-content-center border border-dark col-4">
+                    with 3 free registrants plus souvenir program <br>
+                    with 1 free registrant plus souvenir program <br>
+                    with 2 free T-shirts
+                </p>
+
+                <h6 class="d-flex justify-content-end">Total Amount:&nbsp; <u>₱<?php echo $total_amount; ?></u></h6>
+                </div>
+                
 
                 <hr>
                 <!-- ######################################################################## -->
