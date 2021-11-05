@@ -189,14 +189,14 @@
                                                         if(strlen($mobilePhoneNo) < 11){
                                                             echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";                                    
                                                             }else{
-                                                            // mysqli_query($connections, "UPDATE users_tbl SET last_name='$lastName',first_name='$firstName',middle_name='$middleName',
-                                                            // home_address='$address',sex='$sex',civil_status='$civilStatus',employment_address='$employmentAddress',current_work='$workPosition',
-                                                            // elementary_graduate='$elementaryYearGraduate',highschool_graduate='$highSchoolYearGraduate',college_graduate='$collegeYearGraduate',
-                                                            // graduate_graduate='$graduateSchoolYearGraduate',college_degree='$collegeDegree',graduate_degree='$graduateDegree',
-                                                            // office_telephone='$officeTelephoneNo',mobile_number='$mobilePhoneNo',alumni_chapter_membership='$alumniChapterMembership' WHERE id_no='$id_no' ");
+                                                            mysqli_query($connections, "UPDATE users_tbl SET last_name='$lastName',first_name='$firstName',middle_name='$middleName',
+                                                            home_address='$address',sex='$sex',civil_status='$civilStatus',employment_address='$employmentAddress',current_work='$workPosition',
+                                                            elementary_graduate='$elementaryYearGraduate',highschool_graduate='$highSchoolYearGraduate',college_graduate='$collegeYearGraduate',
+                                                            graduate_graduate='$graduateSchoolYearGraduate',college_degree='$collegeDegree',graduate_degree='$graduateDegree',
+                                                            office_telephone='$officeTelephoneNo',mobile_number='$mobilePhoneNo',alumni_chapter_membership='$alumniChapterMembership' WHERE id_no='$id_no' ");
                                                             
                                                             echo "<script> alert('Successfully Registered!');
-                                                            // window.location.href='auth/users'; </script>";
+                                                            window.location.href='alumni'; </script>";
                                                             // header('Location: ?');
                                                     
                                                 }
