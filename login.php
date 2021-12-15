@@ -173,8 +173,8 @@ if(isset($_POST["login"])){
 
 
   <div class="card-footer bg-primary">
-  <input type="submit" class="btn btn-light float-right" name="login" value="Log me in">
-  <a href="#" class="text-light">Forgot password?</a>
+  <input type="submit" class="btn btn-light" name="login" value="Log me in">
+  <a href="forgotpassword" class="btn btn-primary">Forgot password?</a>
   </form>
   </div>
 </div>
