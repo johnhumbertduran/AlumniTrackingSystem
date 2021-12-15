@@ -19,6 +19,9 @@
         <hr>
         <div class="container">
         &copy;<?php echo date("Y"); ?>
+        <p class="text-secondary">Archbishop Gabriel M. Reyes Street, 5600 Kalibo, Aklan, Philippines.
+        <br> Contact Number: (036) 268-4152 || 268-8576 || 268-9347
+        <br> Email Address: ac.acc.alumni@gmail.com
         </div>
     <br>
         </footer>

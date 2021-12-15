@@ -53,6 +53,34 @@ Edicio Venturanza, Sergio Vizcarra, Simplicia Vega, Adriano Seraspi, Juan Tolent
 
 <br>
 <br>
+<h3 class="text-primary mx-5">Vision Statement</h3>
+<br>
+<p class="text-left mx-5 text-secondary">
+We envision Aklan Catholic College as a vibrant educational institution committed to empowering stakeholders
+as globally competent and authentic Christians.
+</p>
+<br>
+<hr class="mx-5">
+
+
+<br>
+<br>
+<h3 class="text-primary mx-5">Mission Statement</h3>
+<br>
+<p class="text-left mx-5 text-secondary">
+1.Continuously evaluate the relevance of programs and services and the functionality of structures, processes and leadership styles. <br><br>
+2.Relentlessly expedite leadership and professional development through continuing education. <br><br>
+3.Steadfastly inculcate Gospel values for the integral development of the stakeholders. <br><br>
+4.Amply produce excellent graduates through current researches, relevant curricular offerings and responsive community extension services. <br><br>
+5.Purposively channel resources towards the sustainability of the institution through value innovative programs.
+
+</p>
+<br>
+<hr class="mx-5">
+
+
+<br>
+<br>
 <h3 class="text-primary mx-5">COLLEGE OPENING</h3>
 <br>
 <p class="text-left mx-5 text-secondary">

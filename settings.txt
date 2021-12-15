@@ -12,3 +12,24 @@ total_amount
 
 ##################################################
 update record
+
+
+
+
+
+##################################################
+
+//Remove delete button
+//email validation gmail || outlook || yahoo .com
+//rearranged register form
+//vision mission
+//footer (contact)
+//email (OSA)
+
+
+walk in (sa user) and donline payment
+forget account
+add filter year, course, address
+print registration form
+
+T-shirt package

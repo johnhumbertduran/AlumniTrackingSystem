@@ -203,23 +203,26 @@ if(isset($_SESSION["username"])){
                                                         echo "<script> alert('Please select school level you attended!'); </script>";
                                                     }else{
                                                         if(strlen($mobilePhoneNo) < 11){
-                                                            echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";                                    
+                                                            echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";
                                                             }else{
-                                                            mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,middle_name,home_address,
-                                                                sex,civil_status,employment_address,current_work,elementary_graduate,highschool_graduate,college_graduate,
-                                                                graduate_graduate,college_degree,graduate_degree,office_telephone,mobile_number,alumni_chapter_membership,
-                                                                email_address,username,password,account_type)
-                                                                VALUES ('$id_no','$lastName','$firstName','$middleName','$address','$sex','$civilStatus','$employmentAddress',
-                                                                '$workPosition','$elementaryYearGraduate','$highSchoolYearGraduate','$collegeYearGraduate','$graduateSchoolYearGraduate',
-                                                                '$collegeDegree','$graduateDegree','$officeTelephoneNo','$mobilePhoneNo','$alumniChapterMembership',
-                                                                '$email','$userName','$password','2')");
-                                                            session_start();
-                                                            $session_user = $_POST["username"];
-                                                            $_SESSION["username"] = $session_user;
-                                                            echo "<script> alert('Successfully Registered!');
-                                                            window.location.href='auth/users'; </script>";
-                                                            // header('Location: ?');
-                                                    
+                                                                if((!preg_match("/@gmail\.com$/i", $email)) && (!preg_match("/@outlook\.com$/i", $email)) && (!preg_match("/@yahoo\.com$/i", $email)) ){
+                                                                    echo "<script> alert('check!'); </script>";
+                                                                }else{
+                                                                    mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,middle_name,home_address,
+                                                                        sex,civil_status,employment_address,current_work,elementary_graduate,highschool_graduate,college_graduate,
+                                                                        graduate_graduate,college_degree,graduate_degree,office_telephone,mobile_number,alumni_chapter_membership,
+                                                                        email_address,username,password,account_type)
+                                                                        VALUES ('$id_no','$lastName','$firstName','$middleName','$address','$sex','$civilStatus','$employmentAddress',
+                                                                        '$workPosition','$elementaryYearGraduate','$highSchoolYearGraduate','$collegeYearGraduate','$graduateSchoolYearGraduate',
+                                                                        '$collegeDegree','$graduateDegree','$officeTelephoneNo','$mobilePhoneNo','$alumniChapterMembership',
+                                                                        '$email','$userName','$password','2')");
+                                                                    session_start();
+                                                                    $session_user = $_POST["username"];
+                                                                    $_SESSION["username"] = $session_user;
+                                                                    echo "<script> alert('Successfully Registered!');
+                                                                    window.location.href='auth/users'; </script>";
+                                                                    // header('Location: ?');
+                                                    }
                                                 }
                                             }
                                         }
@@ -304,6 +307,31 @@ if(isset($_SESSION["username"])){
 
                 </div>
                 
+                </div>
+
+                <hr>
+
+                <!-- ######################################################################## -->
+
+                <div class="d-flex justify-content-between">
+
+                <div class="form-floating col-3 flex-fill">
+                    <input class="form-control" type="text" value="<?php echo $officeTelephoneNo; ?>" placeholder="Office Telephone No." maxlength="7" name="office_telephone_no" class="" id="office_telephone_no" autocomplete="new-telephone" onkeypress='return isNumberKey(event)'  >
+                    <label for="office_telephone_no">Office Telephone No.</label>
+                </div>
+                &nbsp;&nbsp;
+
+                <div class="form-floating col-3 flex-fill">
+                    <input class="form-control" type="text" value="<?php echo $mobilePhoneNo; ?>" placeholder="Mobile Phone No." maxlength="11" name="mobile_phone_no" class="" id="mobile_phone_no" autocomplete="new-mobile" onkeypress='return isNumberKey(event)' required  >
+                    <label for="mobile_phone_no">Mobile Phone No.</label>
+                </div>
+                &nbsp;&nbsp;
+
+                <div class="form-floating col-3 flex-fill">
+                    <input class="form-control" type="text" value="<?php echo $alumniChapterMembership; ?>" placeholder="Alumni Chapter Membership" name="alumni_chapter_membership" class="" id="alumni_chapter_membership" autocomplete="new-membership" required  >
+                    <label for="alumni_chapter_membership">Alumni Chapter Membership</label>
+                </div>
+
                 </div>
 
                 <hr>
@@ -393,30 +421,7 @@ if(isset($_SESSION["username"])){
                 </div>
 
                 <hr>
-                <!-- ######################################################################## -->
 
-                <div class="d-flex justify-content-between">
-
-                <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $officeTelephoneNo; ?>" placeholder="Office Telephone No." maxlength="7" name="office_telephone_no" class="" id="office_telephone_no" autocomplete="new-telephone" onkeypress='return isNumberKey(event)'  >
-                    <label for="office_telephone_no">Office Telephone No.</label>
-                </div>
-                &nbsp;&nbsp;
-
-                <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $mobilePhoneNo; ?>" placeholder="Mobile Phone No." maxlength="11" name="mobile_phone_no" class="" id="mobile_phone_no" autocomplete="new-mobile" onkeypress='return isNumberKey(event)' required  >
-                    <label for="mobile_phone_no">Mobile Phone No.</label>
-                </div>
-                &nbsp;&nbsp;
-
-                <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $alumniChapterMembership; ?>" placeholder="Alumni Chapter Membership" name="alumni_chapter_membership" class="" id="alumni_chapter_membership" autocomplete="new-membership" required  >
-                    <label for="alumni_chapter_membership">Alumni Chapter Membership</label>
-                </div>
-
-                </div>
-
-                <hr>
                 <!-- ######################################################################## -->
 
                 <div class="d-flex justify-content-between">

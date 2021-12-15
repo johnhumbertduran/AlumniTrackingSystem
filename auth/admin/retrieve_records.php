@@ -114,7 +114,7 @@
         <td class="align-middle"><?php echo $alumniChapterMembership; ?></td> -->
         <td class="align-middle"><a class="btn btn-info" id="<?php echo $idNo; ?>" href="?view=<?php echo $idNo; ?>">View</a></td>
         <td class="align-middle"><?php echo $paymentStatus; ?></td>
-        <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $idNo; ?>" href="?update=<?php echo $idNo; ?>">Update</a>&nbsp<a class="btn btn-danger" href="?set=<?php echo $idNo; ?>">Delete</a></td>
+        <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $idNo; ?>" href="?update=<?php echo $idNo; ?>">Update</a><!-- &nbsp<a class="btn btn-danger" href="?set=<?php echo $idNo; ?>">Delete</a> --></td>
       </tr>
 
       <?php

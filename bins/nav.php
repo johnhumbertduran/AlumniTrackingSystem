@@ -14,9 +14,9 @@
       <a class="nav-link" href="../alumnitrackingsystem">Home</a>
     </li>
         
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="contact">Contact</a>
-    </li>
+    </li> -->
         
     <li class="nav-item">
       <a class="nav-link" href="register">Register</a>
