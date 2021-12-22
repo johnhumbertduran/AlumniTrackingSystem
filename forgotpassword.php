@@ -1,25 +1,8 @@
 <style>
-    .slide_email{
-    position: absolute;
-    animation-name: example;
-    animation-duration: 2s;
-}
 
-@keyframes example{
-    0%   {left:700;}
-    100% {left:-1000px; display:none;}
-}
 
 </style>
-<script>
-    function test(){
-        document.getElementById('foremail').classList.add('slide_email');
-        // let hay = document.getElementsByClassName('foremail');
-        // hay.classList.add('slide_email');
-        // alert("hay");
-    }
 
-</script>
 <?php
 
 session_start();
@@ -158,19 +141,29 @@ if(isset($_POST["sendEmail"])){
 
     if(!empty($_POST["email"])){
         $email = $_POST["email"];
-        //alert('Please check your email for verification code');
-        echo "
-        <script>
-        // document.getElementsByClassName('foremail').classList.add(' slide_email');
-        // document.getElementById('foremail').classList.add('slide_email');
-        // window.location.href='?e1=tr';
-        </script>";
+        echo "<script>window.location.href='?e1=$email';</script>";
     }else{
         echo "<script>alert('Please input your email!')</script>";
     }
 
+}
+
+
+
+
+if(isset($_POST["ConfirmCode"])){
+
+    $email =  "";
+    $_POST["email"] = "";
+    if(!empty($_POST["code"])){
+        $code = $_POST["code"];
+        echo "<script>window.location.href='?e2=$code';</script>";
+    }else{
+        echo "<script>alert('Please input your email!')</script>";
+    }
 
 }
+
 
 
 ?>
@@ -186,7 +179,7 @@ if(isset($_POST["sendEmail"])){
 <br>
 
 <center>
-<div class="container col-lg-3 foremail " id="foremail">
+<div class="container col-lg-3 foremail <?php if(isset($_GET['e1'])) {echo 'slide_email';} if(isset($_GET['e2'])) {echo 'd-none';} ?>" id="foremail">
 <div class="card">
 
   <div class="card-header bg-primary text-light"><h6>Please input your email</h6></div>
@@ -197,7 +190,7 @@ if(isset($_POST["sendEmail"])){
     <tr>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>
-    <div class="form-group"><input class="form-control w-85" type="text" value="<?php echo $email; ?>" name="email" id="email" autocomplete="off" placeholder="Email"></div>
+    <div class="form-group"><input class="form-control w-85" type="text" value="<?php if(isset($_GET['e1'])){ echo $_GET['e1']; }else{ echo $email; } ?>" name="email" id="email" autocomplete="off" placeholder="Email"></div>
 
     </td>
     </tr>
@@ -207,27 +200,27 @@ if(isset($_POST["sendEmail"])){
 
 
   <div class="card-footer bg-primary">
-  <input type="submit" class="btn btn-light" name="sendEmail" value="Send Email">
-  <!-- <input type="button" class="btn btn-light" name="sendEmail" value="Send Email" onclick="test()"> -->
-  </form>
+  <input type="submit" class="btn btn-light" name="sendEmail" value="Send Email" id="sendEmail">
+
   </div>
 </div>
 </div>
 
+
 <!-- ############################################################################################### -->
 
-<div class="container col-lg-3 foremail d-none">
+<div class="container col-lg-3 forcode <?php if(isset($_GET['e2'])) {echo 'd-block';}else{ echo 'd-none'; } ?>" id="digitCode">
 <div class="card">
 
   <div class="card-header bg-primary text-light"><h6>Please input the 6 digit code</h6></div>
   <div class="card-body">
 
-  <form method="POST">
+
   <table border="0">
     <tr>
     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>
-    <div class="form-group"><input class="form-control w-85" type="text" value="<?php echo $code; ?>" name="code" id="" autocomplete="off" placeholder="Code"></div>
+    <div class="form-group"><input class="form-control w-85" type="text" value="<?php if(isset($_GET['e2'])){ echo $_GET['e2']; }else{ echo $code; } ?>" name="code" id="code" autocomplete="off" placeholder="Code"></div>
 
     </td>
     </tr>
@@ -246,7 +239,7 @@ if(isset($_POST["sendEmail"])){
 <!-- ############################################################################################### -->
 
 
-<div class="container col-lg-3 d-none">
+<div class="container col-lg-3 forNewPass d-none" id="newPass">
 <div class="card">
 
   <div class="card-header bg-primary text-light"><h6>Please input your new password</h6></div>
@@ -257,10 +250,10 @@ if(isset($_POST["sendEmail"])){
         
     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
     <td>
-    <div class="form-group"><input class="form-control w-85" type="password" value="<?php echo $password; ?>" name="password" id="" autocomplete="off" placeholder="Password"></div>
+    <div class="form-group"><input class="form-control w-85" type="password" value="<?php echo $password; ?>" name="password" id="pass" autocomplete="off" placeholder="Password"></div>
     
     <br>
-    <div class="form-group"><input class="form-control w-85" type="password" value="<?php echo $confirmPassword; ?>" name="confirmPassword" id="" autocomplete="off" placeholder="Confirm Password"></div>
+    <div class="form-group"><input class="form-control w-85" type="password" value="<?php echo $confirmPassword; ?>" name="confirmPassword" id="cpass" autocomplete="off" placeholder="Confirm Password"></div>
     
     
     </td>
@@ -286,7 +279,56 @@ if(isset($_POST["sendEmail"])){
 <br>
 <br>
 
+<script>
 
+        let emailN=0, codeN=0;
+        
+        // ############################## EMAIL ########################################
+        
+            if(document.getElementById('email').value != ""){
+              var setEmail = setInterval("startEmailMovingLeft()",.05);
+            }
+
+            function startEmailMovingLeft(){
+                emailN = emailN + 10;
+                document.getElementById('foremail').style.transform="translate(-" + emailN + "px,0px)";
+                document.getElementById('foremail').style.webkitTransform="translate(-" + emailN + "px,0px)";
+                document.getElementById('foremail').style.OTransform="translate(-" + emailN + "px,0px)";
+                document.getElementById('foremail').style.MozTransform="translate(-" + emailN + "px,0px)";
+                document.getElementById('foremail').style.MozTransform="translate(-" + emailN + "px,0px)";
+                setTimeout(delayEmailNone, 600);
+            }
+            
+            function delayEmailNone(){
+                clearInterval(setEmail);
+                document.getElementById('digitCode').classList.remove('d-none');
+                document.getElementById('digitCode').classList.add('d-block');
+                document.getElementById('foremail').classList.add('d-none');
+            }
+        // ############################## CODE ########################################
+
+            if(document.getElementById('code').value != ""){
+              var setCode = setInterval("startCodeMovingLeft()",.05);
+            }
+
+            function startCodeMovingLeft(){
+                codeN = codeN + 10;
+                document.getElementById('digitCode').style.transform="translate(-" + codeN + "px,0px)";
+                document.getElementById('digitCode').style.webkitTransform="translate(-" + codeN + "px,0px)";
+                document.getElementById('digitCode').style.OTransform="translate(-" + codeN + "px,0px)";
+                document.getElementById('digitCode').style.MozTransform="translate(-" + codeN + "px,0px)";
+                document.getElementById('digitCode').style.MozTransform="translate(-" + codeN + "px,0px)";
+                setTimeout(delayCodeNone, 600);
+            }
+            function delayCodeNone(){
+                clearInterval(setCode);
+                document.getElementById('newPass').classList.remove('d-none');
+                document.getElementById('newPass').classList.add('d-block');
+                document.getElementById('digitCode').classList.add('d-none');
+            }
+
+
+</script>
 <?php
 include("bins/loginfooter.php");
 ?>

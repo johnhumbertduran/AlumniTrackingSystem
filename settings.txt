@@ -27,7 +27,7 @@ update record
 //email (OSA)
 
 
-walk in (sa user) and donline payment
+walk in (sa user) and online payment
 forget account
 add filter year, course, address
 print registration form
