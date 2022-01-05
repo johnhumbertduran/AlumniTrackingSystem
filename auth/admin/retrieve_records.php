@@ -38,33 +38,39 @@
 <br>
 
 <form method="POST">
-<div class="d-flex justify-content-start">
+<!-- <div class="d-flex justify-content-start">
     <div class="form-floating">
     <input type="text" value="" class="form-control" name="name" id="name" alt="name" required placeholder="Search..." onkeyup="searchFunction()" autocomplete="off">
     <label for="name">Search</label>
     </div>
-</div>
+</div> -->
 
     <br>
-<table class="table table-hover table-primary table-striped">
-    <thead class="table-dark">
-      <tr class="text-center">
-        <th>ID Number</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Sex</th>
-        <th>Civil Status</th>
-        <th>Other Information</th>
-        <th>Payment Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
+
 
     <?php
-    $alumni_qry = mysqli_query($connections, "SELECT * FROM users_tbl WHERE account_type='2' ");
-    
-    while($row_alumni = mysqli_fetch_assoc($alumni_qry)){
+    if(isset($_GET["search"]) && !isset($_GET["filad"]) && !isset($_GET["filco"]) && !isset($_GET["filye"])){
+      $check = $_GET["search"];
+
+      $terms = explode(" ", $check);
+      $qry = "SELECT * FROM users_tbl WHERE ";
+      $i = 0;
+
+      foreach($terms as $each){
+        $i++;
+
+        if($i == 1){
+          $qry .= "last_name LIKE '%$each%' OR first_name LIKE '%$each%' OR middle_name LIKE '%$each%' OR home_address LIKE '%$each%' AND account_type='2' ";
+        }else{
+          $qry .= "OR last_name LIKE '%$each%' OR first_name LIKE '%$each%' OR middle_name LIKE '%$each%' OR home_address LIKE '%$each%' AND account_type='2' ";
+        }
+      }
+      $alumni_qry = mysqli_query($connections, $qry);
+      $check_qry = mysqli_num_rows($alumni_qry);
+
+      if($check_qry > 0 && $check != "" ){
+        include("record_heading.php");
+        while($row_alumni = mysqli_fetch_assoc($alumni_qry)){
           // $id = $row_alumni["id"];
           $idNo = $row_alumni["id_no"];
           $lastName = $row_alumni["last_name"];
@@ -118,6 +124,60 @@
       </tr>
 
       <?php
+    }
+      
+      }elseif($check == ""){
+        include("record_heading.php");
+        include("records.php");
+      }else{
+        echo "No result";
+        echo "
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        ";
+      }
+
+    }else if(!isset($_GET["search"]) && isset($_GET["filad"]) && !isset($_GET["filco"]) && !isset($_GET["filye"])){
+      echo "<script>alert('Address');</script>";
+    }else if(!isset($_GET["search"]) && !isset($_GET["filad"]) && isset($_GET["filco"]) && !isset($_GET["filye"])){
+      echo "<script>alert('Course');</script>";
+    }else if(!isset($_GET["search"]) && !isset($_GET["filad"]) && !isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Year');</script>";
+    }else if(isset($_GET["search"]) && isset($_GET["filad"]) && !isset($_GET["filco"]) && !isset($_GET["filye"])){
+      echo "<script>alert('Search and Address');</script>";
+    }else if(!isset($_GET["search"]) && isset($_GET["filad"]) && isset($_GET["filco"]) && !isset($_GET["filye"])){
+      echo "<script>alert('Address and course');</script>";
+    }else if(!isset($_GET["search"]) && !isset($_GET["filad"]) && isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Course and Year');</script>";
+    }else if(!isset($_GET["search"]) && isset($_GET["filad"]) && !isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Address and Year');</script>";
+    }else if(isset($_GET["search"]) && !isset($_GET["filad"]) && !isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Search and Year');</script>";
+    }else if(isset($_GET["search"]) && !isset($_GET["filad"]) && isset($_GET["filco"]) && !isset($_GET["filye"])){
+      echo "<script>alert('Search and Course');</script>";
+    }else if(isset($_GET["search"]) && isset($_GET["filad"]) && isset($_GET["filco"]) && !isset($_GET["filye"])){
+      echo "<script>alert('Search, Address, and Course');</script>";
+    }else if(!isset($_GET["search"]) && isset($_GET["filad"]) && isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Address, Course, and Year');</script>";
+    }else if(isset($_GET["search"]) && !isset($_GET["filad"]) && isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Search, Course, and Year');</script>";
+    }else if(isset($_GET["search"]) && isset($_GET["filad"]) && !isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Search, Address, and Year');</script>";
+    }else if(isset($_GET["search"]) && isset($_GET["filad"]) && isset($_GET["filco"]) && isset($_GET["filye"])){
+      echo "<script>alert('Search, Address, Course, and Year');</script>";
+    }else{
+      include("record_heading.php");
+      include("records.php");
     }
       ?>
     </tbody>
