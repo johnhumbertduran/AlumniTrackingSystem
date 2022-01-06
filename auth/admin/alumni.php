@@ -76,8 +76,10 @@ if (isset($_POST["search"])) {
 <button type="submit" name="search" class="btn btn-primary">Search</button>
 
 </div>
-<br>
-<div class="container-fluid">
+<!-- <br> -->
+
+ <!-- ######### Filters Start Here ######### -->
+<!-- <div class="container-fluid">
 <div class="form-check form-switch d-flex justify-content-start">
   <input class="form-check-input" type="checkbox" id="filterSwitch" onchange="checkFilter()" name="filter" value="yes"> &nbsp;
   <label class="form-check-label" for="filterSwitch">Allow Filter</label>
@@ -101,7 +103,7 @@ if (isset($_POST["search"])) {
 </div>
 </div>
 
-</div>
+</div> -->
 
 </form>
 
