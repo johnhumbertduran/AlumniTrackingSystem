@@ -47,13 +47,13 @@
 
     <br>
 
-
+    </form>
     <?php
     if(isset($_GET["search"]) && !isset($_GET["filad"]) && !isset($_GET["filco"]) && !isset($_GET["filye"])){
       include("search.php");
     }else{
       ?>
-      </form>
+      
       <?php
       include("record_heading.php");
       include("records.php");

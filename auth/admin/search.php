@@ -9,9 +9,9 @@ foreach($terms as $each){
   $i++;
 
   if($i == 1){
-    $qry .= "last_name LIKE '%$each%' OR first_name LIKE '%$each%' OR middle_name LIKE '%$each%' OR home_address LIKE '%$each%' OR college_degree LIKE '%$each%' AND account_type='2' ";
+    $qry .= "(last_name LIKE '%$each%' OR first_name LIKE '%$each%' OR middle_name LIKE '%$each%' OR home_address LIKE '%$each%' OR college_degree LIKE '%$each%') AND account_type='2' ";
   }else{
-    $qry .= "OR last_name LIKE '%$each%' OR first_name LIKE '%$each%' OR middle_name LIKE '%$each%' OR home_address LIKE '%$each%' OR college_degree LIKE '%$each%' AND account_type='2' ";
+    $qry .= "(OR last_name LIKE '%$each%' OR first_name LIKE '%$each%' OR middle_name LIKE '%$each%' OR home_address LIKE '%$each%' OR college_degree LIKE '%$each%') AND account_type='2' ";
   }
 }
 $alumni_qry = mysqli_query($connections, $qry);
@@ -72,18 +72,18 @@ if($check_qry > 0 && $check != "" ){
   <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $idNo; ?>" href="?update=<?php echo $idNo; ?>">Update</a><!-- &nbsp<a class="btn btn-danger" href="?set=<?php echo $idNo; ?>">Delete</a> --></td>
 </tr>
 
-        <script>
-            function viewOtherInfo(userID){
-              const urlParams = new URLSearchParams(window.location.search);
-                if (history.pushState) {
-                    if(!urlParams.has('view')){
-                        urlParams.set('view', userID);
-                        window.location.search = urlParams;
-                    }
-                }
-
+      <script>
+        function viewOtherInfo(userID){
+          const urlParams = new URLSearchParams(window.location.search);
+          if (history.pushState) {
+            if(!urlParams.has('view')){
+                urlParams.set('view', userID);
+                window.location.search = urlParams;
             }
-        </script>
+          }
+
+        }
+      </script>
 
 <?php
 }
