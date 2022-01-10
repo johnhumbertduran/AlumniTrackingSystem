@@ -211,7 +211,7 @@ $post = "";
                 <div class="form-check col-4">
                 <input class="form-check-input" type="radio" name="payment_method" value="Cash Payment" <?php if($payment_method == "Cash Payment"){ echo "checked"; } ?> id="cash_payment" onclick="cashPaymentDisable()">
                 <label class="form-check-label" for="cash_payment">Option 1: Cash Payment</label>
-            </div>
+                </div>
 
                 <div class="form-floating col-4 flex-fill">
                     <input class="form-control" type="text" value="<?php echo $cashOfficialReceipt; ?>" placeholder="Official Recipt No." name="cash_official_receipt" class="" id="cash_official_receipt" <?php if($payment_method != "Cash Payment"){ echo "disabled"; } ?> autocomplete="new-address-cash-official-receipt" required >
@@ -233,7 +233,7 @@ $post = "";
                 <div class="form-check col-4">
                 <input class="form-check-input" type="radio" name="payment_method" value="Bank Payment" <?php if($payment_method == "Bank Payment"){ echo "checked"; } ?> id="bank_payment" onclick="bankPaymentDisable()">
                 <label class="form-check-label" for="bank_payment">Option 2: Bank Payment</label>
-            </div>
+                </div>
 
                 <div class="form-floating col-4 flex-fill">
                     <input class="form-control" type="text" value="<?php echo $bankOfficialReceipt; ?>" placeholder="Official Recipt No." name="bank_official_receipt" class="" id="bank_official_receipt" <?php if($payment_method != "Bank Payment"){ echo "disabled"; } ?> autocomplete="new-bank-official-receipt" required >
@@ -255,7 +255,7 @@ $post = "";
                 <div class="form-check col-3">
                 <input class="form-check-input" type="radio" name="payment_method" value="Cheque Payment" <?php if($payment_method == "Cheque Payment"){ echo "checked"; } ?> id="cheque_payment" onclick="chequePaymentDisable()">
                 <label class="form-check-label" for="cheque_payment">Option 3: Cheque Payment</label>
-            </div>
+                </div>
 
                 <div class="form-floating col-2 flex-fill">
                     <input class="form-control" type="text" value="<?php echo $chequeNo; ?>" placeholder="Cheque No." name="cheque_no" class="" id="cheque_no" <?php if($payment_method != "Cheque Payment"){ echo "disabled"; } ?> autocomplete="new-cheque-no" required >

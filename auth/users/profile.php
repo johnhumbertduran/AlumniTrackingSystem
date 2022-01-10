@@ -34,6 +34,15 @@ $address = ucfirst($profile_info["home_address"]);
 $contact = ucfirst($profile_info["mobile_number"]);
 $email = $profile_info["email_address"];
 
+$elementaryGrad = $profile_info["elementary_graduate"];
+$highschoolGrad = $profile_info["highschool_graduate"];
+$collegeGrad = $profile_info["college_graduate"];
+$graduateGrad = $profile_info["graduate_graduate"];
+$collegeDegree = $profile_info["college_degree"];
+$graduateDegree = $profile_info["graduate_degree"];
+
+$fullName = $firstName . " " . $lastName;
+
 
 $tmp_img = "bins/avatardefault.png";
 
@@ -103,9 +112,11 @@ if(isset($_POST["upload_btn"])){
 
 
 
-<nav class="nav flex-column bg-primary sidebar fixed">
+<nav class="navbar flex-column bg-success pt-5" style="background-image: url('bins/Aklan_catholic_college.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center;">
 
-<div class="container">
+<div class="container-fluid">
+<ul class="navbar-nav">
+<li class="nav-item">
         <div>
         <?php
         
@@ -127,12 +138,82 @@ if(isset($_POST["upload_btn"])){
 
         ?>
         </div>
+        <br>
+        </li>
+        <li class="nav-item">
+        <div class="text-light">
+            <center>
+            <h5><?php echo $fullName; ?></h5>
+            <br>
+            <!-- <p style="font-size: 12px;"><?php if($elementaryGrad != ""){ echo "Elementary batch: ".$elementaryGrad."</br>"; }
+            if($highschoolGrad != ""){ echo "High School batch: ".$highschoolGrad."</br>"; }
+            if($collegeGrad != ""){ echo "College batch: ".$collegeGrad."</br>"; }
+            if($graduateGrad != ""){ echo "Graduate School batch: ".$graduateGrad."</br>"; }
+            if($collegeDegree != ""){ echo "Course: ".$collegeDegree."</br>"; }
+            if($graduateDegree != ""){ echo "Masters: ".$graduateDegree."</br>"; } ?>
+            </p> -->
+            </center>
+        </div>
+            </li>
+            </ul>
+        </div>
 
-  <!-- <a class="nav-link text-light" aria-current="page" href="#">Active</a>
-  <a class="nav-link text-light" href="#">Link</a>
-  <a class="nav-link text-light" href="#">Link</a> -->
 </nav>
 
+<div class="container-fluid">
+    <br>
+        <!-- <h1>Aklan Catholic College Alumni</h1>
+
+        <h2>Change this to facebook type with coverphoto</h2> -->
+
+            <p style=""><?php if($elementaryGrad != ""){ echo "Elementary Batch: ".$elementaryGrad."</br>"; }
+            if($highschoolGrad != ""){ echo "High School Batch: ".$highschoolGrad."</br>"; }
+            if($collegeGrad != ""){ echo "College Batch: ".$collegeGrad."</br>"; }
+            if($graduateGrad != ""){ echo "Graduate School Batch: ".$graduateGrad."</br>"; }
+            if($collegeDegree != ""){ echo "Course: ".$collegeDegree."</br>"; }
+            if($graduateDegree != ""){ echo "Masters: ".$graduateDegree."</br>"; } ?>
+            </p>
+            <a href="payment" class="btn btn-success">Pay Alumni Fee</a>
+            <br>
+            <br>
+
+        <!-- <div class="">
+           <center><h2>Aklan Catholic College Alumni</h2></center>
+        </div>
+
+        <?php
+        
+        if($img == ""){
+            echo "
+            <div class='profile_cover float-right'>
+                <img src='$tmp_img' class='dp' alt='profile_pic' srcset=''>
+                <div class='upload'><a href='#' data-bs-toggle='modal' data-bs-target='#upload_photo'>Upload</a><br><br></div>
+            </div>";
+        }else{
+            echo "
+                    <div class='profile_cover float-right'>
+                        <img src='$img' class='dp' alt='profile_pic' srcset=''>
+                        <div class='upload'><a href='#' data-bs-toggle='modal' data-bs-target='#upload_photo'>Upload</a><br><br></div>
+                    </div>
+                    ";
+        }
+
+        ?>
+
+        <div class="">
+            
+            <h6><?php echo $fullName; ?></h6>
+            
+            <p style="font-size: 12px;"><?php if($elementaryGrad != ""){ echo "Elementary batch: ".$elementaryGrad."</br>"; }
+            if($highschoolGrad != ""){ echo "High School batch: ".$highschoolGrad."</br>"; }
+            if($collegeGrad != ""){ echo "College batch: ".$collegeGrad."</br>"; }
+            if($graduateGrad != ""){ echo "Graduate School batch: ".$graduateGrad."</br>"; }
+            if($collegeDegree != ""){ echo "Course: ".$collegeDegree."</br>"; }
+            if($graduateDegree != ""){ echo "Masters: ".$graduateDegree."</br>"; } ?>
+            </p>
+        </div> -->
+        
+</div>
        
 <!-- The Modal -->
 <div class="modal fade" id="upload_photo">

@@ -83,7 +83,7 @@ if (isset($_POST["search"])) {
 <div class="form-check form-switch d-flex justify-content-start">
   <input class="form-check-input" type="checkbox" id="filterSwitch" onchange="checkFilter()" name="filter" value="yes"> &nbsp;
   <label class="form-check-label" for="filterSwitch">Allow Filter</label>
-</div>
+</div> -->
 
 
 <div class="d-none" id="filters">
@@ -103,7 +103,7 @@ if (isset($_POST["search"])) {
 </div>
 </div>
 
-</div> -->
+</div>
 
 </form>
 
