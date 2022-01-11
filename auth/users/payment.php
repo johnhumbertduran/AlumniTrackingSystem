@@ -24,7 +24,11 @@ if(isset($_SESSION["username"])){
 }
 $post = "";
 ?>
-
+<style>
+    input[type='number']{
+    width: 60px;
+}
+</style>
 
 <br>
 
@@ -87,16 +91,27 @@ $post = "";
 
                 <hr class="" id="forHr">
                 
-                <div class="d-flex justify-content-between d-none" id="forWalkIn">
+                <div class="d-none" id="forWalkIn">
                 <!-- <hr> -->
-                    <p>Please download the form here and submit to ACC OSA</p>
+                    <h6>Please download the form and submit to ACC OSA.</h6>
+                    <a href="bins/alumniRegistrationForm.pdf" class="btn btn-primary">DOWNLOAD FORM HERE</a>
                 </div>
                 
-                <div class="d-flex justify-content-between" id="forBank">
+                <div class="" id="forBank">
                 <!-- <hr> -->
 
                     <div>
                         <p><b>Registration Fee</b>  per person = Php 1,000 or US$20</p>
+                        <table>
+                            <tr>
+                                <td>Reservation: &nbsp;</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="1" width="10"></td>
+                            </tr>
+                            <tr>
+                                <td>Total: </td>
+                                <td><input type="text" class="form-control form-control-sm col-6" min="1" style="width: 60px;" disabled></td>
+                            </tr>
+                        </table>
                     </div>
 
 
