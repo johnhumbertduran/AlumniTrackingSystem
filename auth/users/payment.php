@@ -102,14 +102,44 @@ $post = "";
 
                     <div>
                         <p><b>Registration Fee</b>  per person = Php 1,000 or US$20</p>
-                        <table>
+                        <table id="myTable">
                             <tr>
                                 <td>Reservation: &nbsp;</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="1" width="10"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="1" width="10" id="reservationQuantity" onchange="reservationChange()" onkeyup="reservationChange()"></td>
                             </tr>
                             <tr>
                                 <td>Total: </td>
-                                <td><input type="text" class="form-control form-control-sm col-6" min="1" style="width: 60px;" disabled></td>
+                                <td><input type="text" class="form-control form-control-sm col-6" value="1000" id="reservation" style="width: 60px;" disabled></td>
+                            </tr>
+                            <tr>
+                                <td><b>T-Shirt Size(s): </b></td>
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="small" onchange="smallChange()" onkeyup="smallChange()"></td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="medium" onchange="mediumChange()" onkeyup="mediumChange()"></td>
+                            </tr>
+                            <tr>
+                                <td>Large</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="large" onchange="largeChange()" onkeyup="largeChange()"></td>
+                            </tr>
+                            <tr>
+                                <td>Extra Large</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="xl" onchange="xlChange()" onkeyup="xlChange()"></td>
+                            </tr>
+                            <tr>
+                                <td>Double XL</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="xxl" onchange="xxlChange()" onkeyup="xxlChange()"></td>
+                            </tr>
+                            
+                        </table>
+                        <br>
+                        <table>
+                        <tr>
+                                <td><b>DIAMOND JUBILEE SOUVENIR PROGRAM</b></td>
                             </tr>
                         </table>
                     </div>
@@ -190,7 +220,129 @@ return true;
 
     
     }
+    
+    let qty = document.getElementById("reservationQuantity").value;
+    let tSum = 0;
+    let small = document.getElementById("small");
+    let medium = document.getElementById("medium");
+    let large = document.getElementById("large");
+    let xl = document.getElementById("xl");
+    let xxl = document.getElementById("xxl");
 
+    function sumShirts(){
+        tSum = parseInt(small.value) + parseInt(medium.value) + parseInt(large.value) + parseInt(xl.value) + parseInt(xxl.value);
+    }
+
+    function reservationChange(){
+        document.getElementById("reservation").value = document.getElementById("reservationQuantity").value *1000;
+        if(document.getElementById("reservationQuantity").value >= small.value){
+            small.disabled = false;
+            medium.disabled = false;
+            large.disabled = false;
+            xl.disabled = false;
+            xxl.disabled = false;
+        }
+        // alert(tSum);
+        if(tSum >= document.getElementById("reservationQuantity").value){
+            document.getElementById("reservationQuantity").value = tSum;
+            document.getElementById("reservation").value = document.getElementById("reservationQuantity").value * 1000;
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+    }
+    
+    function smallChange(){
+        if(small.value >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+        sumShirts();
+        if(tSum >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+    }
+    
+    function mediumChange(){
+        if(medium.value >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+        sumShirts();
+        if(tSum >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+    }
+    
+    function largeChange(){
+        if(large.value >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+        sumShirts();
+        if(tSum >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+    }
+    
+    function xlChange(){
+        if(xl.value >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+        sumShirts();
+        if(tSum >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+    }
+    
+    function xxlChange(){
+        if(xxl.value >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+        sumShirts();
+        if(tSum >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
+    }
 
 </script>
 

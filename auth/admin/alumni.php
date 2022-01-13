@@ -73,7 +73,7 @@ if (isset($_POST["search"])) {
     <label for="name">Search</label>
     </div>
     
-<button type="submit" name="search" class="btn btn-primary">Search</button>
+<button type="submit" name="search" class="btn btn-primary"><i class="fas fa-search"></i></button>
 
 </div>
 <!-- <br> -->
