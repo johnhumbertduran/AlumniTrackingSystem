@@ -116,30 +116,106 @@ $post = "";
                             </tr>
                             <tr>
                                 <td>Small</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="small" onchange="smallChange()" onkeyup="smallChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="small" onchange="smallChange()" onkeyup="smallChange()"></td>
                             </tr>
                             <tr>
                                 <td>Medium</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="medium" onchange="mediumChange()" onkeyup="mediumChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="medium" onchange="mediumChange()" onkeyup="mediumChange()"></td>
                             </tr>
                             <tr>
                                 <td>Large</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="large" onchange="largeChange()" onkeyup="largeChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="large" onchange="largeChange()" onkeyup="largeChange()"></td>
                             </tr>
                             <tr>
                                 <td>Extra Large</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="xl" onchange="xlChange()" onkeyup="xlChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xl" onchange="xlChange()" onkeyup="xlChange()"></td>
                             </tr>
                             <tr>
                                 <td>Double XL</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="1" value="0" width="10" id="xxl" onchange="xxlChange()" onkeyup="xxlChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xxl" onchange="xxlChange()" onkeyup="xxlChange()"></td>
                             </tr>
                             
                         </table>
                         <br>
                         <table>
-                        <tr>
+                            <tr>
                                 <td><b>DIAMOND JUBILEE SOUVENIR PROGRAM</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="wholepage">
+                                  <label class="form-check-label" for="wholepage">
+                                    Whole page, Php 5,000.00
+                                  </label>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="halfpage">
+                                  <label class="form-check-label" for="halfpage">
+                                    Half page, Php 3,000.00
+                                  </label>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="frontcoverpage">
+                                  <label class="form-check-label" for="frontcoverpage">
+                                    Inside Front Cover page, Php10,000.00
+                                  </label>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="backcoverpage">
+                                  <label class="form-check-label" for="backcoverpage">
+                                    Inside Back Cover page, Php10,000.00
+                                  </label>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="flipcoverpage">
+                                  <label class="form-check-label" for="flipcoverpage">
+                                    Inside Flip Front Cover page, Php10,000.00
+                                  </label>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="oneliner">
+                                  <label class="form-check-label" for="oneliner">
+                                    One Liner, Php 1,000.00
+                                  </label>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>* with 3 free registrants plus souviner program</td>
+                            </tr>
+                            <tr>
+                                <td>* with 1 free registrants plus souviner program</td>
+                            </tr>
+                            <tr>
+                                <td>* with 2 free T-shirts</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>TOTAL AMOUNT DEPOSITED/PAID: </td>
+                                <td><input type="text" class="form-control form-control-sm col-6" value="1000" id="reservation" style="width: 60px;" disabled></td>
                             </tr>
                         </table>
                     </div>
@@ -235,7 +311,7 @@ return true;
 
     function reservationChange(){
         document.getElementById("reservation").value = document.getElementById("reservationQuantity").value *1000;
-        if(document.getElementById("reservationQuantity").value >= small.value){
+        if(document.getElementById("reservationQuantity").value >= parseInt(small.value)){
             small.disabled = false;
             medium.disabled = false;
             large.disabled = false;
@@ -255,7 +331,7 @@ return true;
     }
     
     function smallChange(){
-        if(small.value >= document.getElementById("reservationQuantity").value){
+        if(parseInt(small.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
             large.disabled = true;
@@ -273,7 +349,7 @@ return true;
     }
     
     function mediumChange(){
-        if(medium.value >= document.getElementById("reservationQuantity").value){
+        if(parseInt(medium.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
             large.disabled = true;
@@ -291,7 +367,7 @@ return true;
     }
     
     function largeChange(){
-        if(large.value >= document.getElementById("reservationQuantity").value){
+        if(parseInt(large.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
             large.disabled = true;
@@ -309,7 +385,7 @@ return true;
     }
     
     function xlChange(){
-        if(xl.value >= document.getElementById("reservationQuantity").value){
+        if(parseInt(xl.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
             large.disabled = true;
@@ -327,7 +403,7 @@ return true;
     }
     
     function xxlChange(){
-        if(xxl.value >= document.getElementById("reservationQuantity").value){
+        if(parseInt(xxl.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
             large.disabled = true;
