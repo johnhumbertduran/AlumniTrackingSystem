@@ -97,7 +97,7 @@ $post = "";
                     <a href="bins/alumniRegistrationForm.pdf" class="btn btn-primary">DOWNLOAD FORM HERE</a>
                 </div>
                 
-                <div class="" id="forBank">
+                <div class="d-none" id="forBank">
                 <!-- <hr> -->
 
                     <div>
@@ -109,7 +109,7 @@ $post = "";
                             </tr>
                             <tr>
                                 <td>Total: </td>
-                                <td><input type="text" class="form-control form-control-sm col-6" value="1000" id="reservation" style="width: 60px;" disabled></td>
+                                <td><input type="text" class="form-control form-control-sm col-6" value="1000" id="totalReservation" style="width: 60px;" disabled></td>
                             </tr>
                             <tr>
                                 <td><b>T-Shirt Size(s): </b></td>
@@ -144,7 +144,7 @@ $post = "";
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="wholepage">
+                                  <input class="form-check-input" type="checkbox" id="wholepage" onclick="wholePageClick()">
                                   <label class="form-check-label" for="wholepage">
                                     Whole page, Php 5,000.00
                                   </label>
@@ -154,7 +154,7 @@ $post = "";
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="halfpage">
+                                  <input class="form-check-input" type="checkbox" value="" id="halfpage" onclick="halfPageClick()">
                                   <label class="form-check-label" for="halfpage">
                                     Half page, Php 3,000.00
                                   </label>
@@ -164,7 +164,7 @@ $post = "";
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="frontcoverpage">
+                                  <input class="form-check-input" type="checkbox" value="" id="frontcoverpage" onclick="frontCoverPageClick()">
                                   <label class="form-check-label" for="frontcoverpage">
                                     Inside Front Cover page, Php10,000.00
                                   </label>
@@ -174,7 +174,7 @@ $post = "";
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="backcoverpage">
+                                  <input class="form-check-input" type="checkbox" value="" id="backcoverpage" onclick="backCoverPageClick()">
                                   <label class="form-check-label" for="backcoverpage">
                                     Inside Back Cover page, Php10,000.00
                                   </label>
@@ -184,7 +184,7 @@ $post = "";
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="flipcoverpage">
+                                  <input class="form-check-input" type="checkbox" value="" id="flipcoverpage" onclick="flipCoverPageClick()">
                                   <label class="form-check-label" for="flipcoverpage">
                                     Inside Flip Front Cover page, Php10,000.00
                                   </label>
@@ -194,7 +194,7 @@ $post = "";
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="" id="oneliner">
+                                  <input class="form-check-input" type="checkbox" value="" id="oneliner" onclick="oneLinerClick()">
                                   <label class="form-check-label" for="oneliner">
                                     One Liner, Php 1,000.00
                                   </label>
@@ -215,7 +215,7 @@ $post = "";
                             </tr>
                             <tr>
                                 <td>TOTAL AMOUNT DEPOSITED/PAID: </td>
-                                <td><input type="text" class="form-control form-control-sm col-6" value="1000" id="reservation" style="width: 60px;" disabled></td>
+                                <td><input type="text" class="form-control form-control-sm col-6" id="total_amount" style="width: 60px;" disabled></td>
                             </tr>
                         </table>
                     </div>
@@ -304,13 +304,174 @@ return true;
     let large = document.getElementById("large");
     let xl = document.getElementById("xl");
     let xxl = document.getElementById("xxl");
+    let totalReservationFormula;
+    let totalReservation = document.getElementById("totalReservation");
+    let wholepage = document.getElementById("wholepage");
+    let halfpage = document.getElementById("halfpage");
+    let frontcoverpage = document.getElementById("frontcoverpage");
+    let backcoverpage = document.getElementById("backcoverpage");
+    let flipcoverpage = document.getElementById("flipcoverpage");
+    let oneliner = document.getElementById("oneliner");
+    let totalAmount = document.getElementById("total_amount");
+    let totalSouvenir = 0;
+    let wholepageAmount = 0;
+    let halfpageAmount = 0;
+    let frontcoverpageAmount = 0;
+    let backcoverpageAmount = 0;
+    let flipcoverpageAmount = 0;
+    let onelinerAmount = 0;
 
     function sumShirts(){
         tSum = parseInt(small.value) + parseInt(medium.value) + parseInt(large.value) + parseInt(xl.value) + parseInt(xxl.value);
     }
 
+    // function totalReservation(totalReservation){
+        
+
+    //     return totalReservation;
+    // }
+
+    function wholePageClick(){
+        if(wholepage.checked == true){
+            wholepageAmount = 5000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            wholepageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 5000;
+        }
+    }
+
+    function halfPageClick(){
+
+        if(halfpage.checked == true){
+            halfpageAmount = 3000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            halfpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 3000;
+        }
+    }
+
+    function frontCoverPageClick(){
+
+        if(frontcoverpage.checked == true){
+            frontcoverpageAmount = 10000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            frontcoverpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 10000;
+        }
+    }
+
+    function backCoverPageClick(){
+
+        if(backcoverpage.checked == true){
+            backcoverpageAmount = 10000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            backcoverpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 10000;
+        }
+    }
+
+    function flipCoverPageClick(){
+
+        if(flipcoverpage.checked == true){
+            flipcoverpageAmount = 10000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            flipcoverpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 10000;
+        }
+    }
+
+    function oneLinerClick(){
+
+        if(oneliner.checked == true){
+            onelinerAmount = 1000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            onelinerAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 1000;
+        }
+    }
+
     function reservationChange(){
-        document.getElementById("reservation").value = document.getElementById("reservationQuantity").value *1000;
+        // totalReservation();
+        totalReservationFormula = document.getElementById("reservationQuantity").value *1000;
+        totalReservation.value = totalReservationFormula;
+        if(wholepage.checked == true){
+            wholepageAmount = 5000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            wholepageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 5000;
+        }
+
+        if(halfpage.checked == true){
+            halfpageAmount = 3000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            halfpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 3000;
+        }
+
+        if(frontcoverpage.checked == true){
+            frontcoverpageAmount = 10000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            frontcoverpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 10000;
+        }
+
+        if(backcoverpage.checked == true){
+            backcoverpageAmount = 10000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            backcoverpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 10000;
+        }
+
+        if(flipcoverpage.checked == true){
+            flipcoverpageAmount = 10000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            flipcoverpageAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 10000;
+        }
+
+        if(oneliner.checked == true){
+            onelinerAmount = 1000;
+            totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+            totalAmount.value = parseInt(totalReservation.value) + totalSouvenir;
+            return totalAmount.value
+        }else{
+            onelinerAmount = 0;
+            totalAmount.value = parseInt(totalAmount.value) - 1000;
+        }
+
         if(document.getElementById("reservationQuantity").value >= parseInt(small.value)){
             small.disabled = false;
             medium.disabled = false;
@@ -419,6 +580,13 @@ return true;
             xxl.disabled = true;
         }
     }
+
+    function totalAmountClick(){
+        totalAmount.value = totalAmount.value + totalReservation.value;
+        // totalReservation = document.getElementById("reservationQuantity").value *1000;
+        // document.getElementById("reservation").value = totalReservation;
+    }
+    totalAmountClick();
 
 </script>
 
