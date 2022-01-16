@@ -44,7 +44,7 @@ $post = "";
             
             <?php
             $payment_method = $fullName = $reservationQuantity = $totalReservation = $small =
-            $medium = $large = $xl = $xxl = "";
+            $medium = $large = $extralarge = $doublexl = $souvenir = $totalAmount = "";
 
             if(isset($_POST["reservationQuantity"])){
                 $reservationQuantity = $_POST["reservationQuantity"];
@@ -70,8 +70,28 @@ $post = "";
                 $medium = 0;
             }
 
+            if(isset($_POST["large"])){
+                $large = $_POST["large"];
+            }else{
+                $large = 0;
+            }
+
+            if(isset($_POST["extralarge"])){
+                $extralarge = $_POST["extralarge"];
+            }else{
+                $extralarge = 0;
+            }
+
+            if(isset($_POST["doublexl"])){
+                $doublexl = $_POST["doublexl"];
+            }else{
+                $doublexl = 0;
+            }
+
 
             if(isset($_POST["payment"])){
+
+                require_once 'app/init.php';
 
                 if(!empty($_POST["payment_method"])){
 
@@ -86,6 +106,7 @@ $post = "";
                     // $search = $_POST['id_no'];
 
                     $payment_method = $_POST["payment_method"];
+                    
                     // $totalReservation = $_POST["totalReservation"];
 
                     if(!empty($_POST["reservationQuantity"])){
@@ -100,18 +121,25 @@ $post = "";
                         echo "total empty!";
                     }
                     
-                    if(!empty($_POST["small"])){
-                        $small = $_POST["small"];
+                    if(!empty($_POST["totalamount"])){
+                        $totalAmount = intval($_POST["totalamount"]);
+                        // echo $totalAmount;
                     }else{
-                        echo "small empty!";
+                        echo "total empty!";
                     }
                     
-                    if(!empty($_POST["medium"])){
-                        $medium = $_POST["medium"];
+                    if(!empty($_POST["souvenir"])){
+                        $souvenir = $_POST["souvenir"];
                     }else{
-                        echo "medium empty!";
+                        echo "souvenir empty!";
                     }
+                    
+                    $sizeError = 0;
+                    $sizeTotal = $small + $medium + $large + $extralarge + $doublexl;
 
+                    if($sizeTotal < $reservationQuantity){
+                        $sizeError = 1;
+                    }
                     
                 }else{
                     echo "<script>alert('Payment Method empty!');</script>";
@@ -125,9 +153,12 @@ $post = "";
 
 
                 <!-- ######################################################################## -->
-
+                <div class="alert alert-danger alert-dismissible <?php if($sizeError == 1){ echo 'd-block'; }else{echo 'd-none';} ?>">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+                </div>
                 <hr>
-                <form autocomplete="off" method="POST">
+                <form autocomplete="off" method="POST" action="stripe-pay.php">
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-4">
@@ -169,23 +200,23 @@ $post = "";
                             </tr>
                             <tr>
                                 <td>Small</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" name="small" value="<?php echo $small;  ?>" width="10" id="small" onchange="smallChange()" onkeyup="smallChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="small" onchange="smallChange()" onkeyup="smallChange()"></td>
                             </tr>
                             <tr>
                                 <td>Medium</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" name="medium" value="<?php echo $medium;  ?>" width="10" id="medium" onchange="mediumChange()" onkeyup="mediumChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="medium" onchange="mediumChange()" onkeyup="mediumChange()"></td>
                             </tr>
                             <tr>
                                 <td>Large</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" name="large" value="<?php echo $large;  ?>" width="10" id="large" onchange="largeChange()" onkeyup="largeChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="large" onchange="largeChange()" onkeyup="largeChange()"></td>
                             </tr>
                             <tr>
                                 <td>Extra Large</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" name="xl" value="<?php echo $xl;  ?>" width="10" id="xl" onchange="xlChange()" onkeyup="xlChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xl" onchange="xlChange()" onkeyup="xlChange()"></td>
                             </tr>
                             <tr>
                                 <td>Double XL</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" name="xxl" value="<?php echo $xxl;  ?>" width="10" id="xxl" onchange="xxlChange()" onkeyup="xxlChange()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xxl" onchange="xxlChange()" onkeyup="xxlChange()"></td>
                             </tr>
                             
                         </table>
@@ -198,7 +229,7 @@ $post = "";
                                 <td>
                                 <div class="form-check">
                                   <!-- <input class="form-check-input" type="checkbox" id="wholepage" onclick="wholePageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="wholepage" id="wholepage" onclick="wholePageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="wholepage" <?php if($souvenir == "wholepage"){ echo "checked"; } ?> id="wholepage" onclick="wholePageClick()">
                                   <label class="form-check-label" for="wholepage">
                                     Whole page, Php 5,000.00
                                   </label>
@@ -209,7 +240,7 @@ $post = "";
                                 <td>
                                 <div class="form-check">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="halfpage" onclick="halfPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="halfpage" id="halfpage" onclick="halfPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="halfpage" <?php if($souvenir == "halfpage"){ echo "checked"; } ?> id="halfpage" onclick="halfPageClick()">
                                   <label class="form-check-label" for="halfpage">
                                     Half page, Php 3,000.00
                                   </label>
@@ -220,7 +251,7 @@ $post = "";
                                 <td>
                                 <div class="form-check">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="frontcoverpage" onclick="frontCoverPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="frontcoverpage" id="frontcoverpage" onclick="frontCoverPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="frontcoverpage" <?php if($souvenir == "frontcoverpage"){ echo "checked"; } ?> id="frontcoverpage" onclick="frontCoverPageClick()">
                                   <label class="form-check-label" for="frontcoverpage">
                                     Inside Front Cover page, Php10,000.00
                                   </label>
@@ -231,7 +262,7 @@ $post = "";
                                 <td>
                                 <div class="form-check">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="backcoverpage" onclick="backCoverPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="backcoverpage" id="backcoverpage" onclick="backCoverPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="backcoverpage" <?php if($souvenir == "backcoverpage"){ echo "checked"; } ?> id="backcoverpage" onclick="backCoverPageClick()">
                                   <label class="form-check-label" for="backcoverpage">
                                     Inside Back Cover page, Php10,000.00
                                   </label>
@@ -242,7 +273,7 @@ $post = "";
                                 <td>
                                 <div class="form-check">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="flipcoverpage" onclick="flipCoverPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="flipcoverpage" id="flipcoverpage" onclick="flipCoverPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="flipcoverpage" <?php if($souvenir == "flipcoverpage"){ echo "checked"; } ?> id="flipcoverpage" onclick="flipCoverPageClick()">
                                   <label class="form-check-label" for="flipcoverpage">
                                     Inside Flip Front Cover page, Php10,000.00
                                   </label>
@@ -253,7 +284,7 @@ $post = "";
                                 <td>
                                 <div class="form-check">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="oneliner" onclick="oneLinerClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="oneliner" id="oneliner" onclick="oneLinerClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="oneliner" <?php if($souvenir == "oneliner"){ echo "checked"; } ?> id="oneliner" onclick="oneLinerClick()">
                                   <label class="form-check-label" for="oneliner">
                                     One Liner, Php 1,000.00
                                   </label>
@@ -272,6 +303,7 @@ $post = "";
                             <tr>
                                 <td>&nbsp;</td>
                             </tr>
+                            <?php /* echo $totalAmount; */  ?>
                             <tr>
                                 <td>TOTAL AMOUNT DEPOSITED/PAID: </td>
                                 <td><input type="text" class="form-control form-control-sm col-6" id="total_amount" style="width: 60px;" disabled></td>
@@ -286,18 +318,31 @@ $post = "";
                 <hr>
                 <!-- ######################################################################## -->
 
-    
-                <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment">
+                
+                <!-- <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment"> -->
+                
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_51KIeCiDMpco1oCBFwEBhCdicLQFvRz2nALSIJ8H3yd1GcRZppPuzccfrnMyjgjPmSUeZS9XCpQ3cWEuyz8epwcHt00rN5Exdsm"
+                    data-amount="<?php echo $totalAmount;  ?>"
+                    data-name="Test"
+                    data-description="Online Payment"
+                    data-email="maryjuan@gmail.com"
+                    data-currency="php"
+                    data-image="box.png"
+                    data-locale="auto">
+                </script>
+                
                 <a style="float:right;" class="btn btn-success d-none" href="#" id="downloadFile">Download File</a>
                 
-                    <!-- <input type="text" name="reservation" value="" id="reservationT">
-                    <input type="text" name="small" value="" id="smallT">
-                    <input type="text" name="medium" value="" id="mediumT">
-                    <input type="text" name="large" value="" id="largeT">
-                    <input type="text" name="extralarge" value="" id="extralargeT">
-                    <input type="text" name="doublexl" value="" id="doublexlT">
-                    <input type="text" name="wholepage" value="" id="wholepageT">
-                    <input type="text" name="totalamount" value="" id="totalamountT"> -->
+                    <!-- <input type="text" name="reservation" value="" id="reservationT"> -->
+                    <input type="hidden" name="small" value="<?php echo $small;  ?>" id="smallT">
+                    <input type="hidden" name="medium" value="<?php echo $medium;  ?>" id="mediumT">
+                    <input type="hidden" name="large" value="<?php echo $large;  ?>" id="largeT">
+                    <input type="hidden" name="extralarge" value="<?php echo $extralarge;  ?>" id="extralargeT">
+                    <input type="hidden" name="doublexl" value="<?php echo $doublexl;  ?>" id="doublexlT">
+                    <!-- <input type="text" name="souvenir" value="" id="souvenirT"> -->
+                    <input type="hidden" name="totalamount" value="<?php echo $totalAmount;  ?>" id="totalamountT">
                 </form>
 
         </div>
@@ -363,6 +408,7 @@ return true;
 
     
     }
+
     bankPayment();
     
     let qty = document.getElementById("reservationQuantity").value;
@@ -374,12 +420,14 @@ return true;
     let xxl = document.getElementById("xxl");
     let totalReservationFormula;
     let totalReservation = document.getElementById("totalReservation");
+
     let wholepage = document.getElementById("wholepage");
     let halfpage = document.getElementById("halfpage");
     let frontcoverpage = document.getElementById("frontcoverpage");
     let backcoverpage = document.getElementById("backcoverpage");
     let flipcoverpage = document.getElementById("flipcoverpage");
     let oneliner = document.getElementById("oneliner");
+
     let totalAmount = document.getElementById("total_amount");
     let totalSouvenir = 0;
     let wholepageAmount = 0;
@@ -388,23 +436,68 @@ return true;
     let backcoverpageAmount = 0;
     let flipcoverpageAmount = 0;
     let onelinerAmount = 0;
+    let smallT = document.getElementById("smallT");
+    let mediumT = document.getElementById("mediumT");
+    let largeT = document.getElementById("largeT");
+    let extralargeT = document.getElementById("extralargeT");
+    let doublexlT = document.getElementById("doublexlT");
+    let souvenir = document.getElementById("souvenirT");
+    let totalamountT = document.getElementById("totalamountT");
+
+        small.value = smallT.value;
+        medium.value = mediumT.value;
+        large.value = largeT.value;
+        xl.value = extralargeT.value;
+        xxl.value = doublexlT.value;
+        // totalamount.value = totalamountT.value;
+        
 
     function sumShirts(){
         tSum = parseInt(small.value) + parseInt(medium.value) + parseInt(large.value) + parseInt(xl.value) + parseInt(xxl.value);
-        alert(parseInt(tSum));
+        // alert(parseInt(tSum));
     }
 
-    // function totalReservation(totalReservation){
-        
-
-    //     return totalReservation;
+    // if(wholepage.checked == true){
+    //     wholepageAmount = 5000;
+    //     totalAmount.value = parseInt(totalReservation.value) + wholepageAmount;
     // }
+
+    // if(halfpage.checked == true){
+    //     parseInt(totalAmount.value) += 3000;
+    // }
+
+    // if(frontcoverpage.checked == true){
+    //     parseInt(totalAmount.value) += 10000;
+    // }
+
+    // if(backcoverpage.checked == true){
+    //     parseInt(totalAmount.value) += 10000;
+    // }
+
+    // if(flipcoverpage.checked == true){
+    //     parseInt(totalAmount.value) += 10000;
+    // }
+
+    // if(oneliner.checked == true){
+    //     parseInt(totalAmount.value) += 1000;
+    // }
+
+    sumShirts();
+    if(tSum >= document.getElementById("reservationQuantity").value){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
+        }
 
     function wholePageClick(){
         if(wholepage.checked == true){
             wholepageAmount = 5000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + wholepageAmount;
+            // wholepageAmount = 5000;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // wholepageAmount = 0;
@@ -418,6 +511,7 @@ return true;
             halfpageAmount = 3000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + halfpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // halfpageAmount = 0;
@@ -431,6 +525,7 @@ return true;
             frontcoverpageAmount = 10000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + frontcoverpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // frontcoverpageAmount = 0;
@@ -444,6 +539,7 @@ return true;
             backcoverpageAmount = 10000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + backcoverpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // backcoverpageAmount = 0;
@@ -457,6 +553,7 @@ return true;
             flipcoverpageAmount = 10000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + flipcoverpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // flipcoverpageAmount = 0;
@@ -470,6 +567,7 @@ return true;
             onelinerAmount = 1000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + onelinerAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // onelinerAmount = 0;
@@ -477,14 +575,24 @@ return true;
         }
     }
 
+    totalAmount.addEventListener("change", totalAmountChange);
+
+    function totalAmountChange(){
+        totalamountT.value = totalReservationFormula;
+        // alert("change");
+    }
+
     function reservationChange(){
         // totalReservation();
         totalReservationFormula = document.getElementById("reservationQuantity").value *1000;
         totalReservation.value = totalReservationFormula;
+        totalAmountChange();
+        // totalamountT.value = totalAmount.value;
         if(wholepage.checked == true){
             wholepageAmount = 5000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + wholepageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // wholepageAmount = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
@@ -495,6 +603,7 @@ return true;
             halfpageAmount = 3000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + halfpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // halfpageAmount = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
@@ -505,6 +614,7 @@ return true;
             frontcoverpageAmount = 10000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + frontcoverpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // frontcoverpageAmount = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
@@ -515,6 +625,7 @@ return true;
             backcoverpageAmount = 10000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + backcoverpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // backcoverpageAmount = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
@@ -525,6 +636,7 @@ return true;
             flipcoverpageAmount = 10000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + flipcoverpageAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // flipcoverpageAmount = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
@@ -535,18 +647,19 @@ return true;
             onelinerAmount = 1000;
             // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) + onelinerAmount;
+            totalamountT.value = totalAmount.value;
             return totalAmount.value
         }else{
             // onelinerAmount = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
             totalAmount.value = parseInt(totalReservation.value) - onelinerAmount;
         }
 
-        if(document.getElementById("reservationQuantity").value >= parseInt(small.value)){
-            small.disabled = false;
-            medium.disabled = false;
-            large.disabled = false;
-            xl.disabled = false;
-            xxl.disabled = false;
+        if(document.getElementById("reservationQuantity").value >= tSum){
+            small.disabled = true;
+            medium.disabled = true;
+            large.disabled = true;
+            xl.disabled = true;
+            xxl.disabled = true;
         }
         // alert(tSum);
         if(tSum >= document.getElementById("reservationQuantity").value){
@@ -560,9 +673,11 @@ return true;
         }
     }
     
+        
+
     function smallChange(){
         sumShirts();
-        alert(tSum.value);
+        // alert(tSum.value);
         if(parseInt(small.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
@@ -578,11 +693,13 @@ return true;
             xl.disabled = true;
             xxl.disabled = true;
         }
+
+        document.getElementById("smallT").value = document.getElementById("small").value;
     }
     
     function mediumChange(){
         sumShirts();
-        alert(tSum.value);
+        // alert(tSum.value);
         if(parseInt(medium.value) >= document.getElementById("reservationQuantity").value){
             small.disabled = true;
             medium.disabled = true;
@@ -598,6 +715,8 @@ return true;
             xl.disabled = true;
             xxl.disabled = true;
         }
+
+        document.getElementById("mediumT").value = document.getElementById("medium").value;
     }
     
     function largeChange(){
@@ -616,6 +735,8 @@ return true;
             xl.disabled = true;
             xxl.disabled = true;
         }
+
+        document.getElementById("largeT").value = document.getElementById("large").value;
     }
     
     function xlChange(){
@@ -634,6 +755,8 @@ return true;
             xl.disabled = true;
             xxl.disabled = true;
         }
+
+        document.getElementById("extralargeT").value = document.getElementById("xl").value;
     }
     
     function xxlChange(){
@@ -652,10 +775,39 @@ return true;
             xl.disabled = true;
             xxl.disabled = true;
         }
+
+        document.getElementById("doublexlT").value = document.getElementById("xxl").value;
     }
 
     function totalAmountClick(){
-        totalAmount.value = totalAmount.value + totalReservation.value;
+
+        if(wholepage.checked == true){
+            totalAmount.value = parseInt(totalReservation.value) + 5000;
+        }
+        
+        if(halfpage.checked == true){
+            totalAmount.value = parseInt(totalReservation.value) + 3000;
+        }
+        
+        if(frontcoverpage.checked == true){
+            totalAmount.value = parseInt(totalReservation.value) + 10000;
+        }
+        
+        if(backcoverpage.checked == true){
+            totalAmount.value = parseInt(totalReservation.value) + 10000;
+        }
+        
+        if(flipcoverpage.checked == true){
+            totalAmount.value = parseInt(totalReservation.value) + 10000;
+        }
+        
+        if(oneliner.checked == true){
+            totalAmount.value = parseInt(totalReservation.value) + 1000;
+        }
+
+        if((wholepage.checked == false) || (halfpage.checked == false) || (frontcoverpage.checked == false) || (backcoverpage.checked == false) || (flipcoverpage.checked == false) || (oneliner.checked == false)){
+            totalAmount.value = totalAmount.value;
+        }
         // totalReservation = document.getElementById("reservationQuantity").value *1000;
         // document.getElementById("reservation").value = totalReservation;
     }
