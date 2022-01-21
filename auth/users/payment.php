@@ -141,10 +141,21 @@ $post = "";
                         $sizeError = 1;
                     }
 
-                    if($payment_method && $reservationQuantity && ($small || $medium || $large || $extralarge || $doublexl) && $totalAmount){
+                    if($payment_method && $reservationQuantity && ($sizeError == 0) && $totalAmount){
                         
 
                         // echo "<script>alert('submit yarn');</script>";
+                        $_SESSION["totalAmount"] = $totalAmount;
+                        $_SESSION["small"] = $small;
+                        $_SESSION["medium"] = $medium;
+                        $_SESSION["large"] = $large;
+                        $_SESSION["extralarge"] = $extralarge;
+                        $_SESSION["doublexl"] = $doublexl;
+                        $_SESSION["souvenir"] = $souvenir;
+                        $_SESSION["reservationQuantity"] = $reservationQuantity;
+                        // $totalAmount = $_SESSION["totalAmount"];
+
+                        echo "<script>window.location.href='redir';</script>";
                     }
                     
                 }else{
@@ -164,7 +175,7 @@ $post = "";
                     <strong>Payment abort!</strong> Please check T-shirt sizes.
                 </div>
                 <hr>
-                <!-- <form autocomplete="off" method="POST"> -->
+                <form autocomplete="off" method="POST">
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-4">
@@ -326,10 +337,10 @@ $post = "";
 
                 
                 <!-- <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment"> -->
-                <!-- <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment"> -->
-                <button id="submitPayment">Submit</button>
-                <script src="http://js.stripe.com/v3/"></script>
-                <script src="stripeScript.js"></script>
+                <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment">
+                <!-- <button id="submitPayment">Submit</button> -->
+                <!-- <script src="http://js.stripe.com/v3/"></script>
+                <script src="js/stripeScript.js"></script> -->
                 
                 
                 <!-- <script
@@ -364,7 +375,7 @@ $post = "";
                     <input type="hidden" name="doublexl" value="<?php echo $doublexl;  ?>" id="doublexlT">
                     <!-- <input type="text" name="souvenir" value="" id="souvenirT"> -->
                     <input type="hidden" name="totalamount" value="<?php echo $totalAmount;  ?>" id="totalamountT">
-                <!-- </form> -->
+                </form>
 
         </div>
         <div class="card-footer bg-primary text-light">

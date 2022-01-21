@@ -293,7 +293,7 @@ function reservationChange(){
     // alert(tSum);
     if(tSum >= document.getElementById("reservationQuantity").value){
         document.getElementById("reservationQuantity").value = tSum;
-        document.getElementById("reservation").value = document.getElementById("reservationQuantity").value * 1000;
+        document.getElementById("totalReservation").value = document.getElementById("reservationQuantity").value * 1000;
         small.disabled = true;
         medium.disabled = true;
         large.disabled = true;
