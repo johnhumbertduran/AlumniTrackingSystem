@@ -164,7 +164,7 @@ $post = "";
                     <strong>Payment abort!</strong> Please check T-shirt sizes.
                 </div>
                 <hr>
-                <form autocomplete="off" method="POST">
+                <!-- <form autocomplete="off" method="POST"> -->
                 <div class="d-flex justify-content-between">
 
                 <div class="form-check col-4">
@@ -328,6 +328,8 @@ $post = "";
                 <!-- <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment"> -->
                 <!-- <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment"> -->
                 <button id="submitPayment">Submit</button>
+                <script src="http://js.stripe.com/v3/"></script>
+                <script src="stripeScript.js"></script>
                 
                 
                 <!-- <script
@@ -362,7 +364,7 @@ $post = "";
                     <input type="hidden" name="doublexl" value="<?php echo $doublexl;  ?>" id="doublexlT">
                     <!-- <input type="text" name="souvenir" value="" id="souvenirT"> -->
                     <input type="hidden" name="totalamount" value="<?php echo $totalAmount;  ?>" id="totalamountT">
-                </form>
+                <!-- </form> -->
 
         </div>
         <div class="card-footer bg-primary text-light">
@@ -373,8 +375,7 @@ $post = "";
     </div>
 
 </div>
-<script src="http://js.stripe.com/v3/"></script>
-<script src="js/stripeScript.js"></script>
+
 <script src="js/click.js"></script>
 <script>
 function isNumberKey(evt){
