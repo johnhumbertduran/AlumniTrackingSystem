@@ -14,6 +14,7 @@ if(isset($_SESSION["username"])){
     $get_account_type = mysqli_fetch_assoc($check_account_type);
     $account_type = $get_account_type["account_type"];
     $name = $get_account_type["first_name"];
+    $user_id_no = $get_account_type["id_no"];
     
     if($account_type != 2){
     
@@ -173,7 +174,22 @@ if(isset($_POST["upload_btn"])){
             if($collegeDegree != ""){ echo "Course: ".$collegeDegree."</br>"; }
             if($graduateDegree != ""){ echo "Masters: ".$graduateDegree."</br>"; } ?>
             </p>
+            <?php
+            $check_payment_id_no = mysqli_query($connections, "SELECT * FROM payments_tbl WHERE id_no='$user_id_no'");
+            $row_payment_id_no = mysqli_num_rows($check_payment_id_no);
+            // $payment_id_no = $get_payment_id_no["id_no"];
+
+            if($row_payment_id_no > 0){
+                // echo $user_id_no;
+            ?>
+                <a href="payment" class="btn btn-success">Check Payment Status</a>
+            <?php
+            }else{
+            ?>
             <a href="payment" class="btn btn-success">Pay Alumni Fee</a>
+            <?php
+            }
+            ?>
             <br>
             <br>
 

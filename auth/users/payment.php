@@ -146,11 +146,23 @@ $post = "";
 
                         // echo "<script>alert('submit yarn');</script>";
                         $_SESSION["totalAmount"] = $totalAmount;
-                        $_SESSION["small"] = $small;
-                        $_SESSION["medium"] = $medium;
-                        $_SESSION["large"] = $large;
-                        $_SESSION["extralarge"] = $extralarge;
-                        $_SESSION["doublexl"] = $doublexl;
+
+                        if($small > 0){
+                            $_SESSION["small"] = $small;
+                        }
+                        if($medium > 0){
+                            $_SESSION["medium"] = $medium;
+                        }
+                        if($large > 0){
+                            $_SESSION["large"] = $large;
+                        }
+                        if($extralarge > 0){
+                            $_SESSION["extralarge"] = $extralarge;
+                        }
+                        if($doublexl > 0){
+                            $_SESSION["doublexl"] = $doublexl;
+                        }
+                        
                         $_SESSION["souvenir"] = $souvenir;
                         $_SESSION["reservationQuantity"] = $reservationQuantity;
                         // $totalAmount = $_SESSION["totalAmount"];
@@ -365,7 +377,7 @@ $post = "";
 
                 <div id="payment-message" class="hidden"></div>
                 
-                <a style="float:right;" class="btn btn-success d-none" href="#" id="downloadFile">Download File</a>
+                <!-- <a style="float:right;" class="btn btn-success d-none" href="#" id="downloadFile">Download File</a> -->
                 
                     <!-- <input type="text" name="reservation" value="" id="reservationT"> -->
                     <input type="hidden" name="small" value="<?php echo $small;  ?>" id="smallT">
