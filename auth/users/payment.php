@@ -162,6 +162,8 @@ $post = "";
                         if($doublexl > 0){
                             $_SESSION["doublexl"] = $doublexl;
                         }
+
+                        $_SESSION["id_no"] = $id_no;
                         
                         $_SESSION["souvenir"] = $souvenir;
                         $_SESSION["reservationQuantity"] = $reservationQuantity;

@@ -182,7 +182,7 @@ if(isset($_POST["upload_btn"])){
             if($row_payment_id_no > 0){
                 // echo $user_id_no;
             ?>
-                <a href="payment" class="btn btn-success">Check Payment Status</a>
+                <a href="#" class="btn btn-success">Check Payment Status</a>
             <?php
             }else{
             ?>
