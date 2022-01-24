@@ -38,7 +38,7 @@ $post = "";
 
 <div class="card">
 
-    <div class="card-header bg-primary text-light"><h2>Registration Fee Payment</h2></div>
+    <div class="card-header text-light" style="background-color:rgb(112, 173, 70);"><h2>Registration Fee Payment</h2></div>
 
         <div class="card-body">
             
@@ -209,7 +209,7 @@ $post = "";
                 <div class="d-none" id="forWalkIn">
                 <!-- <hr> -->
                     <h6>Please download the form and submit to ACC OSA.</h6>
-                    <a href="bins/alumniRegistrationForm.pdf" class="btn btn-primary">DOWNLOAD FORM HERE</a>
+                    <a href="bins/alumniRegistrationForm.pdf" class="btn text-light" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a>
                 </div>
                 
                 <div class="d-none" id="forBank">
@@ -252,73 +252,79 @@ $post = "";
                             
                         </table>
                         <br>
-                        <table>
+                        <table class="w-100">
                             <tr>
                                 <td><b>DIAMOND JUBILEE SOUVENIR PROGRAM</b></td>
                             </tr>
                             <tr>
-                                <td>
-                                <div class="form-check">
+                                <td class="">
+                                <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" id="wholepage" onclick="wholePageClick()"> -->
                                   <input class="form-check-input" type="radio" name="souvenir" value="wholepage" <?php if($souvenir == "wholepage"){ echo "checked"; } ?> id="wholepage" onclick="wholePageClick()">
-                                  <label class="form-check-label" for="wholepage">
-                                    Whole page, Php 5,000.00
+                                  <label class="form-check-label flex-fill" for="wholepage">
+                                     &nbsp; Whole page, 
                                   </label>
+                                  <p class="float-right justify-content-end">Php 5,000.00</p>
                                 </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <div class="form-check">
+                                <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="halfpage" onclick="halfPageClick()"> -->
                                   <input class="form-check-input" type="radio" name="souvenir" value="halfpage" <?php if($souvenir == "halfpage"){ echo "checked"; } ?> id="halfpage" onclick="halfPageClick()">
-                                  <label class="form-check-label" for="halfpage">
-                                    Half page, Php 3,000.00
+                                  <label class="form-check-label flex-fill" for="halfpage">
+                                  &nbsp; Half page,
                                   </label>
+                                  <p class="float-right justify-content-end">Php 3,000.00</p>
                                 </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <div class="form-check">
+                                <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="frontcoverpage" onclick="frontCoverPageClick()"> -->
                                   <input class="form-check-input" type="radio" name="souvenir" value="frontcoverpage" <?php if($souvenir == "frontcoverpage"){ echo "checked"; } ?> id="frontcoverpage" onclick="frontCoverPageClick()">
-                                  <label class="form-check-label" for="frontcoverpage">
-                                    Inside Front Cover page, Php10,000.00
+                                  <label class="form-check-label flex-fill" for="frontcoverpage">
+                                  &nbsp; Inside Front Cover page, 
                                   </label>
+                                  <p class="float-right justify-content-end">Php10,000.00</p>
                                 </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <div class="form-check">
+                                <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="backcoverpage" onclick="backCoverPageClick()"> -->
                                   <input class="form-check-input" type="radio" name="souvenir" value="backcoverpage" <?php if($souvenir == "backcoverpage"){ echo "checked"; } ?> id="backcoverpage" onclick="backCoverPageClick()">
-                                  <label class="form-check-label" for="backcoverpage">
-                                    Inside Back Cover page, Php10,000.00
+                                  <label class="form-check-label flex-fill" for="backcoverpage">
+                                  &nbsp; Inside Back Cover page, 
                                   </label>
+                                  <p class="float-right justify-content-end">Php10,000.00</p>
                                 </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <div class="form-check">
+                                <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="flipcoverpage" onclick="flipCoverPageClick()"> -->
                                   <input class="form-check-input" type="radio" name="souvenir" value="flipcoverpage" <?php if($souvenir == "flipcoverpage"){ echo "checked"; } ?> id="flipcoverpage" onclick="flipCoverPageClick()">
-                                  <label class="form-check-label" for="flipcoverpage">
-                                    Inside Flip Front Cover page, Php10,000.00
+                                  <label class="form-check-label flex-fill" for="flipcoverpage">
+                                  &nbsp; Inside Flip Front Cover page, 
                                   </label>
+                                  <p class="float-right justify-content-end">Php10,000.00</p>
                                 </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <div class="form-check">
+                                <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="oneliner" onclick="oneLinerClick()"> -->
                                   <input class="form-check-input" type="radio" name="souvenir" value="oneliner" <?php if($souvenir == "oneliner"){ echo "checked"; } ?> id="oneliner" onclick="oneLinerClick()">
-                                  <label class="form-check-label" for="oneliner">
-                                    One Liner, Php 1,000.00
+                                  <label class="form-check-label flex-fill" for="oneliner">
+                                  &nbsp; One Liner, 
                                   </label>
+                                  <p class="float-right justify-content-end">Php 1,000.00</p>
                                 </div>
                                 </td>
                             </tr>
@@ -351,7 +357,7 @@ $post = "";
 
                 
                 <!-- <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment"> -->
-                <input style="float:right;" class="btn btn-success d-none" type="submit" id="submitPayment" name="payment" value="Submit Payment">
+                <input style="float:right; background-color:rgb(112, 173, 70);" class="btn d-none text-light" type="submit" id="submitPayment" name="payment" value="Submit Payment">
                 <!-- <button id="submitPayment">Submit</button> -->
                 <!-- <script src="http://js.stripe.com/v3/"></script>
                 <script src="js/stripeScript.js"></script> -->
@@ -392,7 +398,7 @@ $post = "";
                 </form>
 
         </div>
-        <div class="card-footer bg-primary text-light">
+        <div class="card-footer text-light" style="background-color:rgb(112, 173, 70);">
         <input type="button" class="btn btn-light invisible" value="Register">
         </div>
 

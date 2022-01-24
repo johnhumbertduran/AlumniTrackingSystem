@@ -4,7 +4,7 @@
     $get_name = mysqli_fetch_assoc($check_user);
     $name = $get_name["first_name"];
 ?>
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color:rgb(112, 173, 70);">
   <div class="container-fluid">
     <a class="navbar-brand" href="../users"><?php echo "Welcome, " . $name; ?></a>
     <!-- Toggler/collapsibe Button -->

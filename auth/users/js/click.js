@@ -213,6 +213,7 @@ function totalAmountChange(){
 
 function reservationChange(){
     // totalReservation();
+    // alert(parseInt(tSum));
     totalReservationFormula = document.getElementById("reservationQuantity").value *1000;
     totalReservation.value = totalReservationFormula;
     totalAmountChange();

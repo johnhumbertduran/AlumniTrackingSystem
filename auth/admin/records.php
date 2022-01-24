@@ -50,9 +50,9 @@ $alumni_qry = mysqli_query($connections, "SELECT * FROM users_tbl WHERE account_
         <td class="align-middle"><?php echo $officeTelephone; ?></td>
         <td class="align-middle"><?php echo $mobileNumber; ?></td>
         <td class="align-middle"><?php echo $alumniChapterMembership; ?></td> -->
-        <td class="align-middle"><button class="btn btn-info" id="<?php echo $idNo; ?>" onclick="viewOtherInfo(this.id)">View</button></td>
+        <!-- <td class="align-middle"><button class="btn btn-info" id="<?php echo $idNo; ?>" onclick="viewOtherInfo(this.id)">View</button></td> -->
         <td class="align-middle"><?php echo $paymentStatus; ?></td>
-        <td class="align-middle" style="width:20%;"><a class="btn btn-success" id="<?php echo $idNo; ?>" href="?update=<?php echo $idNo; ?>">Update</a><!-- &nbsp<a class="btn btn-danger" href="?set=<?php echo $idNo; ?>">Delete</a> --></td>
+        <td class="align-middle" style="width:20%;"><button class="btn text-light" style="background-color:rgb(112, 173, 70);" id="<?php echo $idNo; ?>" onclick="viewOtherInfo(this.id)">View</button><!-- <a class="btn btn-success" id="<?php echo $idNo; ?>" href="?update=<?php echo $idNo; ?>">Update</a> --><!-- &nbsp<a class="btn btn-danger" href="?set=<?php echo $idNo; ?>">Delete</a> --></td>
       </tr>
 
 

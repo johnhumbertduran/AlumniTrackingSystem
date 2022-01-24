@@ -52,7 +52,7 @@ $post = "";
         
     
 <div class="container clearfix">
-<label for="posting" class="btn text-center text-primary"  data-bs-toggle="collapse" data-bs-target="#postings"><h4>POST AN EVENT</h4></label>
+<label for="posting" class="btn text-center"  style="color:rgb(73, 114, 45);" data-bs-toggle="collapse" data-bs-target="#postings"><h4>POST AN EVENT</h4></label>
     <div id="postings" class="collapse hide">
 <form method="POST">
     <input type="hidden" value="<?php echo $date_now; ?>">
@@ -74,7 +74,7 @@ $post = "";
 
     <?php
 
-    $post_qry = mysqli_query($connections, "SELECT * FROM post_tbl ");
+    $post_qry = mysqli_query($connections, "SELECT * FROM post_tbl ORDER BY id DESC ");
     while($row_post = mysqli_fetch_assoc($post_qry)){
         // $id = $row_alumni["id"];
         $post_no = $row_post["post_no"];

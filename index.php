@@ -12,9 +12,9 @@ include("bins/nav.php");
 
 
 
-<div class="lorem mt-5">
+<div class="lorem mt-5 container-fluid col-11">
 
-<h3 class="text-primary mx-5">Our History</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">Our History</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 The noble idea of establishing an educational institution in the college level in Aklan offering academic courses had its
@@ -53,7 +53,7 @@ Edicio Venturanza, Sergio Vizcarra, Simplicia Vega, Adriano Seraspi, Juan Tolent
 
 <br>
 <br>
-<h3 class="text-primary mx-5">Vision Statement</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">Vision Statement</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 We envision Aklan Catholic College as a vibrant educational institution committed to empowering stakeholders
@@ -65,7 +65,7 @@ as globally competent and authentic Christians.
 
 <br>
 <br>
-<h3 class="text-primary mx-5">Mission Statement</h3>
+<h3 class="mx-5"  style="color:rgb(112, 173, 70);">Mission Statement</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 1.Continuously evaluate the relevance of programs and services and the functionality of structures, processes and leadership styles. <br><br>
@@ -81,7 +81,7 @@ as globally competent and authentic Christians.
 
 <br>
 <br>
-<h3 class="text-primary mx-5">COLLEGE OPENING</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">COLLEGE OPENING</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Mr. Filemon F. Guerra was the first Dean at the opening of Aklan College. He organized a strong faculty of mostly M.A. degree holders.
@@ -104,7 +104,7 @@ Bachelor of Science in Home Economics (B.S.H.E), Bachelor of Arts (A.B.), Bachel
 
 <br>
 <br>
-<h3 class="text-primary mx-5">GOVERNMENT RECOGNITION</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">GOVERNMENT RECOGNITION</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 
@@ -116,7 +116,7 @@ The date was an occasion of rejoicing in the college.
 
 <br>
 <br>
-<h3 class="text-primary mx-5">FIRST GRADUATE</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">FIRST GRADUATE</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Of the 90 students who enrolled in the collegiate department in the first year of Aklan College, 35 students graduated in the year 1947 from the Normal
@@ -128,7 +128,7 @@ Department and from the Liberal Arts Department with the title of E.T.C. and A.A
 
 <br>
 <br>
-<h3 class="text-primary mx-5">BISHOP CUENCO AND CARDINAL SIN: PATRON AND BENEFACTOR</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">BISHOP CUENCO AND CARDINAL SIN: PATRON AND BENEFACTOR</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Like many other organizations, the College was never an exemption to financial trials. It was in the second year of its existence that the College suffered
@@ -153,7 +153,7 @@ with the College under the proviso that if Aklan become a diocese, the same shou
 
 <br>
 <br>
-<h3 class="text-primary mx-5">COLLEGE OF LAW AND ENGINEERING AND THE GRADUATE SCHOOL</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">COLLEGE OF LAW AND ENGINEERING AND THE GRADUATE SCHOOL</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Aklan College is the first higher education institution in Aklan to offer law and graduate school courses. Anticipating the need for a college of law in the province,
@@ -181,7 +181,7 @@ as extension programs with the College. These consortia have been the first of i
 
 <br>
 <br>
-<h3 class="mx-5 text-primary mx-5">STUDENT ORGANIZATIONS, PUBLICATIONS, AND EXTRA-CURRICULAR ACTIVITIES DURING THE FORMATIVE YEARS</h3>
+<h3 class="mx-5 mx-5" style="color:rgb(112, 173, 70);">STUDENT ORGANIZATIONS, PUBLICATIONS, AND EXTRA-CURRICULAR ACTIVITIES DURING THE FORMATIVE YEARS</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Most of the organizations of students today found their beginnings during the formative years of the College. Among the early activities were the annual oratorical contests, dramatic presentations and dance extravaganza,
@@ -195,7 +195,7 @@ Sciences, Social Sciences, and other departmental entities were encouraged to fo
 
 <br>
 <br>
-<h3 class="text-primary mx-5">ADMINISTRATION</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">ADMINISTRATION</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 The administration and management of the college is vested on the Board of Directors composed originally of fifteen and later reduced to ten for a term of one year. The following served
@@ -208,7 +208,7 @@ followed by Bishop Juan Nilmar. Bishop Gabriel V. Reyes followed in succession. 
 
 <br>
 <br>
-<h3 class="text-primary mx-5">THE FATHER RECTORS</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">THE FATHER RECTORS</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 S.V.D. Father Eugene Stoll and Luis Creder were the two foreign Rectors of Aklan College. On April 12, 1954 and at a time of economic difficulties and financial hardships of the Filipino people, Rt. Msgr. Salvador M. Mabasa assumed the rectorship.
@@ -237,7 +237,7 @@ Msgr. Depra to emphasize Aklan College vision of acquiring a university status b
 
 <br>
 <br>
-<h3 class="text-primary mx-5">THE PAST DEANS</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">THE PAST DEANS</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Teacher Education and Liberal Arts Department recounts the services of the the following who served successively as Deans: Mr. Filemon F. Guerra, Mr. Emeterio L. Prado, Dr. Miguel Yap, Mr. Protasio Magdael, Atty. Josue F. Gomez, Dr. Constancio I. Constantino,
@@ -261,7 +261,7 @@ Judge Ludovico O. Peralta was the first dean followed by his brother Judge Jose 
 
 <br>
 <br>
-<h3 class="text-primary mx-5">ELEMENTARY HIGH SCHOOL PAST PRINCIPALS</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">ELEMENTARY HIGH SCHOOL PAST PRINCIPALS</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Since the College opened elementary education, it had the following principals: Dolores T. Advincula, Clavelina O. Zomil, Esperanza Amparo-Tapales, Jose I. Ricafuente, Victoria U. Acevedo, Leodegario M. Advincula, S. Arlene Regalado, Noeme L. Ricafuente, Cecilia S. Calizo, and Ms. Rita Hilda T. Feliciano.
@@ -276,7 +276,7 @@ Ms. Isidra Laserna-Mirto was the first principal of the high school department f
 
 <br>
 <br>
-<h3 class="text-primary mx-5">THE ALUMNI</h3>
+<h3 class="mx-5" style="color:rgb(112, 173, 70);">THE ALUMNI</h3>
 <br>
 <p class="text-left mx-5 text-secondary">
 Aklan College alumni are everywhere in government and non-government services, in the military, in medicine, in law, in the teaching profession, in priesthood, business, politics, education and other fields of human endeavor.

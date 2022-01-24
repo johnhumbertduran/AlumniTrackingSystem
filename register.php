@@ -36,7 +36,7 @@ if(isset($_SESSION["username"])){
 
 <div class="card">
 
-    <div class="card-header bg-primary text-light"><h2>Registration Form</h2></div>
+    <div class="card-header text-light" style="background-color:rgb(112, 173, 70);"><h2>Registration Form</h2></div>
     
         <div class="card-body">
             <form autocomplete="off" method="POST">
@@ -206,7 +206,7 @@ if(isset($_SESSION["username"])){
                                                             echo "<script> alert('Mobile Phone Number must be 11 numbers!'); </script>";
                                                             }else{
                                                                 if((!preg_match("/@gmail\.com$/i", $email)) && (!preg_match("/@outlook\.com$/i", $email)) && (!preg_match("/@yahoo\.com$/i", $email)) ){
-                                                                    echo "<script> alert('check!'); </script>";
+                                                                    echo "<script> alert('Please input correct email!'); </script>";
                                                                 }else{
                                                                     mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,middle_name,home_address,
                                                                         sex,civil_status,employment_address,current_work,elementary_graduate,highschool_graduate,college_graduate,
@@ -328,8 +328,30 @@ if(isset($_SESSION["username"])){
                 &nbsp;&nbsp;
 
                 <div class="form-floating col-3 flex-fill">
-                    <input class="form-control" type="text" value="<?php echo $alumniChapterMembership; ?>" placeholder="Alumni Chapter Membership" name="alumni_chapter_membership" class="" id="alumni_chapter_membership" autocomplete="new-membership" required  >
-                    <label for="alumni_chapter_membership">Alumni Chapter Membership</label>
+                    <!-- <input class="form-control" type="text" value="<?php echo $alumniChapterMembership; ?>" placeholder="Alumni Chapter Membership" name="alumni_chapter_membership" class="" id="alumni_chapter_membership" autocomplete="new-membership" required  >
+                    <label for="alumni_chapter_membership">Alumni Chapter Membership</label> -->
+                    
+                    <select class="form-select" id="alumni_chapter_membership" name="sellist1">
+                      <option>Please select</option>
+                      <option>Altavas</option>
+                      <option>Balete</option>
+                      <option>Banga</option>
+                      <option>Batan</option>
+                      <option>Buruanga</option>
+                      <option>Ibajay</option>
+                      <option>Kalibo</option>
+                      <option>Lezo</option>
+                      <option>Libacao</option>
+                      <option>Madalag</option>
+                      <option>Makato</option>
+                      <option>Malay</option>
+                      <option>Malinao</option>
+                      <option>Nabas</option>
+                      <option>New Washington</option>
+                      <option>Numancia</option>
+                      <option>Tangalan</option>
+                    </select>
+                    <label for="alumni_chapter_membership" class="form-label">Alumni Chapter Membership</label>
                 </div>
 
                 </div>
@@ -450,11 +472,11 @@ if(isset($_SESSION["username"])){
                 <!-- ######################################################################## -->
 
     
-                <input style="float:right;" class="btn btn-success" type="submit" name="submit" value="Register">
+                <input style="float:right; background-color:rgb(112, 173, 70);" class="btn text-light" type="submit" name="submit" value="Register">
                 
 
         </div>
-        <div class="card-footer bg-primary text-light">
+        <div class="card-footer text-light" style="background-color:rgb(112, 173, 70);">
         <input type="button" class="btn btn-light invisible" value="Register">
         </div>
 

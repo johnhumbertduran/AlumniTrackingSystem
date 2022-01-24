@@ -182,11 +182,11 @@ if(isset($_POST["upload_btn"])){
             if($row_payment_id_no > 0){
                 // echo $user_id_no;
             ?>
-                <a href="#" class="btn btn-success">Check Payment Status</a>
+                <a href="#" class="btn text-light" style="background-color:rgb(112, 173, 70);">Check Payment Status</a>
             <?php
             }else{
             ?>
-            <a href="payment" class="btn btn-success">Pay Alumni Fee</a>
+            <a href="payment" class="btn text-light" style="background-color:rgb(112, 173, 70);">Pay Alumni Fee</a>
             <?php
             }
             ?>

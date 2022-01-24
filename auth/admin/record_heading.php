@@ -1,4 +1,4 @@
-<table class="table table-hover table-primary table-striped">
+<table class="table table-hover table-success table-striped">
     <thead class="table-dark">
       <tr class="text-center">
         <th>ID Number</th>
@@ -6,7 +6,7 @@
         <th>Address</th>
         <th>Sex</th>
         <th>Civil Status</th>
-        <th>Other Information</th>
+        <!-- <th>Other Information</th> -->
         <th>Payment Status</th>
         <th>Action</th>
       </tr>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color:rgb(112, 173, 70);">
     <div>
         <a class="navbar-brand" href="#">&nbsp;&nbsp;Alumni Tracking System</a>
     </div>

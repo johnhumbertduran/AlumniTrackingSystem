@@ -138,7 +138,7 @@ if(isset($_POST["login"])){
 <br>
 <br>
 <center>
-<h1 class="py-3 text-primary px-1">Alumni Tracking System</h1>
+<h1 class="py-3 px-1" style="color:rgb(112, 173, 70);">Alumni Tracking System</h1>
 </center>
 
 <br>
@@ -147,7 +147,7 @@ if(isset($_POST["login"])){
 <div class="container col-lg-3">
 <div class="card">
 
-  <div class="card-header bg-primary text-light"><h3>Log in</h3></div>
+  <div class="card-header text-light" style="background-color:rgb(112, 173, 70);"><h3>Log in</h3></div>
   <div class="card-body">
   
     <!-- <div class="float-left">
@@ -172,9 +172,9 @@ if(isset($_POST["login"])){
 
 
 
-  <div class="card-footer bg-primary">
+  <div class="card-footer" style="background-color:rgb(112, 173, 70);">
   <input type="submit" class="btn btn-light" name="login" value="Log me in">
-  <a href="forgotpassword" class="btn btn-primary">Forgot password?</a>
+  <a href="forgotpassword" class="btn"  style="background-color:rgb(112, 173, 70); color:white;">Forgot password?</a>
   </form>
   </div>
 </div>

@@ -35,7 +35,7 @@ $post = "";
 
 <div class="card">
 
-    <div class="card-header bg-primary text-light"><h2>Registration Fee Payment</h2></div>
+    <div class="card-header text-light" style="background-color:rgb(112, 173, 70);"><h2>Registration Fee Payment</h2></div>
 
         <div class="card-body">
             <form autocomplete="off" method="POST">
@@ -189,7 +189,7 @@ $post = "";
                 
 
                 <div class="form-floating ps-3 pe-3">
-                <input class="btn btn-success p-3 ps-5 pe-5" type="submit" name="search" value="Search">
+                <input class="btn p-3 ps-5 pe-5 text-light" style="background-color:rgb(112, 173, 70);" type="submit" name="search" value="Search">
                 </div>
                 
 
@@ -226,7 +226,7 @@ $post = "";
 
                 </div>
 
-                <hr>
+                <!-- <hr>
 
                 <div class="d-flex justify-content-between">
 
@@ -246,7 +246,7 @@ $post = "";
                     <label for="bank_date_of_payment">Date of Payment</label>
                 </div>
 
-                </div>
+                </div> -->
 
                 <hr>
 
@@ -254,7 +254,7 @@ $post = "";
 
                 <div class="form-check col-3">
                 <input class="form-check-input" type="radio" name="payment_method" value="Cheque Payment" <?php if($payment_method == "Cheque Payment"){ echo "checked"; } ?> id="cheque_payment" onclick="chequePaymentDisable()">
-                <label class="form-check-label" for="cheque_payment">Option 3: Cheque Payment</label>
+                <label class="form-check-label" for="cheque_payment">Option 2: Cheque Payment</label>
                 </div>
 
                 <div class="form-floating col-2 flex-fill">
@@ -286,12 +286,12 @@ $post = "";
                 <!-- ######################################################################## -->
 
     
-                <input style="float:right;" class="btn btn-success" type="submit" name="payment" value="Submit Payment">
+                <input style="float:right; background-color:rgb(112, 173, 70);" class="btn text-light" type="submit" name="payment" value="Submit Payment">
                 
                 </form>
 
         </div>
-        <div class="card-footer bg-primary text-light">
+        <div class="card-footer text-light" style="background-color:rgb(112, 173, 70);">
         <input type="button" class="btn btn-light invisible" value="Register">
         </div>
 
