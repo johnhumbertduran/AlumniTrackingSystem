@@ -27,8 +27,13 @@
           <a class="nav-link" href="archive">Archive</a>
         </li> -->
 
-        <li class="nav-item">
-          <a class="nav-link" href="payment">Payment</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">Payment</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="payment">Walk In Payment</a></li>
+            <li><a class="dropdown-item" href="payment-details">Payment Details</a></li>
+            <!-- <li><a class="dropdown-item" href="#">A third link</a></li> -->
+          </ul>
         </li>
 
         <li class="nav-item d-flex justify-content-end">

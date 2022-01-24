@@ -260,7 +260,7 @@ $post = "";
                                 <td class="">
                                 <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" id="wholepage" onclick="wholePageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="wholepage" <?php if($souvenir == "wholepage"){ echo "checked"; } ?> id="wholepage" onclick="wholePageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="Whole Page" <?php if($souvenir == "Whole Page"){ echo "checked"; } ?> id="wholepage" onclick="wholePageClick()">
                                   <label class="form-check-label flex-fill" for="wholepage">
                                      &nbsp; Whole page, 
                                   </label>
@@ -272,7 +272,7 @@ $post = "";
                                 <td>
                                 <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="halfpage" onclick="halfPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="halfpage" <?php if($souvenir == "halfpage"){ echo "checked"; } ?> id="halfpage" onclick="halfPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="Half Page" <?php if($souvenir == "Half Page"){ echo "checked"; } ?> id="halfpage" onclick="halfPageClick()">
                                   <label class="form-check-label flex-fill" for="halfpage">
                                   &nbsp; Half page,
                                   </label>
@@ -284,7 +284,7 @@ $post = "";
                                 <td>
                                 <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="frontcoverpage" onclick="frontCoverPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="frontcoverpage" <?php if($souvenir == "frontcoverpage"){ echo "checked"; } ?> id="frontcoverpage" onclick="frontCoverPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="Front Cover Page" <?php if($souvenir == "Front Cover Page"){ echo "checked"; } ?> id="frontcoverpage" onclick="frontCoverPageClick()">
                                   <label class="form-check-label flex-fill" for="frontcoverpage">
                                   &nbsp; Inside Front Cover page, 
                                   </label>
@@ -296,7 +296,7 @@ $post = "";
                                 <td>
                                 <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="backcoverpage" onclick="backCoverPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="backcoverpage" <?php if($souvenir == "backcoverpage"){ echo "checked"; } ?> id="backcoverpage" onclick="backCoverPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="Back Cover Page" <?php if($souvenir == "Back Cover Page"){ echo "checked"; } ?> id="backcoverpage" onclick="backCoverPageClick()">
                                   <label class="form-check-label flex-fill" for="backcoverpage">
                                   &nbsp; Inside Back Cover page, 
                                   </label>
@@ -308,7 +308,7 @@ $post = "";
                                 <td>
                                 <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="flipcoverpage" onclick="flipCoverPageClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="flipcoverpage" <?php if($souvenir == "flipcoverpage"){ echo "checked"; } ?> id="flipcoverpage" onclick="flipCoverPageClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="Flip Cover Page" <?php if($souvenir == "Flip Cover Page"){ echo "checked"; } ?> id="flipcoverpage" onclick="flipCoverPageClick()">
                                   <label class="form-check-label flex-fill" for="flipcoverpage">
                                   &nbsp; Inside Flip Front Cover page, 
                                   </label>
@@ -320,7 +320,7 @@ $post = "";
                                 <td>
                                 <div class="form-check d-flex">
                                   <!-- <input class="form-check-input" type="checkbox" value="" id="oneliner" onclick="oneLinerClick()"> -->
-                                  <input class="form-check-input" type="radio" name="souvenir" value="oneliner" <?php if($souvenir == "oneliner"){ echo "checked"; } ?> id="oneliner" onclick="oneLinerClick()">
+                                  <input class="form-check-input" type="radio" name="souvenir" value="One Liner" <?php if($souvenir == "One Liner"){ echo "checked"; } ?> id="oneliner" onclick="oneLinerClick()">
                                   <label class="form-check-label flex-fill" for="oneliner">
                                   &nbsp; One Liner, 
                                   </label>
