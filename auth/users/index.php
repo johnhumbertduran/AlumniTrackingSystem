@@ -26,11 +26,41 @@ if(isset($_SESSION["username"])){
 ?>
 
 
-<br>
-<br>
-<center>
 
-</center>
+<br>
+
+<div class="position-fixed ml-auto mr-auto bg-light" style="left: 30%;">
+    <center>
+        <h2>Aklan Catholic College News Feeds</h2>
+    </center>
+</div>
+
+    
+<br>
+<br>
+<br>
+    <?php
+
+    $post_qry = mysqli_query($connections, "SELECT * FROM post_tbl ORDER BY id DESC ");
+    while($row_post = mysqli_fetch_assoc($post_qry)){
+        // $id = $row_alumni["id"];
+        $post_no = $row_post["post_no"];
+        $my_post = $row_post["post"];
+        $post_date = $row_post["date"];
+        $post_time = $row_post["time"];
+    ?>
+    <div class="container-fluid col-5 border border-dark rounded">
+    <h6 class="float-left">Aklan Catholic College Official</h6>
+        <?php echo $my_post; ?>
+        <p></p>
+        </div>
+
+        <br>
+    <?php
+    }
+    ?>
+
+
 
 <br>
 <br>
@@ -38,5 +68,5 @@ if(isset($_SESSION["username"])){
 <br>
 
 <?php
-include("bins/footer_fixed.php");
+include("bins/footer.php");
 ?>

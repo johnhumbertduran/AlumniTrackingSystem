@@ -83,7 +83,7 @@ $post = "";
         $post_time = $row_post["time"];
     ?>
     <div class="container-fluid col-5 border border-dark rounded">
-    <h1 class="display-6 float-left">User</h1>
+    <h6 class="float-left">Aklan Catholic College Official</h6>
         <?php echo $my_post; ?>
         <p></p>
         </div>
