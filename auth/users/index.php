@@ -25,17 +25,24 @@ if(isset($_SESSION["username"])){
 
 ?>
 
+<style>
 
+  .post-image{
+    object-fit: cover;
+    width: 520px;
+  }
+  
+</style>
 
-<br>
-
-<div class="position-fixed ml-auto mr-auto bg-light" style="left: 30%;">
+<div class="position-fixed bg-light py-3" style=" width: 100%;">
     <center>
         <h2>Aklan Catholic College News Feeds</h2>
     </center>
 </div>
 
     
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -48,11 +55,24 @@ if(isset($_SESSION["username"])){
         $my_post = $row_post["post"];
         $post_date = $row_post["date"];
         $post_time = $row_post["time"];
+        $img = $row_post["img"];
     ?>
     <div class="container-fluid col-5 border border-dark rounded">
     <h6 class="float-left">Aklan Catholic College Official</h6>
         <?php echo $my_post; ?>
         <p></p>
+
+        <div class="text-center">
+        <?php
+        if($img != ""){
+        ?>
+        <img src="<?php echo "../admin/" . $img; ?>" class="post-image" alt="">
+        <?php
+        }
+        ?>
+        </div>
+        <br>
+
         </div>
 
         <br>

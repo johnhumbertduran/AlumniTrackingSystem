@@ -14,6 +14,15 @@ include("bins/nav.php");
 
 <div class="lorem mt-5 container-fluid col-11">
 
+<center>
+    <img src="bins/image/aboutpic1.jpg" class="img-fluid rounded-3" style="width:92%;" alt="">
+</center>
+
+<br>
+<br>
+<hr class="mx-5">
+<br>
+
 <h3 class="mx-5" style="color:rgb(112, 173, 70);">Our History</h3>
 <br>
 <p class="text-left mx-5 text-secondary">

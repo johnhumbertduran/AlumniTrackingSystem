@@ -111,7 +111,21 @@ if(isset($_POST["upload_btn"])){
 
 ?>
 
+<style>
+    .text-over:hover{
+        background-color: #8BC3FC;
+        overflow: visible;
+        margin: 10px;
+        width:100%;
+    }
 
+    .text-over{
+        white-space: nowrap;
+        width:200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
 
 <nav class="navbar flex-column bg-success pt-5" style="background-image: url('bins/Aklan_catholic_college.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-position: center;">
 
@@ -182,7 +196,8 @@ if(isset($_POST["upload_btn"])){
             if($row_payment_id_no > 0){
                 // echo $user_id_no;
             ?>
-                <a href="#" class="btn text-light" style="background-color:rgb(112, 173, 70);">Check Payment Status</a>
+                <!-- <a href="#" class="btn text-light" style="background-color:rgb(112, 173, 70);">Check Payment Status</a> -->
+                <button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#paymentmodal" style="background-color:rgb(112, 173, 70);">Check Payment Status</button>
             <?php
             }else{
             ?>
@@ -277,6 +292,83 @@ if(isset($_POST["upload_btn"])){
     </div>
 <center>
 </center>
+
+<!-- The Modal -->
+<div class="modal fade" id="paymentmodal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Payment Status</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+<?php
+
+        $payment_qry = mysqli_query($connections, "SELECT * FROM payments_tbl WHERE id_no='$user_id_no' ");
+
+        while($row_payments = mysqli_fetch_assoc($payment_qry)){
+              $id_no = $row_payments["id_no"];
+              $cash_official_receipt = $row_payments["cash_official_receipt"];
+              $cash_date_of_payment = $row_payments["cash_date_of_payment"];
+              $bank_official_receipt = $row_payments["bank_official_receipt"];
+              $bank_date_of_payment = $row_payments["bank_date_of_payment"];
+              $cheque_no = $row_payments["cheque_no"];
+              $cheque_bank = $row_payments["cheque_bank"];
+              $cheque_official_receipt = $row_payments["cheque_official_receipt"];
+              $cheque_date_of_payment = $row_payments["cheque_date_of_payment"];
+              $number_of_person = $row_payments["number_of_person"];
+              $small = $row_payments["small"];
+              $medium = $row_payments["medium"];
+              $large = $row_payments["large"];
+              $extralarge = $row_payments["extralarge"];
+              $doublexl = $row_payments["doublexl"];
+              $souvenir_program = $row_payments["souvenir_program"];
+              $total_amount = $row_payments["total_amount"];
+        
+                $mode_of_payment = "";
+                $receipt_of_payment = "";
+                if($cash_official_receipt != ""){
+                  $mode_of_payment = "Cash";
+                  $receipt_of_payment = $cash_official_receipt;
+                }elseif($bank_official_receipt != ""){
+                  $mode_of_payment = "Online";
+                  $receipt_of_payment = $bank_official_receipt;
+                }elseif($cheque_official_receipt != ""){
+                  $mode_of_payment = "Cheque";
+                  $receipt_of_payment = $cheque_official_receipt;
+                }
+            
+                $date_of_payment = "";
+                if($cash_date_of_payment != ""){
+                $date_of_payment = $cash_date_of_payment;
+                }elseif($bank_date_of_payment != ""){
+                  $date_of_payment = $bank_date_of_payment;
+                }elseif($cheque_date_of_payment != ""){
+                  $date_of_payment = $cheque_date_of_payment;
+                }
+?>
+    <h6>Mode of Payment: </h6> <p><?php echo $mode_of_payment; ?></p>
+    <h6>Date of Payment: </h6> <p><?php echo $date_of_payment; ?></p>
+    <h6>Receipt: </h6> <p class="text-center text-over"><?php echo $receipt_of_payment; ?></p>
+    <h6>Souvenir Program: </h6> <p><?php echo $souvenir_program; ?></p>
+    <h6>Total Amount: </h6> <p><?php echo "&#8369; " . number_format($total_amount, 2, '.', ','); ?></p>
+<?php
+        }
+?>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <br>
 <br>

@@ -156,7 +156,7 @@
             <div class="modal-body">
                 
 
-            <table class="table table-hover table-primary table-striped">
+            <table class="table table-hover table-success table-striped">
                 <thead class="table-dark">
                     <tr class="text-center">
                         <th>Employment Address</th>

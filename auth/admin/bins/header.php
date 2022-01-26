@@ -14,6 +14,7 @@
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
     <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+    <link rel="stylesheet" href="bins/uploadstyles.css">
     <!-- <link href="bins/bootstrap-table-master/dist/extensions/sticky-header/bootstrap-table-sticky-header.css" rel="stylesheet"> -->
     <title>Alumni Stracking System</title>
 

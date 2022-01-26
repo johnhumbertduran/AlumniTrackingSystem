@@ -158,7 +158,11 @@ if(isset($_SESSION["username"])){
                 }
 
                 if(!empty($_POST["alumni_chapter_membership"])){
-                    $alumniChapterMembership = $_POST["alumni_chapter_membership"];
+                    if($alumniChapterMembership == "Please Select"){
+                        echo "<script>alert('Please select chapter');</script>";
+                    }else{
+                        $alumniChapterMembership = $_POST["alumni_chapter_membership"];
+                    }
                 }
 
                 if(!empty($_POST["email"])){
@@ -331,25 +335,25 @@ if(isset($_SESSION["username"])){
                     <!-- <input class="form-control" type="text" value="<?php echo $alumniChapterMembership; ?>" placeholder="Alumni Chapter Membership" name="alumni_chapter_membership" class="" id="alumni_chapter_membership" autocomplete="new-membership" required  >
                     <label for="alumni_chapter_membership">Alumni Chapter Membership</label> -->
                     
-                    <select class="form-select" id="alumni_chapter_membership" name="sellist1">
-                      <option>Please select</option>
-                      <option>Altavas</option>
-                      <option>Balete</option>
-                      <option>Banga</option>
-                      <option>Batan</option>
-                      <option>Buruanga</option>
-                      <option>Ibajay</option>
-                      <option>Kalibo</option>
-                      <option>Lezo</option>
-                      <option>Libacao</option>
-                      <option>Madalag</option>
-                      <option>Makato</option>
-                      <option>Malay</option>
-                      <option>Malinao</option>
-                      <option>Nabas</option>
-                      <option>New Washington</option>
-                      <option>Numancia</option>
-                      <option>Tangalan</option>
+                    <select class="form-select" id="alumni_chapter_membership" name="alumni_chapter_membership">
+                      <option value="Please Select" <?php if($alumniChapterMembership == "Please Select"){ echo "selected"; } ?>>Please select</option>
+                      <option value="Altavas" <?php if($alumniChapterMembership == "Altavas"){ echo "selected"; } ?>>Altavas</option>
+                      <option value="Balete" <?php if($alumniChapterMembership == "Balete"){ echo "selected"; } ?>>Balete</option>
+                      <option value="Banga" <?php if($alumniChapterMembership == "Banga"){ echo "selected"; } ?>>Banga</option>
+                      <option value="Batan" <?php if($alumniChapterMembership == "Batan"){ echo "selected"; } ?>>Batan</option>
+                      <option value="Buruanga" <?php if($alumniChapterMembership == "Buruanga"){ echo "selected"; } ?>>Buruanga</option>
+                      <option value="Ibajay" <?php if($alumniChapterMembership == "Ibajay"){ echo "selected"; } ?>>Ibajay</option>
+                      <option value="Kalibo" <?php if($alumniChapterMembership == "Kalibo"){ echo "selected"; } ?>>Kalibo</option>
+                      <option value="Lezo" <?php if($alumniChapterMembership == "Lezo"){ echo "selected"; } ?>>Lezo</option>
+                      <option value="Libacao" <?php if($alumniChapterMembership == "Libacao"){ echo "selected"; } ?>>Libacao</option>
+                      <option value="Madalag" <?php if($alumniChapterMembership == "Madalag"){ echo "selected"; } ?>>Madalag</option>
+                      <option value="Makato" <?php if($alumniChapterMembership == "Makato"){ echo "selected"; } ?>>Makato</option>
+                      <option value="Malay" <?php if($alumniChapterMembership == "Malay"){ echo "selected"; } ?>>Malay</option>
+                      <option value="Malinao" <?php if($alumniChapterMembership == "Malinao"){ echo "selected"; } ?>>Malinao</option>
+                      <option value="Nabas" <?php if($alumniChapterMembership == "Nabas"){ echo "selected"; } ?>>Nabas</option>
+                      <option value="New Washington" <?php if($alumniChapterMembership == "New Washington"){ echo "selected"; } ?>>New Washington</option>
+                      <option value="Numancia" <?php if($alumniChapterMembership == "Numancia"){ echo "selected"; } ?>>Numancia</option>
+                      <option value="Tangalan" <?php if($alumniChapterMembership == "Tangalan"){ echo "selected"; } ?>>Tangalan</option>
                     </select>
                     <label for="alumni_chapter_membership" class="form-label">Alumni Chapter Membership</label>
                 </div>
