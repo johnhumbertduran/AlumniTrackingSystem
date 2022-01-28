@@ -209,7 +209,7 @@ $post = "";
                 <div class="d-none" id="forWalkIn">
                 <!-- <hr> -->
                     <h6>Please download the form and submit to ACC OSA.</h6>
-                    <a href="bins/alumniRegistrationForm.pdf" class="btn text-light" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a>
+                    <a href="bins/alumniRegistrationForm.pdf" class="btn text-light col-4" id="downloadFile" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a>
                 </div>
                 
                 <div class="d-none" id="forBank">
