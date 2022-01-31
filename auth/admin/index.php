@@ -87,26 +87,23 @@ $uploadErr = "";
         }
     }
 
-    mysqli_query($connections, "INSERT INTO post_tbl (post_no,post,date,time,img)
+
+    $dbcon = mysqli_query($connections, "INSERT INTO post_tbl (post_no,post,date,time,img)
                                         VALUES ('20210000','$post','$date_now','$time_now','$target_file')");
+
             echo "<script>alert('Post added!'); window.location.href='?';</script>";
 
-    
+
+            echo "<script>alert('Post added!'); window.location.href='?';</script>";
             
             }
         }else{
+            echo "<script>alert('Please write something!');</script>";
         }
     }
 
 
 
-
-
-// if(isset($_POST["upload_btn"])){
-
-    
-
-// }
 
 
 ?>
@@ -204,7 +201,7 @@ $uploadErr = "";
     ?>
     <div class="container-fluid col-5 border border-dark rounded">
     <h6 class="float-left">Aklan Catholic College Official</h6>
-        <?php echo $my_post; ?>
+        <?php echo nl2br($my_post); ?>
         <p></p>
 
         <div class="text-center">
