@@ -212,14 +212,17 @@ if(isset($_SESSION["username"])){
                                                                 if((!preg_match("/@gmail\.com$/i", $email)) && (!preg_match("/@outlook\.com$/i", $email)) && (!preg_match("/@yahoo\.com$/i", $email)) ){
                                                                     echo "<script> alert('Please input correct email!'); </script>";
                                                                 }else{
-                                                                    mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,middle_name,home_address,
-                                                                        sex,civil_status,employment_address,current_work,elementary_graduate,highschool_graduate,college_graduate,
-                                                                        graduate_graduate,college_degree,graduate_degree,office_telephone,mobile_number,alumni_chapter_membership,
-                                                                        email_address,username,password,account_type)
-                                                                        VALUES ('$id_no','$lastName','$firstName','$middleName','$address','$sex','$civilStatus','$employmentAddress',
-                                                                        '$workPosition','$elementaryYearGraduate','$highSchoolYearGraduate','$collegeYearGraduate','$graduateSchoolYearGraduate',
-                                                                        '$collegeDegree','$graduateDegree','$officeTelephoneNo','$mobilePhoneNo','$alumniChapterMembership',
-                                                                        '$email','$userName','$password','2')");
+                                                                    mysqli_query($connections, "INSERT INTO users_tbl (id_no,last_name,first_name,
+                                                                    middle_name,home_address,sex,civil_status,employment_address,current_work,
+                                                                    elementary_graduate,highschool_graduate,college_graduate,graduate_graduate,
+                                                                    college_degree,graduate_degree,office_telephone,mobile_number,
+                                                                    alumni_chapter_membership,email_address,username,password,img,account_type,
+                                                                    secret_code) VALUES ('$id_no','$lastName','$firstName','$middleName','$address',
+                                                                    '$sex','$civilStatus','$employmentAddress','$workPosition',
+                                                                    '$elementaryYearGraduate','$highSchoolYearGraduate','$collegeYearGraduate',
+                                                                    '$graduateSchoolYearGraduate','$collegeDegree','$graduateDegree',
+                                                                    '$officeTelephoneNo','$mobilePhoneNo','$alumniChapterMembership','$email',
+                                                                    '$userName','$password','','2','') " );
                                                                     session_start();
                                                                     $session_user = $_POST["username"];
                                                                     $_SESSION["username"] = $session_user;

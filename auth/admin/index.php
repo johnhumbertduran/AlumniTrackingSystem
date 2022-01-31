@@ -76,9 +76,7 @@ $uploadErr = "";
             
             // echo "<script>window.location.href='?&&$wer';</script>";
 
-            mysqli_query($connections, "INSERT INTO post_tbl (post_no,post,date,time,img)
-                                        VALUES ('20210000','$post','$date_now','$time_now','$target_file')");
-            echo "<script>alert('Post added!'); window.location.href='?';</script>";
+            
 
             //   header('Location: ?&&' . $x . "_" . $qw . "=" . $r . "&&" . $o . "=" . $hg);
 
@@ -88,6 +86,10 @@ $uploadErr = "";
             echo 'Error:  '.$_FILES['profile_pic']['error'];
         }
     }
+
+    mysqli_query($connections, "INSERT INTO post_tbl (post_no,post,date,time,img)
+                                        VALUES ('20210000','$post','$date_now','$time_now','$target_file')");
+            echo "<script>alert('Post added!'); window.location.href='?';</script>";
 
     
             

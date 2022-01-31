@@ -34,7 +34,7 @@ if(isset($_SESSION["username"])){
 
     .text-over{
         white-space: nowrap;
-        width:70px;
+        width:50%;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -105,7 +105,7 @@ if(isset($_SESSION["username"])){
     <td><?php echo $id_no; ?></td>
     <td><?php echo $mode_of_payment; ?></td>
     <td><?php echo $date_of_payment; ?></td>
-    <td><p class="text-center text-over" style=""><?php echo $receipt_of_payment; ?></p></td>
+    <td><center><p class="text-over" style=""><?php echo $receipt_of_payment; ?></p></center></td>
     <td><?php echo $souvenir_program; ?></td>
     <td><?php echo "&#8369; " . number_format($total_amount, 2, '.', ','); ?></td>
 </tr>
