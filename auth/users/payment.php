@@ -45,6 +45,9 @@ $post = "";
             <?php
             $payment_method = $fullName = $reservationQuantity = $totalReservation = $small =
             $medium = $large = $extralarge = $doublexl = $souvenir = $totalAmount = "";
+            
+            $reservationQuantityWalk = $totalReservationWalk = $smallWalk =
+            $mediumWalk = $largeWalk = $extralargeWalk = $doublexlWalk = $souvenirWalk = $totalAmountWalk = "";
 
             if(isset($_POST["reservationQuantity"])){
                 $reservationQuantity = $_POST["reservationQuantity"];
@@ -208,10 +211,158 @@ $post = "";
                 
                 <div class="d-none" id="forWalkIn">
                 <!-- <hr> -->
-                    <h6>Please download the form and submit to ACC OSA.</h6>
+                    <h5 class="text-danger">Please fill up this form, download it and submit to ACC OSA.</h5>
+
+
+                    <div>
+                        <p><b>Registration Fee</b>  per person = Php 1,000 or US$20</p>
+                        <table id="myTable">
+                            <tr>
+                                <td>Reservation: &nbsp;</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="1" name="reservationQuantityWalk" value="<?php echo $reservationQuantityWalk;  ?>" width="10" id="reservationQuantityWalk" onchange="reservationChangeWalk()" onkeyup="reservationChangeWalk()"></td>
+                            </tr>
+                            <tr>
+                                <td>Total: </td>
+                                <td><input type="text" class="form-control form-control-sm col-6" name="totalReservationWalk" value="<?php echo $totalReservationWalk;  ?>" id="totalReservationWalk" style="width: 60px;" readonly></td>
+                            </tr>
+                            <tr>
+                                <td><b>T-Shirt Size(s): </b></td>
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="small" onchange="smallChangeWalk()" onkeyup="smallChangeWalk()"></td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="medium" onchange="mediumChangeWalk()" onkeyup="mediumChangeWalk()"></td>
+                            </tr>
+                            <tr>
+                                <td>Large</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="large" onchange="largeChangeWalk()" onkeyup="largeChangeWalk()"></td>
+                            </tr>
+                            <tr>
+                                <td>Extra Large</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xl" onchange="xlChangeWalk()" onkeyup="xlChangeWalk()"></td>
+                            </tr>
+                            <tr>
+                                <td>Double XL</td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xxl" onchange="xxlChangeWalk()" onkeyup="xxlChangeWalk()"></td>
+                            </tr>
+                            
+                        </table>
+                        <br>
+                        <table class="w-100">
+                            <tr>
+                                <td><b>DIAMOND JUBILEE SOUVENIR PROGRAM</b></td>
+                            </tr>
+                            <tr>
+                                <td class="">
+                                <div class="form-check d-flex">
+                                  <!-- <input class="form-check-input" type="checkbox" id="wholepage" onclick="wholePageClick()"> -->
+                                  <input class="form-check-input" type="radio" name="souvenirWalk" value="Whole Page" <?php if($souvenirWalk == "Whole Page"){ echo "checked"; } ?> id="wholepageWalk" onclick="wholePageClickWalk()">
+                                  <label class="form-check-label flex-fill" for="wholepageWalk">
+                                     &nbsp; Whole page, 
+                                  </label>
+                                  <p class="float-right justify-content-end">Php 5,000.00</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check d-flex">
+                                  <!-- <input class="form-check-input" type="checkbox" value="" id="halfpage" onclick="halfPageClick()"> -->
+                                  <input class="form-check-input" type="radio" name="souvenirWalk" value="Half Page" <?php if($souvenirWalk == "Half Page"){ echo "checked"; } ?> id="halfpageWalk" onclick="halfPageClickWalk()">
+                                  <label class="form-check-label flex-fill" for="halfpageWalk">
+                                  &nbsp; Half page,
+                                  </label>
+                                  <p class="float-right justify-content-end">Php 3,000.00</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check d-flex">
+                                  <!-- <input class="form-check-input" type="checkbox" value="" id="frontcoverpage" onclick="frontCoverPageClick()"> -->
+                                  <input class="form-check-input" type="radio" name="souvenirWalk" value="Front Cover Page" <?php if($souvenirWalk == "Front Cover Page"){ echo "checked"; } ?> id="frontcoverpageWalk" onclick="frontCoverPageClickWalk()">
+                                  <label class="form-check-label flex-fill" for="frontcoverpageWalk">
+                                  &nbsp; Inside Front Cover page, 
+                                  </label>
+                                  <p class="float-right justify-content-end">Php10,000.00</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check d-flex">
+                                  <!-- <input class="form-check-input" type="checkbox" value="" id="backcoverpage" onclick="backCoverPageClick()"> -->
+                                  <input class="form-check-input" type="radio" name="souvenirWalk" value="Back Cover Page" <?php if($souvenirWalk == "Back Cover Page"){ echo "checked"; } ?> id="backcoverpageWalk" onclick="backCoverPageClickWalk()">
+                                  <label class="form-check-label flex-fill" for="backcoverpageWalk">
+                                  &nbsp; Inside Back Cover page, 
+                                  </label>
+                                  <p class="float-right justify-content-end">Php10,000.00</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check d-flex">
+                                  <!-- <input class="form-check-input" type="checkbox" value="" id="flipcoverpage" onclick="flipCoverPageClick()"> -->
+                                  <input class="form-check-input" type="radio" name="souvenirWalk" value="Flip Cover Page" <?php if($souvenirWalk == "Flip Cover Page"){ echo "checked"; } ?> id="flipcoverpageWalk" onclick="flipCoverPageClickWalk()">
+                                  <label class="form-check-label flex-fill" for="flipcoverpageWalk">
+                                  &nbsp; Inside Flip Front Cover page, 
+                                  </label>
+                                  <p class="float-right justify-content-end">Php10,000.00</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <div class="form-check d-flex">
+                                  <!-- <input class="form-check-input" type="checkbox" value="" id="oneliner" onclick="oneLinerClick()"> -->
+                                  <input class="form-check-input" type="radio" name="souvenirWalk" value="One Liner" <?php if($souvenirWalk == "One Liner"){ echo "checked"; } ?> id="onelinerWalk" onclick="oneLinerClickWalk()">
+                                  <label class="form-check-label flex-fill" for="onelinerWalk">
+                                  &nbsp; One Liner, 
+                                  </label>
+                                  <p class="float-right justify-content-end">Php 1,000.00</p>
+                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>* with 3 free registrants plus souviner program</td>
+                            </tr>
+                            <tr>
+                                <td>* with 1 free registrants plus souviner program</td>
+                            </tr>
+                            <tr>
+                                <td>* with 2 free T-shirts</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <?php /* echo $totalAmount; */  ?>
+                            <tr>
+                                <td>TOTAL AMOUNT DEPOSITED/PAID: </td>
+                                <td><input type="text" class="form-control form-control-sm col-6" id="total_amountWalk" style="width: 60px;" disabled></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
                     <a href="bins/alumniRegistrationForm.pdf" class="btn text-light col-4" id="downloadFile" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a>
                 </div>
                 
+
+
+
+
+
+
+
+
+
+
+
                 <div class="d-none" id="forBank">
                 <!-- <hr> -->
                 
