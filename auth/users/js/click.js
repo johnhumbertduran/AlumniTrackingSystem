@@ -38,7 +38,7 @@ function bankPayment(){
 
 }
 
-bankPayment();
+// bankPayment();
 
 let qty = document.getElementById("reservationQuantity").value;
 let tSum = 0;
@@ -443,3 +443,389 @@ function totalAmountClick(){
     // document.getElementById("reservation").value = totalReservation;
 }
 totalAmountClick();
+
+
+
+
+
+
+
+// #############################################################################################
+// #############################################################################################
+// #############################################################################################
+// #############################################################################################
+// #############################################################################################
+// #############################################################################################
+// #############################################################################################
+// #############################################################################################
+
+                                        // FOR WALK IN SCRIPTS
+
+let qtyWalk = document.getElementById("reservationQuantityWalk").value;
+let tSumWalk = 0;
+let smallWalk = document.getElementById("smallWalk");
+let mediumWalk = document.getElementById("mediumWalk");
+let largeWalk = document.getElementById("largeWalk");
+let xlWalk = document.getElementById("xlWalk");
+let xxlWalk = document.getElementById("xxlWalk");
+let totalReservationFormulaWalk;
+let totalReservationWalk = document.getElementById("totalReservationWalk");
+
+let wholepageWalk = document.getElementById("wholepageWalk");
+let halfpageWalk = document.getElementById("halfpageWalk");
+let frontcoverpageWalk = document.getElementById("frontcoverpageWalk");
+let backcoverpageWalk = document.getElementById("backcoverpageWalk");
+let flipcoverpageWalk = document.getElementById("flipcoverpageWalk");
+let onelinerWalk = document.getElementById("onelinerWalk");
+
+let totalAmountWalk = document.getElementById("total_amountWalk");
+let totalSouvenirWalk = 0;
+let wholepageAmountWalk = 0;
+let halfpageAmountWalk = 0;
+let frontcoverpageAmountWalk = 0;
+let backcoverpageAmountWalk = 0;
+let flipcoverpageAmountWalk = 0;
+let onelinerAmountWalk = 0;
+let smallTWalk = document.getElementById("smallTWalk");
+let mediumTWalk = document.getElementById("mediumTWalk");
+let largeTWalk = document.getElementById("largeTWalk");
+let extralargeTWalk = document.getElementById("extralargeTWalk");
+let doublexlTWalk = document.getElementById("doublexlTWalk");
+let souvenirWalk = document.getElementById("souvenirTWalk");
+let totalamountTWalk = document.getElementById("totalamountTWalk");
+
+    smallWalk.value = smallTWalk.value;
+    mediumWalk.value = mediumTWalk.value;
+    largeWalk.value = largeTWalk.value;
+    xlWalk.value = extralargeTWalk.value;
+    xxlWalk.value = doublexlTWalk.value;
+    
+
+function sumShirtsWalk(){
+    tSumWalk = parseInt(smallWalk.value) + parseInt(mediumWalk.value) + parseInt(largeWalk.value) + parseInt(xlWalk.value) + parseInt(xxlWalk.value);
+    
+}
+
+
+sumShirtsWalk();
+if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+
+function wholePageClickWalk(){
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        // wholepageAmount = 5000;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalAmountWalk.value) - wholepageAmountWalk;
+    }
+}
+
+function halfPageClickWalk(){
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        // halfpageAmount = 0;
+        totalAmountWalk.value = parseInt(totalAmountWalk.value) - halfpageAmountWalk;
+    }
+}
+
+function frontCoverPageClickWalk(){
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        // frontcoverpageAmount = 0;
+        totalAmountWalk.value = parseInt(totalAmountWalk.value) - frontcoverpageAmountWalk;
+    }
+}
+
+function backCoverPageClickWalk(){
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        // totalSouvenir = wholepageAmount + halfpageAmount + frontcoverpageAmount + backcoverpageAmount + flipcoverpageAmount + onelinerAmount;
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        // backcoverpageAmount = 0;
+        totalAmountWalk.value = parseInt(totalAmountWalk.value) - backcoverpageAmountWalk;
+    }
+}
+
+function flipCoverPageClickWalk(){
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        // flipcoverpageAmount = 0;
+        totalAmountWalk.value = parseInt(totalAmountWalk.value) - flipcoverpageAmountWalk;
+    }
+}
+
+function oneLinerClickWalk(){
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalAmountWalk.value) - onelinerAmountWalk;
+    }
+}
+
+totalAmountWalk.addEventListener("change", totalAmountChangeWalk);
+
+function totalAmountChangeWalk(){
+    totalamountTWalk.value = totalReservationFormulaWalk;
+}
+
+function reservationChangeWalk(){
+    
+    totalReservationFormulaWalk = document.getElementById("reservationQuantityWalk").value *1000;
+    totalReservationWalk.value = totalReservationFormulaWalk;
+    totalAmountChangeWalk();
+    
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - wholepageAmountWalk;
+    }
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - halfpageAmountWalk;
+    }
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - frontcoverpageAmountWalk;
+    }
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - backcoverpageAmountWalk;
+    }
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - flipcoverpageAmountWalk;
+    }
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - onelinerAmountWalk;
+    }
+
+    if(document.getElementById("reservationQuantityWalk").value >= tSumWalk){
+        smallWalk.disabled = false;
+        mediumWalk.disabled = false;
+        largeWalk.disabled = false;
+        xlWalk.disabled = false;
+        xxlWalk.disabled = false;
+    }
+    // alert(tSum);
+    if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        document.getElementById("reservationQuantityWalk").value = tSumWalk;
+        document.getElementById("totalReservationWalk").value = document.getElementById("reservationQuantityWalk").value * 1000;
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+    
+}
+
+    
+
+function smallChangeWalk(){
+    sumShirtsWalk();
+    // alert(tSum.value);
+    if(parseInt(smallWalk.value) >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+    
+    if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+
+    document.getElementById("smallTWalk").value = document.getElementById("smallWalk").value;
+}
+
+function mediumChangeWalk(){
+    sumShirtsWalk();
+    // alert(tSum.value);
+    if(parseInt(mediumWalk.value) >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+    sumShirtsWalk();
+    if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+
+    document.getElementById("mediumTWalk").value = document.getElementById("mediumWalk").value;
+}
+
+function largeChangeWalk(){
+    if(parseInt(largeWalk.value) >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+    sumShirtsWalk();
+    if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+
+    document.getElementById("largeTWalk").value = document.getElementById("largeWalk").value;
+}
+
+function xlChangeWalk(){
+    if(parseInt(xlWalk.value) >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+    sumShirtsWalk();
+    if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+
+    document.getElementById("extralargeTWalk").value = document.getElementById("xlWalk").value;
+}
+
+function xxlChangeWalk(){
+    if(parseInt(xxlWalk.value) >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+    sumShirtsWalk();
+    if(tSumWalk >= document.getElementById("reservationQuantityWalk").value){
+        smallWalk.disabled = true;
+        mediumWalk.disabled = true;
+        largeWalk.disabled = true;
+        xlWalk.disabled = true;
+        xxlWalk.disabled = true;
+    }
+
+    document.getElementById("doublexlTWalk").value = document.getElementById("xxlWalk").value;
+}
+
+function totalAmountClickWalk(){
+
+    if(wholepageWalk.checked == true){
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + 5000;
+    }
+    
+    if(halfpageWalk.checked == true){
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + 3000;
+    }
+    
+    if(frontcoverpageWalk.checked == true){
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + 10000;
+    }
+    
+    if(backcoverpageWalk.checked == true){
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + 10000;
+    }
+    
+    if(flipcoverpageWalk.checked == true){
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + 10000;
+    }
+    
+    if(onelinerWalk.checked == true){
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + 1000;
+    }
+
+    if((wholepageWalk.checked == false) || (halfpageWalk.checked == false) || (frontcoverpageWalk.checked == false) || (backcoverpageWalk.checked == false) || (flipcoverpageWalk.checked == false) || (onelinerWalk.checked == false)){
+        totalAmountWalk.value = totalAmountWalk.value;
+    }
+    // totalReservation = document.getElementById("reservationQuantity").value *1000;
+    // document.getElementById("reservation").value = totalReservation;
+}
+totalAmountClickWalk();

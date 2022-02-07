@@ -180,6 +180,152 @@ $post = "";
                 }
 
             }
+            
+            
+            
+            
+            // ##################################################################################################
+            // ##################################################################################################
+            // ##################################################################################################
+            // ##################################################################################################
+            // ##################################################################################################
+            //                                          FOR WALK IN PAYMENT
+            
+            
+            
+            
+            
+            if(isset($_POST["reservationQuantityWalk"])){
+                $reservationQuantityWalk = $_POST["reservationQuantityWalk"];
+            }else{
+                $reservationQuantityWalk = 1;
+            }
+            
+            if(isset($_POST["totalReservationWalk"])){
+                $totalReservationWalk = $_POST["totalReservationWalk"];
+            }else{
+                $totalReservationWalk = 1000;
+            }
+
+            if(isset($_POST["smallWalk"])){
+                $smallWalk = $_POST["smallWalk"];
+            }else{
+                $smallWalk = 0;
+            }
+
+            if(isset($_POST["mediumWalk"])){
+                $mediumWalk = $_POST["mediumWalk"];
+            }else{
+                $mediumWalk = 0;
+            }
+
+            if(isset($_POST["largeWalk"])){
+                $largeWalk = $_POST["largeWalk"];
+            }else{
+                $largeWalk = 0;
+            }
+
+            if(isset($_POST["extralargeWalk"])){
+                $extralargeWalk = $_POST["extralargeWalk"];
+            }else{
+                $extralargeWalk = 0;
+            }
+
+            if(isset($_POST["doublexlWalk"])){
+                $doublexlWalk = $_POST["doublexlWalk"];
+            }else{
+                $doublexlWalk = 0;
+            }
+
+
+            if(isset($_POST["paymentWalk"])){
+
+                // require_once 'vendor/stripe/stripe-php/init.php';
+
+                if(!empty($_POST["payment_methodWalk"])){
+
+                    // $id_no = $_POST['id_no'];
+                    // $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no'");
+                    // $get_alumni_names = mysqli_fetch_assoc($check_alumni_id);
+                    // $firstName = $get_alumni_names["first_name"];
+                    // $lastName = $get_alumni_names["last_name"];
+                    // $middleName = $get_alumni_names["middle_name"];
+                    // $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
+                    // $payment_method = $_POST["payment_method"];
+                    // $search = $_POST['id_no'];
+
+                    $payment_method = $_POST["payment_methodWalk"];
+                    
+                    // $totalReservation = $_POST["totalReservation"];
+
+                    if(!empty($_POST["reservationQuantityWalk"])){
+                        $reservationQuantityWalk = $_POST["reservationQuantityWalk"];
+                    }else{
+                        echo "empty!";
+                    }
+                    
+                    if(!empty($_POST["totalReservationWalk"])){
+                        $totalReservationWalk = $_POST["totalReservationWalk"];
+                    }else{
+                        echo "total empty!";
+                    }
+                    
+                    if(!empty($_POST["totalamountWalk"])){
+                        $totalAmountWalk = intval($_POST["totalamountWalk"]);
+                        // echo $totalAmount;
+                    }else{
+                        echo "total empty!";
+                    }
+                    
+                    if(!empty($_POST["souvenirWalk"])){
+                        $souvenirWalk = $_POST["souvenirWalk"];
+                    }else{
+                        // echo "souvenir empty!";
+                    }
+                    
+                    $sizeErrorWalk = 0;
+                    $sizeTotalWalk = $smallWalk + $mediumWalk + $largeWalk + $extralargeWalk + $doublexlWalk;
+
+                    if($sizeTotalWalk < $reservationQuantityWalk){
+                        $sizeErrorWalk = 1;
+                    }
+
+                    if($payment_methodWalk && $reservationQuantityWalk && ($sizeErrorWalk == 0) && $totalAmountWalk){
+                        
+
+                        // echo "<script>alert('submit yarn');</script>";
+                        $_SESSION["totalAmountWalk"] = $totalAmountWalk;
+
+                        if($smallWalk > 0){
+                            $_SESSION["smallWalk"] = $smallWalk;
+                        }
+                        if($mediumWalk > 0){
+                            $_SESSION["mediumWalk"] = $mediumWalk;
+                        }
+                        if($largeWalk > 0){
+                            $_SESSION["largeWalk"] = $largeWalk;
+                        }
+                        if($extralargeWalk > 0){
+                            $_SESSION["extralargeWalk"] = $extralargeWalk;
+                        }
+                        if($doublexlWalk > 0){
+                            $_SESSION["doublexlWalk"] = $doublexlWalk;
+                        }
+
+                        $_SESSION["id_no"] = $id_noWalk;
+                        
+                        $_SESSION["souvenirWalk"] = $souvenirWalk;
+                        $_SESSION["reservationQuantityWalk"] = $reservationQuantityWalk;
+                        // $totalAmount = $_SESSION["totalAmount"];
+
+                        echo "<script>window.location.href='redir';</script>";
+                    }
+                    
+                }else{
+                    echo "<script>alert('Payment Method empty!');</script>";
+                }
+
+            }
 
             
             ?>
@@ -216,7 +362,7 @@ $post = "";
 
                     <div>
                         <p><b>Registration Fee</b>  per person = Php 1,000 or US$20</p>
-                        <table id="myTable">
+                        <table id="myTableWalk">
                             <tr>
                                 <td>Reservation: &nbsp;</td>
                                 <td><input type="number" class="form-control form-control-sm col-6" min="1" name="reservationQuantityWalk" value="<?php echo $reservationQuantityWalk;  ?>" width="10" id="reservationQuantityWalk" onchange="reservationChangeWalk()" onkeyup="reservationChangeWalk()"></td>
@@ -230,23 +376,23 @@ $post = "";
                             </tr>
                             <tr>
                                 <td>Small</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="small" onchange="smallChangeWalk()" onkeyup="smallChangeWalk()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="smallWalk" onchange="smallChangeWalk()" onkeyup="smallChangeWalk()"></td>
                             </tr>
                             <tr>
                                 <td>Medium</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="medium" onchange="mediumChangeWalk()" onkeyup="mediumChangeWalk()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="mediumWalk" onchange="mediumChangeWalk()" onkeyup="mediumChangeWalk()"></td>
                             </tr>
                             <tr>
                                 <td>Large</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="large" onchange="largeChangeWalk()" onkeyup="largeChangeWalk()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="largeWalk" onchange="largeChangeWalk()" onkeyup="largeChangeWalk()"></td>
                             </tr>
                             <tr>
                                 <td>Extra Large</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xl" onchange="xlChangeWalk()" onkeyup="xlChangeWalk()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xlWalk" onchange="xlChangeWalk()" onkeyup="xlChangeWalk()"></td>
                             </tr>
                             <tr>
                                 <td>Double XL</td>
-                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xxl" onchange="xxlChangeWalk()" onkeyup="xxlChangeWalk()"></td>
+                                <td><input type="number" class="form-control form-control-sm col-6" min="0" value="0" width="10" id="xxlWalk" onchange="xxlChangeWalk()" onkeyup="xxlChangeWalk()"></td>
                             </tr>
                             
                         </table>
@@ -351,6 +497,13 @@ $post = "";
 
                     <a href="bins/alumniRegistrationForm.pdf" class="btn text-light col-4" id="downloadFile" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a>
                 </div>
+
+                    <input type="hidden" name="smallWalk" value="<?php echo $smallWalk;  ?>" id="smallTWalk">
+                    <input type="hidden" name="mediumWalk" value="<?php echo $mediumWalk;  ?>" id="mediumTWalk">
+                    <input type="hidden" name="largeWalk" value="<?php echo $largeWalk;  ?>" id="largeTWalk">
+                    <input type="hidden" name="extralargeWalk" value="<?php echo $extralargeWalk;  ?>" id="extralargeTWalk">
+                    <input type="hidden" name="doublexlWalk" value="<?php echo $doublexlWalk;  ?>" id="doublexlTWalk">
+                    <input type="hidden" name="totalamountWalk" value="<?php echo $totalAmountWalk;  ?>" id="totalamountTWalk">
                 
 
 
@@ -559,6 +712,7 @@ $post = "";
 </div>
 
 <script src="js/click.js"></script>
+
 <script>
 function isNumberKey(evt){
 
