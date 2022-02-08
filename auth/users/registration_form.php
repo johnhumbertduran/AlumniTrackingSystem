@@ -75,8 +75,8 @@ class myPDF extends FPDF{
 $pdf = new myPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('P','A4',0);
-$pdf->headerTable();
+$pdf->headerTable($connections);
 // $pdf->viewTable($connections);
-$pdf->Output("I","final_file");
+$pdf->Output("I","Aklan Catholic College Registration Fee");
 
 ?>

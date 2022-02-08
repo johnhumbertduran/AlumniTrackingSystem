@@ -711,6 +711,67 @@ function smallChangeWalk(){
         xxlWalk.disabled = true;
     }
 
+
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - wholepageAmountWalk;
+    }
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - halfpageAmountWalk;
+    }
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - frontcoverpageAmountWalk;
+    }
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - backcoverpageAmountWalk;
+    }
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - flipcoverpageAmountWalk;
+    }
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - onelinerAmountWalk;
+    }
+
     document.getElementById("smallTWalk").value = document.getElementById("smallWalk").value;
 }
 
@@ -733,6 +794,66 @@ function mediumChangeWalk(){
         xxlWalk.disabled = true;
     }
 
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - wholepageAmountWalk;
+    }
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - halfpageAmountWalk;
+    }
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - frontcoverpageAmountWalk;
+    }
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - backcoverpageAmountWalk;
+    }
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - flipcoverpageAmountWalk;
+    }
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - onelinerAmountWalk;
+    }
+
     document.getElementById("mediumTWalk").value = document.getElementById("mediumWalk").value;
 }
 
@@ -753,6 +874,66 @@ function largeChangeWalk(){
         xxlWalk.disabled = true;
     }
 
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - wholepageAmountWalk;
+    }
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - halfpageAmountWalk;
+    }
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - frontcoverpageAmountWalk;
+    }
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - backcoverpageAmountWalk;
+    }
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - flipcoverpageAmountWalk;
+    }
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - onelinerAmountWalk;
+    }
+    
     document.getElementById("largeTWalk").value = document.getElementById("largeWalk").value;
 }
 
@@ -773,6 +954,66 @@ function xlChangeWalk(){
         xxlWalk.disabled = true;
     }
 
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - wholepageAmountWalk;
+    }
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - halfpageAmountWalk;
+    }
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - frontcoverpageAmountWalk;
+    }
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - backcoverpageAmountWalk;
+    }
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - flipcoverpageAmountWalk;
+    }
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - onelinerAmountWalk;
+    }
+
     document.getElementById("extralargeTWalk").value = document.getElementById("xlWalk").value;
 }
 
@@ -791,6 +1032,66 @@ function xxlChangeWalk(){
         largeWalk.disabled = true;
         xlWalk.disabled = true;
         xxlWalk.disabled = true;
+    }
+
+    if(wholepageWalk.checked == true){
+        wholepageAmountWalk = 5000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + wholepageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - wholepageAmountWalk;
+    }
+
+    if(halfpageWalk.checked == true){
+        halfpageAmountWalk = 3000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + halfpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - halfpageAmountWalk;
+    }
+
+    if(frontcoverpageWalk.checked == true){
+        frontcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + frontcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - frontcoverpageAmountWalk;
+    }
+
+    if(backcoverpageWalk.checked == true){
+        backcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + backcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - backcoverpageAmountWalk;
+    }
+
+    if(flipcoverpageWalk.checked == true){
+        flipcoverpageAmountWalk = 10000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + flipcoverpageAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - flipcoverpageAmountWalk;
+    }
+
+    if(onelinerWalk.checked == true){
+        onelinerAmountWalk = 1000;
+        
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) + onelinerAmountWalk;
+        totalamountTWalk.value = totalAmountWalk.value;
+        return totalAmountWalk.value
+    }else{
+        totalAmountWalk.value = parseInt(totalReservationWalk.value) - onelinerAmountWalk;
     }
 
     document.getElementById("doublexlTWalk").value = document.getElementById("xxlWalk").value;

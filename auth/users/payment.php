@@ -47,7 +47,8 @@ $post = "";
             $medium = $large = $extralarge = $doublexl = $souvenir = $totalAmount = "";
             
             $reservationQuantityWalk = $totalReservationWalk = $smallWalk =
-            $mediumWalk = $largeWalk = $extralargeWalk = $doublexlWalk = $souvenirWalk = $totalAmountWalk = "";
+            $mediumWalk = $largeWalk = $extralargeWalk = $doublexlWalk = $souvenirWalk = 
+            $id_noWalk = $totalAmountWalk = "";
 
             if(isset($_POST["reservationQuantity"])){
                 $reservationQuantity = $_POST["reservationQuantity"];
@@ -238,23 +239,13 @@ $post = "";
             }
 
 
-            if(isset($_POST["paymentWalk"])){
+            if(isset($_POST["submit-to-pdf"])){
+                
 
-                // require_once 'vendor/stripe/stripe-php/init.php';
+                if(!empty($_POST["payment_method"])){
+                    
 
-                if(!empty($_POST["payment_methodWalk"])){
-
-                    // $id_no = $_POST['id_no'];
-                    // $check_alumni_id = mysqli_query($connections, "SELECT * FROM users_tbl WHERE id_no='$id_no'");
-                    // $get_alumni_names = mysqli_fetch_assoc($check_alumni_id);
-                    // $firstName = $get_alumni_names["first_name"];
-                    // $lastName = $get_alumni_names["last_name"];
-                    // $middleName = $get_alumni_names["middle_name"];
-                    // $fullName = $firstName . " " . ucfirst($middleName[0]) . "." . " " . $lastName;
-                    // $payment_method = $_POST["payment_method"];
-                    // $search = $_POST['id_no'];
-
-                    $payment_method = $_POST["payment_methodWalk"];
+                    $payment_method = $_POST["payment_method"];
                     
                     // $totalReservation = $_POST["totalReservation"];
 
@@ -274,12 +265,13 @@ $post = "";
                         $totalAmountWalk = intval($_POST["totalamountWalk"]);
                         // echo $totalAmount;
                     }else{
-                        echo "total empty!";
+                        // echo "total empty!";
                     }
                     
                     if(!empty($_POST["souvenirWalk"])){
                         $souvenirWalk = $_POST["souvenirWalk"];
                     }else{
+                        $souvenirWalk = "none";
                         // echo "souvenir empty!";
                     }
                     
@@ -289,41 +281,59 @@ $post = "";
                     if($sizeTotalWalk < $reservationQuantityWalk){
                         $sizeErrorWalk = 1;
                     }
+                    // echo "<script>alert('$sizeErrorWalk');</script>";
+                    // echo "<script>alert('$sizeTotalWalk');</script>";
+                    if($payment_method){
 
-                    if($payment_methodWalk && $reservationQuantityWalk && ($sizeErrorWalk == 0) && $totalAmountWalk){
-                        
+                        // $_SESSION["totalAmountWalk"] = $totalAmountWalk;
 
-                        // echo "<script>alert('submit yarn');</script>";
-                        $_SESSION["totalAmountWalk"] = $totalAmountWalk;
+                        if($sizeErrorWalk == 0){
 
-                        if($smallWalk > 0){
-                            $_SESSION["smallWalk"] = $smallWalk;
-                        }
-                        if($mediumWalk > 0){
-                            $_SESSION["mediumWalk"] = $mediumWalk;
-                        }
-                        if($largeWalk > 0){
-                            $_SESSION["largeWalk"] = $largeWalk;
-                        }
-                        if($extralargeWalk > 0){
-                            $_SESSION["extralargeWalk"] = $extralargeWalk;
-                        }
-                        if($doublexlWalk > 0){
-                            $_SESSION["doublexlWalk"] = $doublexlWalk;
+                            if($smallWalk > 0){
+                                $_SESSION["smallWalk"] = $smallWalk;
+                            }
+                            if($mediumWalk > 0){
+                                $_SESSION["mediumWalk"] = $mediumWalk;
+                            }
+                            if($largeWalk > 0){
+                                $_SESSION["largeWalk"] = $largeWalk;
+                            }
+                            if($extralargeWalk > 0){
+                                $_SESSION["extralargeWalk"] = $extralargeWalk;
+                            }
+                            if($doublexlWalk > 0){
+                                $_SESSION["doublexlWalk"] = $doublexlWalk;
+                            }
+
+                            // $_SESSION["id_no"] = $id_noWalk;
+                            // $_SESSION["souvenirWalk"] = $souvenirWalk;
+                            // $_SESSION["reservationQuantityWalk"] = $reservationQuantityWalk;
+                            // $totalAmount = $_SESSION["totalAmount"];
+                            $_SESSION["res"] = $reservationQuantityWalk;
+                            $_SESSION["sw"] = $smallWalk;
+                            $_SESSION["mw"] = $mediumWalk;
+                            $_SESSION["lw"] = $largeWalk;
+                            $_SESSION["xlw"] = $extralargeWalk;
+                            $_SESSION["xxlw"] = $doublexlWalk;
+                            $_SESSION["spw"] = $souvenirWalk;
+
+                            if($sizeTotalWalk == 0){
+                                echo "<script>alert('$sizeTotalWalk');</script>";
+                                echo "<script>alert('Please check T-Shirt Sizes!');</script>";
+                            }else{
+                                // echo "<script>alert('$sizeTotalWalk');</script>";
+                                // echo "<script>window.location.href='registration_form.php?res=$reservationQuantityWalk&_s=$smallWalk&_m=$mediumWalk&_l=$largeWalk&_xl=$extralargeWalk&_xxl=$doublexlWalk&_spr=$souvenirWalk';</script>";
+                                echo "<script>window.location.href='registration_form.php';</script>";
+                            }
+
                         }
 
-                        $_SESSION["id_no"] = $id_noWalk;
-                        
-                        $_SESSION["souvenirWalk"] = $souvenirWalk;
-                        $_SESSION["reservationQuantityWalk"] = $reservationQuantityWalk;
-                        // $totalAmount = $_SESSION["totalAmount"];
-
-                        echo "<script>window.location.href='redir';</script>";
                     }
                     
                 }else{
                     echo "<script>alert('Payment Method empty!');</script>";
                 }
+                    // echo "<script>alert('yeah!');</script>";
 
             }
 
@@ -495,7 +505,8 @@ $post = "";
 
 
 
-                    <a href="bins/alumniRegistrationForm.pdf" class="btn text-light col-4" id="downloadFile" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a>
+                    <!-- <a href="bins/alumniRegistrationForm.pdf" class="btn text-light col-4" id="downloadFile" style="background-color:rgb(112, 173, 70);">DOWNLOAD FORM HERE</a> -->
+                    <input type="submit" class="btn text-light" id="downloadFile" style="background-color:rgb(112, 173, 70);" value="submit" name="submit-to-pdf">
                 </div>
 
                     <input type="hidden" name="smallWalk" value="<?php echo $smallWalk;  ?>" id="smallTWalk">
@@ -505,16 +516,7 @@ $post = "";
                     <input type="hidden" name="doublexlWalk" value="<?php echo $doublexlWalk;  ?>" id="doublexlTWalk">
                     <input type="hidden" name="totalamountWalk" value="<?php echo $totalAmountWalk;  ?>" id="totalamountTWalk">
                 
-
-
-
-
-
-
-
-
-
-
+                    
 
                 <div class="d-none" id="forBank">
                 <!-- <hr> -->
