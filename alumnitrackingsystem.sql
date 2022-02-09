@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 12:21 PM
+-- Generation Time: Feb 09, 2022 at 02:33 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -68,7 +68,7 @@ INSERT INTO `payments_tbl` (`id`, `id_no`, `cash_official_receipt`, `cash_date_o
 CREATE TABLE `post_tbl` (
   `id` int(11) NOT NULL,
   `post_no` varchar(255) NOT NULL,
-  `post` varchar(255) NOT NULL,
+  `post` text NOT NULL,
   `date` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL
@@ -88,7 +88,11 @@ INSERT INTO `post_tbl` (`id`, `post_no`, `post`, `date`, `time`, `img`) VALUES
 (15, '20210000', '\r\n\r\nQuis lectus nulla at volutpat diam ut venenatis tellus. Ornare lectus sit amet est placerat. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Cursus eget nunc scelerisque viverra mauris in aliquam sem. Dolor morbi non arcu risus ', '01/17/2022', '04:56', ''),
 (16, '20210000', '\r\n\r\nFeugiat in ante metus dictum at. A erat nam at lectus urna duis convallis. Venenatis tellus in metus vulputate eu scelerisque felis. Aliquam etiam erat velit scelerisque. Integer malesuada nunc vel risus commodo. Orci ac auctor augue mauris augue. Ali', '01/17/2022', '04:56', ''),
 (17, '20210000', 'last', '01/24/2022', '09:49', ''),
-(18, '20210000', 'Post Test 1', '01/26/2022', '11:19', 'bins/img/1099133.jpg');
+(18, '20210000', 'Post Test 1', '01/26/2022', '11:19', 'bins/img/1099133.jpg'),
+(19, '20210000', 'post no pic', '01/31/2022', '03:20', 'bins/img/1679_'),
+(20, '20210000', 'post with pic', '01/31/2022', '03:20', 'bins/img/241356596_909453352996171_4856989144506002315_n.jpg'),
+(21, '20210000', '𝘼𝙆𝙇𝘼𝙉 𝘾𝘼𝙏𝙃𝙊𝙇𝙄𝘾 𝘾𝙊𝙇𝙇𝙀𝙂𝙀 happily announces that the enrollment for the Second Semester, Academic Year 2021-2022 is now officially open. Enrollment may be done online (for Higher Education Department students only) through this web browser: http://acc.hbsi.p', '02/01/2022', '04:48', 'bins/img/9587_c.jpg'),
+(22, '20210000', '𝘼𝙆𝙇𝘼𝙉 𝘾𝘼𝙏𝙃𝙊𝙇𝙄𝘾 𝘾𝙊𝙇𝙇𝙀𝙂𝙀 happily announces that the enrollment for the Second Semester, Academic Year 2021-2022 is now officially open. Enrollment may be done online (for Higher Education Department students only) through this web browser: http://acc.hbsi.ph/OSIRIS_ACC.\r\n; or personally register at the main campus at Archbishop Reyes Street, Kalibo, Aklan. Classes will start on January 31, 2022!\r\nNew students and transferees are also welcome to join our ACC community!\r\nPrograms offered:\r\n• Master of Arts in Education\r\n• Master in Business Administration\r\n• Juris Doctor\r\n• Teacher Education Certificate Program\r\n• Bachelor of Secondary Education\r\n• Bachelor of Elementary Education\r\n• Bachelor of Arts\r\n• BS Criminology\r\n• BS Nursing\r\n• BS Business Administration\r\n• BS Hospitality Management\r\n• BS Tourism Management\r\n• BS Accountancy\r\n• BS Accounting Information System\r\n• BS Real Estate Management\r\n• BS Computer Science\r\n• BS Information Technology\r\n• Associate in Computer Technology\r\nFor more information, please contact the Vice President for Academic Affairs, the Registrar, or the Department Deans at (036)268-4152.\r\n𝘼𝘾𝘾 𝘾𝙖𝙧𝙚𝙨 𝙖𝙣𝙙 𝙎𝙚𝙧𝙫𝙚𝙨', '02/01/2022', '04:49', 'bins/img/4592_c.jpg');
 
 -- --------------------------------------------------------
 
@@ -138,7 +142,8 @@ INSERT INTO `users_tbl` (`id`, `id_no`, `last_name`, `first_name`, `middle_name`
 (20210018, '20210006', 'juskooooo', 'nako', 'ed wow', 'cawayan', 'Male', 'Married', 'dsdardrr', 'mid lane', '', '2016', '', '', '', '', '', '09767765655', 'sdasdsa', 'ahshhshdd@gmail.com', 'juskoo', '123456', '', '2', ''),
 (20210019, '20210007', 'jsdghfksdhjfgh', 'jsdghfksdhjfgh', 'jsdghfksdhjfgh', 'jsdghfksdhjfgh', 'Male', 'Married', 'jsdghfksdhjfgh', 'jsdghfksdhjfgh', '2013', '', '2016', '', 'jsdghfksdhjfgh', '', 'jsdghfk', 'jsdghfksdhj', 'jsdghfksdhjfgh', 'johnhumbertd@gmail.com', 'jsdghfksdhjfgh', 'password', '', '2', ''),
 (20210020, '20210008', 'fgdfg', 'dgfdf', 'dfgdfg', 'dfgdfgd', 'Male', 'Single', 'dfsdfsd', 'dfsdfsd', '2011', '', '2016', '', 'dfsdfsd', '', '3434343', '34342323232', 'dfsdfsd', 'dfsdfsd@gmail.com', 'dfsdfsd', 'dfsdfsd', '', '2', ''),
-(20210021, '20210009', 'Prosperidad', 'Juan', 'Dela', 'Kalibo', 'Male', 'Single', 'Kalibo', 'Programmer', '', '', '2013', '', 'BSIT', '', '0246844', '52454457454', 'Kalibo', 'juandela@gmail.com', 'juandela', 'password123', '', '2', '');
+(20210021, '20210009', 'Prosperidad', 'Juan', 'Dela', 'Kalibo', 'Male', 'Single', 'Kalibo', 'Programmer', '', '', '2013', '', 'BSIT', '', '0246844', '52454457454', 'Kalibo', 'juandela@gmail.com', 'juandela', 'password123', '', '2', ''),
+(20210022, '20210010', 'Delacruz', 'Juan', 'Mid', 'Kalibo', 'Male', 'Single', 'Kalibo', 'Programmer', '', '', '2013', '', 'BSIT', '', '2568457', '09456872315', 'Kalibo', 'juandelacruz@gmail.com', 'juandelacruz', 'password', '', '2', '');
 
 --
 -- Indexes for dumped tables
@@ -170,19 +175,19 @@ ALTER TABLE `users_tbl`
 -- AUTO_INCREMENT for table `payments_tbl`
 --
 ALTER TABLE `payments_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `post_tbl`
 --
 ALTER TABLE `post_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users_tbl`
 --
 ALTER TABLE `users_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20210022;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20210023;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

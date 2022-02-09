@@ -308,7 +308,8 @@ $post = "";
                             // $_SESSION["id_no"] = $id_noWalk;
                             // $_SESSION["souvenirWalk"] = $souvenirWalk;
                             // $_SESSION["reservationQuantityWalk"] = $reservationQuantityWalk;
-                            // $totalAmount = $_SESSION["totalAmount"];
+                            // $totalAmountWalk = $_SESSION["totalAmount"];
+                            $_SESSION["totalAmountWalk"] = $totalAmountWalk;
                             $_SESSION["res"] = $reservationQuantityWalk;
                             $_SESSION["sw"] = $smallWalk;
                             $_SESSION["mw"] = $mediumWalk;
@@ -321,9 +322,14 @@ $post = "";
                                 echo "<script>alert('$sizeTotalWalk');</script>";
                                 echo "<script>alert('Please check T-Shirt Sizes!');</script>";
                             }else{
+                                // mysqli_query($connections, "INSERT INTO payments_tbl (id_no,cash_official_receipt,cash_date_of_payment,bank_official_receipt,
+                                //                                         bank_date_of_payment,cheque_no,cheque_bank,cheque_official_receipt,cheque_date_of_payment,
+                                //                                         number_of_person,small,medium,large,extralarge,doublexl,souvenir_program,total_amount)
+                                //                                         VALUES ('$id_no','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0')");
                                 // echo "<script>alert('$sizeTotalWalk');</script>";
                                 // echo "<script>window.location.href='registration_form.php?res=$reservationQuantityWalk&_s=$smallWalk&_m=$mediumWalk&_l=$largeWalk&_xl=$extralargeWalk&_xxl=$doublexlWalk&_spr=$souvenirWalk';</script>";
-                                echo "<script>window.location.href='registration_form.php';</script>";
+                                echo "<script>window.open('registration_form.php','_blank');</script>";
+                                echo "<script>window.location.href='profile';</script>";
                             }
 
                         }
