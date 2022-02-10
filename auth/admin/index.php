@@ -199,7 +199,7 @@ $uploadErr = "";
         $img = $row_post["img"];
 
     ?>
-    <div class="container-fluid col-5 border border-dark rounded">
+    <div class="container-fluid col-10 border border-dark rounded">
     <h6 class="float-left">Aklan Catholic College Official</h6>
         <?php echo nl2br($my_post); ?>
         <p></p>

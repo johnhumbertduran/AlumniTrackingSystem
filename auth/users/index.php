@@ -29,7 +29,7 @@ if(isset($_SESSION["username"])){
 
   .post-image{
     object-fit: cover;
-    width: 520px;
+    width: 720px;
   }
   
 </style>
@@ -57,9 +57,9 @@ if(isset($_SESSION["username"])){
         $post_time = $row_post["time"];
         $img = $row_post["img"];
     ?>
-    <div class="container-fluid col-5 border border-dark rounded">
+    <div class="container-fluid col-10 border border-dark rounded">
     <h6 class="float-left">Aklan Catholic College Official</h6>
-        <?php echo $my_post; ?>
+        <?php echo nl2br($my_post); ?>
         <p></p>
 
         <div class="text-center">

@@ -422,7 +422,7 @@ if(isset($_SESSION["username"])){
 
                 <div class="form-check flex-fill">
                 <input type="checkbox" class="form-check-input" id="high_school" name="high_school" <?php if($highSchool == "high_school"){ echo "checked "; } ?> value="high_school" onclick="highSchoolDisable()">
-                <label class="form-check-label" for="high_school">High School</label>
+                <label class="form-check-label" for="high_school">High School &nbsp;</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
@@ -433,7 +433,7 @@ if(isset($_SESSION["username"])){
 
                 <div class="form-check flex-fill">
                 <input type="checkbox" class="form-check-input" id="graduate_school" name="graduate_school" <?php if($graduate == "graduate_school"){ echo "checked "; } ?> value="graduate_school" onclick="graduateDisable()">
-                <label class="form-check-label" for="graduate_school">Graduate</label>
+                <label class="form-check-label" for="graduate_school">Graduate School &nbsp;</label>
                 </div>
 
                 <div class="form-floating col-3 flex-fill">
