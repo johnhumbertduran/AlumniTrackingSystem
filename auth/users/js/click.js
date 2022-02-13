@@ -693,6 +693,9 @@ function reservationChangeWalk(){
     
 
 function smallChangeWalk(){
+
+    totalamountTWalk.value = parseInt(totalReservationWalk.value);
+
     sumShirtsWalk();
     // alert(tSum.value);
     if(parseInt(smallWalk.value) >= document.getElementById("reservationQuantityWalk").value){
@@ -773,9 +776,13 @@ function smallChangeWalk(){
     }
 
     document.getElementById("smallTWalk").value = document.getElementById("smallWalk").value;
+    
 }
 
 function mediumChangeWalk(){
+
+    totalamountTWalk.value = parseInt(totalReservationWalk.value);
+
     sumShirtsWalk();
     // alert(tSum.value);
     if(parseInt(mediumWalk.value) >= document.getElementById("reservationQuantityWalk").value){
@@ -855,9 +862,13 @@ function mediumChangeWalk(){
     }
 
     document.getElementById("mediumTWalk").value = document.getElementById("mediumWalk").value;
+    
 }
 
 function largeChangeWalk(){
+
+    totalamountTWalk.value = parseInt(totalReservationWalk.value);
+
     if(parseInt(largeWalk.value) >= document.getElementById("reservationQuantityWalk").value){
         smallWalk.disabled = true;
         mediumWalk.disabled = true;
@@ -935,9 +946,13 @@ function largeChangeWalk(){
     }
     
     document.getElementById("largeTWalk").value = document.getElementById("largeWalk").value;
+    
 }
 
 function xlChangeWalk(){
+
+    totalamountTWalk.value = parseInt(totalReservationWalk.value);
+
     if(parseInt(xlWalk.value) >= document.getElementById("reservationQuantityWalk").value){
         smallWalk.disabled = true;
         mediumWalk.disabled = true;
@@ -1015,9 +1030,13 @@ function xlChangeWalk(){
     }
 
     document.getElementById("extralargeTWalk").value = document.getElementById("xlWalk").value;
+    
 }
 
 function xxlChangeWalk(){
+
+    totalamountTWalk.value = parseInt(totalReservationWalk.value);
+
     if(parseInt(xxlWalk.value) >= document.getElementById("reservationQuantityWalk").value){
         smallWalk.disabled = true;
         mediumWalk.disabled = true;
@@ -1095,6 +1114,7 @@ function xxlChangeWalk(){
     }
 
     document.getElementById("doublexlTWalk").value = document.getElementById("xxlWalk").value;
+    
 }
 
 function totalAmountClickWalk(){

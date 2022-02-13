@@ -34,3 +34,12 @@ add filter year, course, address
 print registration form
 
 T-shirt package
+
+
+##########################################
+user
+Profile
+payment
+admin
+index
+payment
